@@ -179,6 +179,7 @@
         </ul>
     </nav>
     <div class="containe" >
+      this is an update
             @yield('content')
             
         </div>
