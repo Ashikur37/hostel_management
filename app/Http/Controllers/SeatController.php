@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\hostel;
+use App\Seat;
 use Illuminate\Http\Request;
 
-class HostelController extends Controller
+class SeatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,15 +15,6 @@ class HostelController extends Controller
     public function index()
     {
         //
-    }
-    public function maleHostel()
-    {
-        return view('maleHostel');
-    }
-    public function femaleHostel()
-    {
-        return view('femaleHostel');
-        
     }
 
     /**
@@ -50,10 +41,10 @@ class HostelController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\hostel  $hostel
+     * @param  \App\Seat  $seat
      * @return \Illuminate\Http\Response
      */
-    public function show(hostel $hostel)
+    public function show(Seat $seat)
     {
         //
     }
@@ -61,10 +52,10 @@ class HostelController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\hostel  $hostel
+     * @param  \App\Seat  $seat
      * @return \Illuminate\Http\Response
      */
-    public function edit(hostel $hostel)
+    public function edit(Seat $seat)
     {
         //
     }
@@ -73,10 +64,10 @@ class HostelController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\hostel  $hostel
+     * @param  \App\Seat  $seat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, hostel $hostel)
+    public function update(Request $request, Seat $seat)
     {
         //
     }
@@ -84,10 +75,10 @@ class HostelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\hostel  $hostel
+     * @param  \App\Seat  $seat
      * @return \Illuminate\Http\Response
      */
-    public function destroy(hostel $hostel)
+    public function destroy(Seat $seat)
     {
         //
     }

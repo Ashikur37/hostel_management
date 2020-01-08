@@ -14,7 +14,16 @@
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/signin', function () {
+Route::get('/hostel-facility', function () {
+    return view('hostelFacility');
+});
+Route::get('/rules&regulation', function () {
+    return view('rules');
+});
+Route::get('/notice', function () {
+    return view('notice');
+});
+Route::get('/login', function () {
     return view('login');
 });
 Route::get('/signup', function () {
@@ -25,6 +34,9 @@ Route::post('/signup', 'UserController@signup');
 
 //student routes
 Route::get('/student', 'studentController@home');
+Route::get('/male-hostel', 'hostelController@maleHostel');
+Route::get('/female-hostel', 'hostelController@femaleHostel');
+
 
 
 //admin routes
