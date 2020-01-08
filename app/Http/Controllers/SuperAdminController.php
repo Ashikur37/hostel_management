@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\superAdmin;
 use App\User;
-use App\Hostel;
+use App\Room;
 use Illuminate\Http\Request;
 
 class SuperAdminController extends Controller
@@ -45,27 +45,19 @@ class SuperAdminController extends Controller
     }
     public function insertHostel(Request $request){
         
-        $hostel=new Hostel;
-        $hostel->room_no=$request->room;
-        $hostel->building_no=$request->building;
-        $hostel->price=$request->price;
-        $hostel->location=$request->location;
-        $hostel->lat="0";
-        $hostel->long="0";
-        $hostel->gender=$request->gender;
-        
-        $hostel->empty=0;
-        $imageName = time().'.'.$request->image->getClientOriginalExtension();
-        $request->image->move(public_path('images'), $imageName);
-        $hostel->image=$imageName;
-        $hostel->save();
-        return redirect('/hostel-list');
+        $room=new Room;
+        $room->room_no=$request->room;
+        $room->hostel=$request->hostel;
+        $room->total=$request->total;
+        $room->available=$request->total;
+        $room->save();
+        return redirect('/room-list');
     }
     public function hostelList()
     {
-        $hostels=Hostel::all();
+        $rooms=Room::all();
         
-        return view('superadmin.hostel.list',['hostels'=>$hostels]);
+        return view('superadmin.hostel.list',['rooms'=>$rooms]);
     }
     public function addHostel()
     {

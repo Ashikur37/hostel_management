@@ -7,45 +7,26 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" method="post" action="/add-hostel" enctype="multipart/form-data">
+              <form role="form" method="post" action="/add-room" enctype="multipart/form-data">
               @csrf
                 <div class="card-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Room No</label>
                         <input required name="room" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Room No">
                       </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Building No</label>
-                    <input required name="building" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Building No">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Rent</label>
-                    <input required name="price" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Monthly Rent">
-                  </div>
-                  <div class="form-group">
-                      <label for="exampleInputPassword1">Street Address</label>
-                      <input required name="location" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Street Address">
-                    </div>
-
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Gender</label>
-                      <div class="form-check-inline">
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="gender" value="male">Male
-                        </label>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Total Seat</label>
+                        <input required name="total" type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter Room No">
                       </div>
-                      <div class="form-check-inline">
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="gender" value="female">Female
-                        </label>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Hostel</label>
+                        <select name="hostel" id="" class="form-control" required>
+                          <option value="">Select Hostel</option>
+                          <option value="male1">Male1</option>
+                          <option value="male2">Male2</option>
+                          <option value="female">Female</option>
+                        </select>
                       </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Image</label>
-                      <input required name="image" type="file" class="form-control" >
-                    </div>
-
                     
                   
                   

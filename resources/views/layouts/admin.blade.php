@@ -100,21 +100,21 @@
             <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                User
+                Application
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/unapproved-user" class="nav-link ">
+                <a href="/unapproved-application" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Unapproved User</p>
+                  <p>Unapproved Application</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/approved-user" class="nav-link ">
+                <a href="/approved-application" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Approved User</p>
+                  <p>Approved Application</p>
                 </a>
               </li>
             </ul>

@@ -15,13 +15,10 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('student_id');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('department');
-            $table->string('batch');
-            $table->string('gender');
-
+            $table->integer('application_id')->unsigned()->index();
+            $table->foreign('application_id')->references('id')->on('applications')->onDelete('cascade');
             $table->timestamps();
         });
     }

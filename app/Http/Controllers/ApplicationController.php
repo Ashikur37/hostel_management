@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\admin;
-use App\user;
 use App\Application;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-class AdminController extends Controller
+
+class ApplicationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,26 +17,6 @@ class AdminController extends Controller
         //
     }
 
-    public function home()
-    {
-        return view('admin.home');
-    }
-
-    public function unapprovedUser(){
-        $applications = DB::select('select * from applications a,rooms r where a.room_id=r.id and status = ?', [0]);        
-        return view('admin.unapproved_user.list',['applications'=>$applications]);
-    }
-    public function approvedUser(){
-        $users = DB::select('select u.id,name,email,phone,department,gender,batch,student_id from users u,students s where s.user_id=u.id and type = ?', [1]);
-        return view('admin.approved_user.list',['users'=>$users]);
-    }
-    public function approveUser(Request $request){
-        $user=User::where('id', '=', $request->id)->first();
-        $user->type=1;
-        $user->save();
-        return redirect('/unapproved-user');
-    }
- 
     /**
      * Show the form for creating a new resource.
      *
@@ -63,10 +41,10 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\admin  $admin
+     * @param  \App\Application  $application
      * @return \Illuminate\Http\Response
      */
-    public function show(admin $admin)
+    public function show(Application $application)
     {
         //
     }
@@ -74,10 +52,10 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\admin  $admin
+     * @param  \App\Application  $application
      * @return \Illuminate\Http\Response
      */
-    public function edit(admin $admin)
+    public function edit(Application $application)
     {
         //
     }
@@ -86,10 +64,10 @@ class AdminController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\admin  $admin
+     * @param  \App\Application  $application
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, admin $admin)
+    public function update(Request $request, Application $application)
     {
         //
     }
@@ -97,10 +75,10 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\admin  $admin
+     * @param  \App\Application  $application
      * @return \Illuminate\Http\Response
      */
-    public function destroy(admin $admin)
+    public function destroy(Application $application)
     {
         //
     }

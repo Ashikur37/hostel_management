@@ -23,6 +23,15 @@ Route::get('/rules&regulation', function () {
 Route::get('/notice', function () {
     return view('notice');
 });
+Route::get('/canteen', function () {
+    return view('canteen');
+});
+Route::get('/others', function () {
+    return view('others');
+});
+Route::get('/entertainment', function () {
+    return view('entertainment');
+});
 Route::get('/login', function () {
     return view('login');
 });
@@ -36,14 +45,17 @@ Route::post('/signup', 'UserController@signup');
 Route::get('/student', 'studentController@home');
 Route::get('/male-hostel', 'hostelController@maleHostel');
 Route::get('/female-hostel', 'hostelController@femaleHostel');
+Route::get('/apply', 'hostelController@apply');
+
+Route::post('/apply', 'hostelController@insertApplication');
 
 
 
 //admin routes
 Route::get('/admin', 'adminController@home');
 Route::get('/approved-user', 'adminController@approvedUser');
-Route::get('/approve-user', 'adminController@approveUser');
-Route::get('/unapproved-user', 'adminController@unapprovedUser');
+Route::get('/approve-application', 'adminController@approveUser');
+Route::get('/unapproved-application', 'adminController@unapprovedUser');
 
 
 //super admin routes
@@ -51,6 +63,6 @@ Route::get('/superadmin', 'superAdminController@home');
 Route::get('/admin-list', 'superAdminController@adminList');
 Route::get('/add-admin', 'superAdminController@addAdmin');
 Route::post('/add-admin', 'superAdminController@insertAdmin');
-Route::post('/add-hostel', 'superAdminController@insertHostel');
-Route::get('/hostel-list', 'superAdminController@hostelList');
-Route::get('/add-hostel', 'superAdminController@addHostel');
+Route::post('/add-room', 'superAdminController@insertHostel');
+Route::get('/room-list', 'superAdminController@hostelList');
+Route::get('/add-room', 'superAdminController@addHostel');

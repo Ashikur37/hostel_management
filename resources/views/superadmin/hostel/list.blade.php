@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Hostel List</h3>
+              <h3 class="card-title">Room List</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -11,26 +11,21 @@
                 <thead>
                 <tr>
                   <th>Room No</th>
-                  <th>Building No</th>
-                  <th>Gender</th>
-                  <th>Rent</th>
-                  <th>Street Address</th>
-                  <th>Image</th>
+                  <th>Total Seat</th>
+                  <th>Hostel</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($hostels as $hostel)
+                @foreach ($rooms as $room)
                   <tr>
-                    <td>{{$hostel->room_no}}</td>
-                    <td>{{$hostel->building_no}}</td>
-                    <td>{{$hostel->gender}}</td>
-                    <td>{{$hostel->price}}</td>
-                    <td>{{$hostel->location}}</td>
-                    <td><img src="images/{{$hostel->image}}" alt="" style="width:90px;"></td>
+                    <td>{{$room->room_no}}</td>
+                    <td>{{$room->total}}</td>
+                    <td>{{$room->hostel}}</td>
+                    
                     <td>
-                      <a href="/edit-hostel?id={{$hostel->id}}" class="btn btn-sm btn-success">Edit</a>
-                      <a href="/delete-hostel?id={{$hostel->id}}" class="btn btn-danger btn-sm">Delete</a>
+                      <a href="/edit-room?id={{$room->id}}" class="btn btn-sm btn-success">Edit</a>
+                      <a href="/delete-room?id={{$room->id}}" class="btn btn-danger btn-sm">Delete</a>
                     </td>
                   </tr>
               @endforeach

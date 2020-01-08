@@ -136,7 +136,9 @@
 <body>
     <div class="row" style="margin: 10px;">
         <div class="col-md-10">
-            <h3>Hostel Management System for HUB</h3>
+            <center>
+            <h3>Online Hostel Management System for HUB</h3>
+            </center>
         </div>
         <div class="col-md-2">
             <a href="/login" class="btn btn-outline-success btn-outline ">
@@ -163,13 +165,22 @@
                     Hostel Type
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="male-hostel">Male</a>
-                    <a class="dropdown-item" href="female-hostel">Female</a>
+                    <a class="dropdown-item" href="/male-hostel">Male</a>
+                    <a class="dropdown-item" href="/female-hostel">Female</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/hostel-facility">Hostel Facilities</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Hostel Facilities
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/canteen">Canteen</a>
+                    <a class="dropdown-item" href="/entertainment">Entertainment</a>
+                    <a class="dropdown-item" href="/others">Others</a>
+
+                </div>
             </li>
+            
             <li class="nav-item">
                 <a class="nav-link" href="/rules&regulation">Rules & Regulation</a>
             </li>
@@ -177,9 +188,13 @@
                 <a class="nav-link" href="/notice">Notice</a>
             </li>
         </ul>
+        <form class="form-inline my-2 my-lg-0" style="margin-left:300px">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-success my-2 my-sm-0" type="button">Search</button>
+    </form>
     </nav>
     <div class="containe" >
-      this is an update
+      
             @yield('content')
             
         </div>

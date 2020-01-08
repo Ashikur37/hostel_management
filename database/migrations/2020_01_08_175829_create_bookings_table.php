@@ -17,8 +17,8 @@ class CreateBookingsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('hostel_id')->unsigned()->index();
-            $table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');
+            $table->integer('room_id')->unsigned()->index();
+            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
             $table->date("start_date");
             $table->date("end_date")->nullable();
             $table->timestamps();

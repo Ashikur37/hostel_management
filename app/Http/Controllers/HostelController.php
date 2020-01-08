@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\hostel;
+use App\Room;
+use App\Application;
 use Illuminate\Http\Request;
 
 class HostelController extends Controller
@@ -26,6 +28,33 @@ class HostelController extends Controller
         
     }
 
+    public function apply(Request $request)
+    {
+       $hostel=$request->hostel;
+       $rooms=Room::where('hostel', '=', $hostel)->get();
+     
+       return view('application',['rooms'=>$rooms]);
+
+    }
+    public function insertApplication(Request $request){
+        $application=new Application;
+        $application->name=$request->name;
+        $application->student_id=$request->student_id;
+        $application->department=$request->department;
+        $application->batch=$request->batch;
+        $application->semester=$request->semester;
+        $application->email=$request->email;
+        $application->phone=$request->phone;
+        $application->father=$request->father;
+        $application->mother=$request->mother;
+        $application->address=$request->address;
+        $application->guardian=$request->guardian;
+        $application->room_id=$request->room;
+
+        $application->status=0;
+        $application->save();
+        return redirect('/apply?msg=Your application has been submitted successfully');
+    }
     /**
      * Show the form for creating a new resource.
      *
