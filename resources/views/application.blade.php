@@ -42,7 +42,7 @@
                                 <option>Choose The Room</option>
                                 @foreach ($rooms as $room)
                  
-                    <option value="{{$room->id}}">{{$room->room_no}}</option>
+                    <option value="{{$room->id}}">{{$room->room_no}}(available seat {{$room->available}})</option>
                   
               @endforeach
                             </select>

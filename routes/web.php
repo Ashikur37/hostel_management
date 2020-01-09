@@ -38,6 +38,8 @@ Route::get('/login', function () {
 Route::get('/signup', function () {
     return view('signup');
 });
+Route::get('/mail', 'adminController@approveUser');
+
 Route::post('/signin', 'UserController@signin');
 Route::post('/signup', 'UserController@signup');
 
@@ -55,7 +57,9 @@ Route::post('/apply', 'hostelController@insertApplication');
 Route::get('/admin', 'adminController@home');
 Route::get('/approved-user', 'adminController@approvedUser');
 Route::get('/approve-application', 'adminController@approveUser');
+Route::post('/approve-application', 'adminController@confirmApprove');
 Route::get('/unapproved-application', 'adminController@unapprovedUser');
+Route::get('/approved-application', 'adminController@approvedUser');
 
 
 //super admin routes
