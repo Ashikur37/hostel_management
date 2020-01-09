@@ -21,7 +21,7 @@
         </style>
 <div style="margin: 10px;">
     <center>
-            <h4 style="border-bottom: 2px solid green; width: 200px;">Female Hostel</h4>
+            <h4 style="border-bottom: 2px solid green; width: 200px;">Girls Hostel</h4>
     </center>
     <div class="row">
         <div class="col-md-5">

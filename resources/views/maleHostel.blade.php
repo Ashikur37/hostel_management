@@ -23,7 +23,7 @@
         </style>
 <div style="margin: 10px;">
     <center>
-            <h4 style="border-bottom: 2px solid green; width: 200px;">Male Hostel1</h4>
+            <h4 style="border-bottom: 2px solid green; width: 200px;">Boys Hostel1</h4>
     </center>
     <div class="row">
         <div class="col-md-5">
@@ -39,7 +39,7 @@
         </div>
     </div>
     <center style="margin-top:20px;">
-            <h4 style="border-bottom: 2px solid green; width: 200px;">Male Hostel2</h4>
+            <h4 style="border-bottom: 2px solid green; width: 200px;">Boys Hostel2</h4>
     </center>
     <div class="row">
         <div class="col-md-5">

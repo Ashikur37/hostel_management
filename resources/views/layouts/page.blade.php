@@ -135,7 +135,12 @@
 
 <body>
     <div class="row" style="margin: 10px;">
-        <div class="col-md-10">
+    <div class="col-md-2">
+    <span  class="fa fa-phone"></span>
+      <strong>01712548521</strong>
+    </div>
+        <div class="col-md-8">
+          
             <center>
             <h3>Online Hostel Management System for HUB</h3>
             </center>
