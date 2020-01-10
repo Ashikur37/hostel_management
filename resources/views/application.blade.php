@@ -36,18 +36,7 @@
 
                 <form action="/apply" method="post">
                     @csrf
-                    <div class="input-group mb-3">
-
-                            <select required class="form-control" name="room" id="">
-                                <option>Choose The Room</option>
-                                @foreach ($rooms as $room)
-                 
-                    <option value="{{$room->id}}">{{$room->room_no}}(available seat {{$room->available}})</option>
-                  
-              @endforeach
-                            </select>
-    
-                        </div>
+                    
 
                     <div class="input-group mb-3">
                         <input required type="text" class="form-control" name="name" placeholder="Full name">

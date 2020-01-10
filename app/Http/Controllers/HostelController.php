@@ -6,7 +6,7 @@ use App\hostel;
 use App\Room;
 use App\Application;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class HostelController extends Controller
 {
     /**
@@ -20,12 +20,14 @@ class HostelController extends Controller
     }
     public function maleHostel()
     {
-        
-        return view('maleHostel');
+        $boys1 = DB::select('select COALESCE(sum(total), 0) as total_seat,COALESCE(sum(available), 0) as total_available from rooms where hostel = ?', ['boys1']);  
+        $boys2 = DB::select('select COALESCE(sum(total), 0) as total_seat,COALESCE(sum(available), 0) as total_available from rooms where hostel = ?', ['boys2']); 
+        return view('maleHostel',['boys1'=>$boys1,'boys2'=>$boys2]);
     }
     public function femaleHostel()
     {
-        return view('femaleHostel');
+        $girls = DB::select('select COALESCE(sum(total), 0) as total_seat,COALESCE(sum(available), 0) as total_available from rooms where hostel = ?', ['girls']);
+        return view('femaleHostel',['girls'=>$girls]);
         
     }
 
@@ -50,7 +52,7 @@ class HostelController extends Controller
         $application->mother=$request->mother;
         $application->address=$request->address;
         $application->guardian=$request->guardian;
-        $application->room_id=$request->room;
+        $application->room_id=2;
 
         $application->status=0;
         $application->save();

@@ -15,7 +15,7 @@
       <table id="dt" class="table table-bordered table-striped">
         <thead>
           <tr>
-            <th>Room No</th>
+            
             <th>Full Name</th>
             <th>Student ID</th>
             <th>Email</th>
@@ -32,7 +32,7 @@
         <tbody>
           @foreach ($applications as $application)
           <tr>
-            <td>{{$application->room_no}}</td>
+            
             <td>{{$application->name}}</td>
             <td>{{$application->student_id}}</td>
             <td>{{$application->email}}</td>

@@ -27,8 +27,9 @@
         <div class="col-md-5">
                 <div class="vertical-menu">
                         
-                        <a class="btn btn-block btn-info" href="#">Total Seat</a>
-                        <a class="btn btn-block btn-primary" href="#">Available </a>
+                        <a class="btn btn-block btn-info" href="#">Total Seat({{$girls[0]->total_seat}})
+                        </a>
+                        <a class="btn btn-block btn-primary" href="#">Available({{$girls[0]->total_available}}) </a>
                         <a class="btn btn-block btn-success" href="/apply?hostel=girls">Apply</a>
                       </div>
         </div>

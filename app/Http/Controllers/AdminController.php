@@ -63,7 +63,7 @@ class AdminController extends Controller
            $message->to($email)
             ->subject('Hostel Booking Success');
        });
-        return redirect('/unapproved-user');
+        return redirect('/approved-application');
 
     }
     public function unapprovedUser(){
