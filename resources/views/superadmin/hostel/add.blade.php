@@ -22,9 +22,9 @@
                         <label for="exampleInputEmail1">Hostel</label>
                         <select name="hostel" id="" class="form-control" required>
                           <option value="">Select Hostel</option>
-                          <option value="male1">Male1</option>
-                          <option value="male2">Male2</option>
-                          <option value="female">Female</option>
+                          <option value="boys1">Boys1</option>
+                          <option value="boys2">Boys2</option>
+                          <option value="girls">Girls</option>
                         </select>
                       </div>
                     

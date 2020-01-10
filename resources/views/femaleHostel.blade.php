@@ -29,7 +29,7 @@
                         
                         <a class="btn btn-block btn-info" href="#">Total Seat</a>
                         <a class="btn btn-block btn-primary" href="#">Available </a>
-                        <a class="btn btn-block btn-success" href="/apply?hostel=female">Apply</a>
+                        <a class="btn btn-block btn-success" href="/apply?hostel=girls">Apply</a>
                       </div>
         </div>
         <div class="col-md-6">

@@ -20,6 +20,7 @@ class HostelController extends Controller
     }
     public function maleHostel()
     {
+        
         return view('maleHostel');
     }
     public function femaleHostel()

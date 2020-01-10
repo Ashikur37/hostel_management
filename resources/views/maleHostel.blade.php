@@ -31,7 +31,7 @@
                         
                         <a class="btn btn-block btn-info" href="#">Total Seat</a>
                         <a class="btn btn-block btn-primary" href="#">Available </a>
-                        <a class="btn btn-block btn-success" href="/apply?hostel=male1">Apply</a>
+                        <a class="btn btn-block btn-success" href="/apply?hostel=boys1">Apply</a>
                       </div>
         </div>
         <div class="col-md-6">
@@ -47,7 +47,7 @@
                         
                         <a class="btn btn-block btn-info" href="#">Total Seat</a>
                         <a class="btn btn-block btn-primary" href="#">Available </a>
-                        <a class="btn btn-block btn-success" href="/apply?hostel=male2">Apply</a>
+                        <a class="btn btn-block btn-success" href="/apply?hostel=boys2">Apply</a>
                       </div>
         </div>
         <div class="col-md-6">

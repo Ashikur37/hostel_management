@@ -45,8 +45,8 @@ Route::post('/signup', 'UserController@signup');
 
 //student routes
 Route::get('/student', 'studentController@home');
-Route::get('/male-hostel', 'hostelController@maleHostel');
-Route::get('/female-hostel', 'hostelController@femaleHostel');
+Route::get('/boys-hostel', 'hostelController@maleHostel');
+Route::get('/girls-hostel', 'hostelController@femaleHostel');
 Route::get('/apply', 'hostelController@apply');
 
 Route::post('/apply', 'hostelController@insertApplication');

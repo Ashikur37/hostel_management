@@ -170,8 +170,8 @@
                     Hostel Type
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/male-hostel">Male</a>
-                    <a class="dropdown-item" href="/female-hostel">Female</a>
+                    <a class="dropdown-item" href="/boys-hostel">Boys</a>
+                    <a class="dropdown-item" href="/girls-hostel">Girls</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
