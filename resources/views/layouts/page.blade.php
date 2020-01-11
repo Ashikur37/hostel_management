@@ -160,7 +160,7 @@
         </a>
 
         <!-- Links -->
-        <ul class="navbar-nav">
+        <ul class="navbar-nav ml-5">
             <li class="nav-item">
                 <a class="nav-link" href="/">Home</a>
             </li>
@@ -193,7 +193,7 @@
                 <a class="nav-link" href="/notice">Notice</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" style="margin-left:300px">
+        <form class="form-inline my-2 my-lg-0 ml-auto" style="">
       <input class="form-control mr-sm-2" type="text" placeholder="Search">
       <button class="btn btn-success my-2 my-sm-0" type="button">Search</button>
     </form>

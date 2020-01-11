@@ -26,6 +26,37 @@ class AdminController extends Controller
     public function home()
     {
         return view('admin.home');
+        
+    }
+    public function viewRoom(Request $request)
+    {
+        $applications=Application::where([
+            ['room_id', '=', $request->id],
+            ['status', '=', '1']
+        ])->get();
+        
+        return view('admin.room.students',['students'=>$applications]);
+    }
+    public function roomList()
+    {
+        $rooms=Room::all();
+        
+        return view('admin.room.list',['rooms'=>$rooms]);
+    }
+    public function reject(Request $request){
+        $body=$request->body;
+        $application=Application::where('id', $request->id)->first();
+        $application->status=2;
+        $application->save();
+        $name=$application->name;;
+        $email=$application->email;
+        $data=array("name"=>$name,"body"=>"Your application has been recjected. ".$body);
+        Mail::send('mail',$data,function($message) use ($name,$email){
+            $message->to($email)
+             ->subject('Hostel Booking Rejected');
+        });
+         return redirect('/unapproved-application');
+
     }
     public function confirmApprove(Request $request){
         $password=$request->password;

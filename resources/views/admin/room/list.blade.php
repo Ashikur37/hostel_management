@@ -1,4 +1,4 @@
-@extends('layouts.superadmin')
+@extends('layouts.admin')
 
 @section('content')
 <div class="card">
@@ -14,7 +14,7 @@
                   <th>Total Seat</th>
                   <th>Available</th>
                   <th>Hostel</th>
-                  <th>Action</th>
+                  <th>View Students</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -26,8 +26,8 @@
                     <td>{{$room->hostel}}</td>
                     
                     <td>
-                      <a href="/edit-room?id={{$room->id}}" class="btn btn-sm btn-success">Edit</a>
-                      <a href="/delete-room?id={{$room->id}}" class="btn btn-danger btn-sm">Delete</a>
+                      <a href="/view-room?id={{$room->id}}" class="btn btn-sm btn-success">View</a>
+                      
                     </td>
                   </tr>
               @endforeach

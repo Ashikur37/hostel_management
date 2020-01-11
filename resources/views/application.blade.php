@@ -147,9 +147,12 @@
 
             </div>
             <div class="row">
-                <div class="col-8">
-
+                <div class="col-6">
+    <button class="btn btn-success btn-block" onclick="window.history.back()">
+        Go Back
+    </button>
                 </div>
+                <div class="col-2"></div>
                 <!-- /.col -->
                 <div class="col-4">
                     <button type="submit" class="btn btn-primary btn-block">Apply</button>

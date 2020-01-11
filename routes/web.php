@@ -58,9 +58,11 @@ Route::get('/admin', 'adminController@home');
 Route::get('/approved-user', 'adminController@approvedUser');
 Route::get('/approve-application', 'adminController@approveUser');
 Route::post('/approve-application', 'adminController@confirmApprove');
+Route::post('/reject-application', 'adminController@reject');
 Route::get('/unapproved-application', 'adminController@unapprovedUser');
 Route::get('/approved-application', 'adminController@approvedUser');
-
+Route::get('/rooms', 'adminController@roomList');
+Route::get('/view-room', 'adminController@viewRoom');
 
 //super admin routes
 Route::get('/superadmin', 'superAdminController@home');

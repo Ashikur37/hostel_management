@@ -1,38 +1,42 @@
 @extends('layouts.page')
 @section('content')
-<style>
-        .vertical-menu {
-          width: 200px;
-        }
-        
-        .vertical-menu a {
-          
-         
-          display: block;
-          padding: 12px;
-          text-decoration: none;
-        }
-        
-       
-      
-        
-        .vertical-menu a.active {
-          background-color: #4CAF50;
-          color: white;
-        }
-        </style>
+
 <div style="margin: 10px;">
     <center>
             <h4 style="border-bottom: 2px solid green; width: 200px;">Boys Hostel1</h4>
     </center>
     <div class="row">
         <div class="col-md-5">
-                <div class="vertical-menu">
-                        
-                        <a class="btn btn-block btn-info" href="#">Total Seat({{$boys1[0]->total_seat}})</a>
-                        <a class="btn btn-block btn-primary" href="#">Available({{$boys1[0]->total_available}}) </a>
-                        <a class="btn btn-block btn-success" href="/apply?hostel=boys1">Apply</a>
-                      </div>
+                <nav class="navbar navbar-dark navbar-2 bg-success mb-4">
+                        <a class="navbar-brand" href="#">Boys Hostel 1</a>
+                        <!-- Navbar brand -->
+                        <!-- Collapse button -->
+                        <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+                          aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i
+                              class="fa fa-bars fa-1x"></i></span></button>
+                      
+                        <!-- Collapsible content -->
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+                      
+                          <!-- Links -->
+                          <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                              <a class="nav-link" href="#">Total Seat({{$boys1[0]->total_seat}}) <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="#">Available({{$boys1[0]->total_available}})</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="/apply?hostel=boys1">Apply</a>
+                            </li>
+                          </ul>
+                          <!-- Links -->
+                      
+                        </div>
+                        <!-- Collapsible content -->
+                      
+                      </nav>
+                
         </div>
         <div class="col-md-6">
             <div id="googleMap" style="width:100%;height:200px;"></div>
@@ -43,12 +47,35 @@
     </center>
     <div class="row">
         <div class="col-md-5">
-                <div class="vertical-menu">
-                        
-                        <a class="btn btn-block btn-info" href="#">Total Seat({{$boys2[0]->total_seat}})</a>
-                        <a class="btn btn-block btn-primary" href="#">Available({{$boys2[0]->total_available}}) </a>
-                        <a class="btn btn-block btn-success" href="/apply?hostel=boys2">Apply</a>
-                      </div>
+                <nav class="navbar navbar-dark navbar-2 bg-success mb-4">
+                        <a class="navbar-brand" href="#">Boys Hostel 2</a>
+                        <!-- Navbar brand -->
+                        <!-- Collapse button -->
+                        <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2"
+                          aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i
+                              class="fa fa-bars fa-1x"></i></span></button>
+                      
+                        <!-- Collapsible content -->
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+                      
+                          <!-- Links -->
+                          <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                              <a class="nav-link" href="#">Total Seat({{$boys2[0]->total_seat}}) <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="#">Available({{$boys2[0]->total_available}})</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="/apply?hostel=boys2">Apply</a>
+                            </li>
+                          </ul>
+                          <!-- Links -->
+                      
+                        </div>
+                        <!-- Collapsible content -->
+                      
+                      </nav>
         </div>
         <div class="col-md-6">
             <div id="googleMap2" style="width:100%;height:200px;"></div>
