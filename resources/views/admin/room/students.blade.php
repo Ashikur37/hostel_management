@@ -13,11 +13,11 @@
                   <th>Full Name</th>
                   <th>Student Id</th>
                   <th>Department</th>
-                  <th>Email</th>
+                  <th>Seat No</th>
                   <th>Phone</th>
-                  <th>Address</th>
-                  <th>Guardian</th>
-                  <th>Booked At</th>
+                  
+                  <th>Allotment At</th>
+                  <th>Leave at</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -27,15 +27,14 @@
                     <td>{{$student->name}}</td>
                     <td>{{$student->student_id}}</td>
                     <td>{{$student->department}}</td>
-                    <td>{{$student->email}}</td>
+                    <td>{{$student->seat_no}}</td>
                     <td>{{$student->phone}}</td>
-                    <td>{{$student->address}}</td>
-                    <td>{{$student->guardian}}</td>
                     <td>{{$student->updated_at}}</td>
+                    <td>{{$student->leaved_at}}</td>
 
                     
                     <td>
-                      <a href="/cancel-book?id={{$student->id}}" class="btn btn-sm btn-danger">Cancel Booking</a>
+                      <a href="/cancel-book?id={{$student->id}}&room={{$room}}" class="btn btn-sm btn-danger">Cancel Booking</a>
                       
                     </td>
                   </tr>

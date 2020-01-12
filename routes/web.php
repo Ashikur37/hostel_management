@@ -45,6 +45,10 @@ Route::post('/signup', 'UserController@signup');
 
 //student routes
 Route::get('/student', 'studentController@home');
+Route::get('/upload-receipt', 'studentController@uploadReceipt');
+Route::post('/upload-receipt', 'studentController@insertReceipt');
+
+
 Route::get('/boys-hostel', 'hostelController@maleHostel');
 Route::get('/girls-hostel', 'hostelController@femaleHostel');
 Route::get('/apply', 'hostelController@apply');
@@ -55,6 +59,9 @@ Route::post('/apply', 'hostelController@insertApplication');
 
 //admin routes
 Route::get('/admin', 'adminController@home');
+Route::get('/pending-payment', 'adminController@pendingPayment');
+Route::get('/payment-history', 'adminController@paymentHistory');
+Route::get('/approve-payment', 'adminController@approvePayment');
 Route::get('/approved-user', 'adminController@approvedUser');
 Route::get('/approve-application', 'adminController@approveUser');
 Route::post('/approve-application', 'adminController@confirmApprove');
@@ -63,6 +70,12 @@ Route::get('/unapproved-application', 'adminController@unapprovedUser');
 Route::get('/approved-application', 'adminController@approvedUser');
 Route::get('/rooms', 'adminController@roomList');
 Route::get('/view-room', 'adminController@viewRoom');
+Route::get('/cancel-book', 'adminController@cancelBook');
+Route::post('/supervisor', 'adminController@supervisor');
+Route::post('/registrar', 'adminController@registrar');
+Route::get('/signatures', function(){
+    return view('admin.signatures');
+});
 
 //super admin routes
 Route::get('/superadmin', 'superAdminController@home');

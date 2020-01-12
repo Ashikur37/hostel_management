@@ -117,6 +117,12 @@
                   <p>Approved Application</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/signatures" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Signatures</p>
+                </a>
+              </li>
             </ul>
           </li>
 
@@ -137,7 +143,29 @@
                 </li>
               </ul>
             </li>
-
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link ">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    Payments
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="/pending-payment" class="nav-link ">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Pending Payments</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="/payment-history" class="nav-link ">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Payment History</p>
+                      </a>
+                    </li>
+                </ul>
+              </li>
             <li class="nav-item has-treeview">
                 <a href="#" class="nav-link ">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -148,19 +176,37 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="/rooms" class="nav-link ">
+                    <a href="/notices" class="nav-link ">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Notices</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                      <a href="/rooms" class="nav-link ">
+                      <a href="/add-notice" class="nav-link ">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Add Notice</p>
                       </a>
                     </li>
                 </ul>
               </li>
+              <li class="nav-item has-treeview">
+                  <a href="#" class="nav-link ">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                      Messages
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="/admin-inbox" class="nav-link ">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Inbox</p>
+                      </a>
+                    </li>
+                    
+                  </ul>
+                </li>
          
 
          

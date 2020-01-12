@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\student;
+use App\Payment;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,10 +21,45 @@ class StudentController extends Controller
     {
         //
     }
+    public function uploadReceipt(){
+        if(!session('student')){
+            return redirect('/');
+        }
+        $student = session('student');
+        
+        return view('student.payments.upload',['student'=>$student]);
+    }
+    public function insertReceipt(Request $request){
+        if(!session('student')){
+            return redirect('/');
+        }
+        $student = session('student');
 
+        $request->validate([
+
+            'receipt' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+        ]);
+        $payment = new Payment;
+        $payment->user_id=$student->id;
+        $payment->year=$request->year;
+        $payment->month=$request->month;
+        $imageName = time().'.'.$request->receipt->getClientOriginalExtension();
+        $request->receipt->move(public_path('images'), $imageName);
+        $payment->receipt=  $imageName;
+        $payment->status=0;
+        $payment->save(); 
+
+
+        return redirect('/student');
+    }
     public function home() 
     {
-        return view('student.home');
+        if(!session('student')){
+            return redirect('/');
+        }
+        $student = session('student');
+        return view('student.home',['student'=>$student]);
     }
 
     /**

@@ -15,11 +15,12 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('booking_id')->unsigned()->index();
-            $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade');
-            $table->integer('amount');
-            $table->integer('method');
-            $table->integer('approved');
+            $table->integer('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('receipt');
+            $table->integer('month');
+            $table->integer('year');
+            $table->integer('status');
             $table->timestamps();
         });
     }

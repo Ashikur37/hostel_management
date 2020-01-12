@@ -18,6 +18,20 @@
           <form role="form" method="post" action="/approve-application">
             @csrf
             <div class="form-group">
+                <label for="exampleInputPassword1">Room No </label>
+                <select name="room" id="" class="form-control">
+                @foreach ($rooms as $room)
+                  <option value="{{$room->id}}">
+                      {{$room->room_no}} (Available {{$room->available}}) {{$room->hostel}}
+                  </option>
+                @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Seat No </label>
+                <input type="text" name="seat" placeholder="Seat No" class="form-control">
+            </div>
+            <div class="form-group">
                 <label for="exampleInputPassword1">Password </label>
                 <input required name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
               </div>
@@ -107,6 +121,7 @@
             <td>{{$application->mother}}</td>
             <td>{{$application->address}}</td>
             <td>{{$application->guardian}}</td>
+
             <td>
               <button onclick="approve('{{$application->id}}')"  class="btn btn-success btn-sm">Approve</button>
               <button onclick="reject('{{$application->id}}')"  class="btn btn-danger btn-sm">Reject</button>

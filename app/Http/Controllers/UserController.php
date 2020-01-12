@@ -63,12 +63,13 @@ class userController extends Controller
     $user=User::where('email', '=', $request->email)->where('password', '=', $request->password)->first();
     
     if(!$user){
-        return redirect('/signin?msg=Invalid email or password');
+        return redirect('/login?msg=Invalid email or password');
     }
     else if($user->type==0){
-        return redirect('/signin?msg=Your account is under approval');
+        return redirect('/login?msg=Your account is under approval');
     }
     else if($user->type==1){
+        $request->session()->put('student', $user);
         return redirect('/student');
     }
     else if($user->type==2){
