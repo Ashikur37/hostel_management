@@ -46,6 +46,7 @@ Route::post('/signup', 'UserController@signup');
 //student routes
 Route::get('/student', 'studentController@home');
 Route::get('/upload-receipt', 'studentController@uploadReceipt');
+Route::get('/student-payment', 'studentController@paymentHistory');
 Route::post('/upload-receipt', 'studentController@insertReceipt');
 
 

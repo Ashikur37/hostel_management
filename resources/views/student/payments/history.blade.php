@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.student')
 
 @section('content')
 <div class="card">
@@ -10,29 +10,23 @@
               <table id="dt" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                <th>Month</th>
+                  
+                  <th>Month</th>
                   <th>Year</th>
-                  <th>Student Name</th>
-                  <th>Student ID</th>
-           
-                  <th>Seat No</th>
-                  <th>Room No</th>
                   <th>Uploaded at</th>
+                  <th>Approved At</th>
                   <th>Bank Receipt</th>
-                  <th>Approve</th>
+                  <th>Status</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach ($payments as $payment)
                   <tr>
-                  <td>{{$payment->month}}</td>
-                  <td>{{$payment->year}}</td>
-                    <td>{{$payment->name}}</td>
-                    <td>{{$payment->student_id}}</td>
-                  
-                    <td>{{$payment->seat_no}}</td>
-                    <td>{{$payment->room_no}}</td>
+                    <td>{{$payment->month}}</td>
+                    <td>{{$payment->year}}</td>
                     <td>{{$payment->created_at}}</td>
+                    <td>{{$payment->updated_at}}</td>
+                    
                     <td>
                         <a href="/images/{{$payment->receipt}}" target="_blank">
                         <img style="width:200px;max-height:200px" src="/images/{{$payment->receipt}}"/></a>
@@ -40,8 +34,15 @@
                     </td>
                     
                     <td>
-                      <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                      
+                    @if ($payment->status === 0)
+        <span class="text text-danger">
+            Pending
+        </span>
+@else
+<span class="text text-success">
+            Approved
+        </span>
+@endif
                     </td>
                   </tr>
               @endforeach

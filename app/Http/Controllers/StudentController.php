@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\student;
 use App\Payment;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class StudentController extends Controller
 {
     public function __construct()
@@ -29,6 +29,16 @@ class StudentController extends Controller
         
         return view('student.payments.upload',['student'=>$student]);
     }
+
+    public function paymentHistory(){
+        if(!session('student')){
+            return redirect('/');
+        }
+        $student = session('student');
+        $payments = DB::select('select p.updated_at,p.month,p.year,p.status,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and  u.id = ?', [$student->id]);        
+        
+        return view('student.payments.history',['student'=>$student,"payments"=>$payments]);
+    }
     public function insertReceipt(Request $request){
         if(!session('student')){
             return redirect('/');
@@ -51,7 +61,7 @@ class StudentController extends Controller
         $payment->save(); 
 
 
-        return redirect('/student');
+        return redirect('/student-payment');
     }
     public function home() 
     {

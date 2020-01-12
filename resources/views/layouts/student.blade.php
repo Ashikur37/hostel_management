@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -154,7 +155,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/student/hostel-list" class="nav-link ">
+                <a href="/student-payment" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Payment History</p>
                 </a>
@@ -256,5 +257,12 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script src="../../plugins/datatables/jquery.dataTables.js"></script>
+<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<script>
+  $(function () {
+    $("#dt").DataTable();
+  });
+</script>
 </body>
 </html>
