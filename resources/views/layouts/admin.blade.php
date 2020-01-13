@@ -177,7 +177,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="/notices" class="nav-link ">
+                    <a href="/notice-list" class="nav-link ">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Notices</p>
                     </a>
