@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\hostel;
+use App\user;
+use Mail;
 use App\Room;
 use App\Notice;
 use App\Application;
@@ -43,6 +45,7 @@ class HostelController extends Controller
     public function insertApplication(Request $request){
         $application=new Application;
         $application->hostel=$request->hostel;
+        $admin=User::where('type', $request->hostel)->first();
         $application->name=$request->name;
         $application->student_id=$request->student_id;
         $application->department=$request->department;
@@ -66,6 +69,14 @@ class HostelController extends Controller
         $application->image=$imageName;    
         $application->status=0;
         $application->save();
+
+        $name=$admin->name;
+        $email=$admin->email;
+        $data=array("name"=>$name,"body"=>"New Application from ".$request->name);
+        Mail::send('mail',$data,function($message) use ($name,$email){
+            $message->to($email)
+             ->subject('New Hostel Booking');
+        });
         return redirect('/apply?msg=Your application has been submitted successfully');
     }
     /**

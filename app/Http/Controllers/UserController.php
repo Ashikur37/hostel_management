@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\student;
-
+use Session;
 use Illuminate\Http\Request;
 
 class userController extends Controller
@@ -73,12 +73,16 @@ class userController extends Controller
     else if($user->type==2){
         return redirect('/accountant');
     }
-    else if($user->type==5||$user->type==6||$user->type==7){
+    else if($user->type===5||$user->type==6||$user->type==7){
+        $request->session()->forget('student');
+
         $request->session()->put('admin', $user);
+        session(['admin' => $user]);
         return redirect('/admin');
     }
-    else if($user->type==1){
-        Session::put('student', $user);
+    else if($user->type===1){
+        $request->session()->forget('admin');
+        $request->session()->put('student', $user);
         return redirect('/student');
     }
     else if($user->type==4){

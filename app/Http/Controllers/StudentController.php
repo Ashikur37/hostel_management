@@ -86,11 +86,10 @@ class StudentController extends Controller
 
         return redirect('/student-payment');
     }
-    public function home() 
+    public function home(Request $request) 
     {
         
-        $student = session('student');
-    return $student;
+         $student = session('student');
         return view('student.home',['student'=>$student]);
     }
 
