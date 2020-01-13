@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2020 at 08:13 PM
+-- Generation Time: Jan 13, 2020 at 09:48 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -125,6 +125,16 @@ CREATE TABLE `messages` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id`, `sender_id`, `receiver_id`, `message`, `seen`, `created_at`, `updated_at`) VALUES
+(1, 9, 3, 'hello', 1, '2020-01-13 01:47:09', '2020-01-13 01:47:09'),
+(2, 9, 3, 'koi', 1, '2020-01-13 01:51:57', '2020-01-13 01:51:57'),
+(3, 3, 9, 'no', 0, '2020-01-13 02:27:57', '2020-01-13 02:27:57'),
+(4, 3, 9, 'got it', 0, '2020-01-13 02:47:12', '2020-01-13 02:47:12');
 
 -- --------------------------------------------------------
 
@@ -419,7 +429,7 @@ ALTER TABLE `fines`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`

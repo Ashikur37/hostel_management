@@ -6,6 +6,7 @@ use App\admin;
 use App\Payment;
 use Mail;
 use App\user;
+use App\message;
 use App\Application;
 use App\Student;
 use App\Room;
@@ -29,6 +30,28 @@ class AdminController extends Controller
     {
         return view('admin.home');
         
+    }
+    public function insertMessage(Request $request){
+     
+        $message=new message;
+        $admin=User::where('type', 3)->first();
+        $message->receiver_id=$request->student;
+        $message->sender_id=$admin->id;
+        $message->message=$request->message;
+        $message->seen=0;
+        $message->save();
+        return redirect('/admin-message?student='.$request->student);
+    } 
+    public function message(Request $request){
+        $student=$request->student;
+        $messages= DB::select('select s.name as sender,r.name as receiver,m.created_at,message from messages m,users s,users r where m.sender_id=s.id and m.receiver_id=r.id and (sender_id=? or receiver_id=?)', [$student,$student]);
+        return view('admin.message.chat',['student'=>$student,'messages'=>$messages]);
+    }
+    public function inbox(){
+        $sql="SELECT m.created_at,message,s.name,s.id,s.email from messages m, users s,users r where m.sender_id=s.id and m.receiver_id=r.id and s.type!=3 and m.seen=0";
+        $messages = DB::select($sql);
+        
+        return view('admin.message.inbox',["messages"=>$messages]);
     }
     public function approvePayment(Request $request){
         $payment=Payment::where('id', $request->id)->first();

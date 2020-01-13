@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\student;
 use App\Payment;
+use App\Message;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class StudentController extends Controller
@@ -21,6 +23,29 @@ class StudentController extends Controller
     {
         //
     }
+    public function message(){
+        if(!session('student')){
+            return redirect('/');
+        }
+        $student = session('student');
+        $messages= DB::select('select * from messages where sender_id=? or receiver_id=?', [$student->id,$student->id]);
+        return view('student.message',['student'=>$student,'messages'=>$messages]);
+    } 
+    public function insertMessage(Request $request){
+        if(!session('student')){
+            return redirect('/');
+        }
+        $student = session('student');
+        DB::statement( 'update messages set seen=1 where sender_id='.$student->id );
+        $message=new message;
+        $message->sender_id=$student->id;
+        $admin=User::where('type', 3)->first();
+        $message->receiver_id=$admin->id;
+        $message->message=$request->message;
+        $message->seen=0;
+        $message->save();
+        return redirect('/student-message');
+    } 
     public function uploadReceipt(){
         if(!session('student')){
             return redirect('/');

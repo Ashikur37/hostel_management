@@ -170,6 +170,12 @@
               
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="/student-message" class="nav-link">
+              <i class="nav-icon far fa-envelope"></i>
+              <p>Message</p>
+            </a>
+          </li>
          
 
          

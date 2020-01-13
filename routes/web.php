@@ -48,7 +48,8 @@ Route::get('/student', 'studentController@home');
 Route::get('/upload-receipt', 'studentController@uploadReceipt');
 Route::get('/student-payment', 'studentController@paymentHistory');
 Route::post('/upload-receipt', 'studentController@insertReceipt');
-
+Route::get('/student-message', 'studentController@message');
+Route::post('/student-message', 'studentController@insertMessage');
 
 Route::get('/boys-hostel', 'hostelController@maleHostel');
 Route::get('/girls-hostel', 'hostelController@femaleHostel');
@@ -60,6 +61,9 @@ Route::post('/apply', 'hostelController@insertApplication');
 
 //admin routes
 Route::get('/admin', 'adminController@home');
+Route::get('/admin-message', 'adminController@message');
+Route::post('/admin-message', 'adminController@insertMessage');
+Route::get('/admin-inbox', 'adminController@inbox');
 Route::get('/pending-payment', 'adminController@pendingPayment');
 Route::get('/payment-history', 'adminController@paymentHistory');
 Route::get('/approve-payment', 'adminController@approvePayment');
