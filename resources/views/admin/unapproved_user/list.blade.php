@@ -95,6 +95,7 @@
       <table id="dt" class="table table-bordered table-striped">
         <thead>
           <tr>
+            <th>Image</th>
             <th>Full Name</th>
             <th>Student ID</th>
             <th>Email</th>
@@ -111,6 +112,9 @@
         <tbody>
           @foreach ($applications as $application)
           <tr>
+            <td>
+              <img style="width:80px;height:80px;" src="/images/{{$application->image}}" alt="{{$application->name}}">
+            </td>
             <td>{{$application->name}}</td>
             <td>{{$application->student_id}}</td>
             <td>{{$application->email}}</td>

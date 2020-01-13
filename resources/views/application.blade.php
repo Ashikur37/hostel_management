@@ -34,9 +34,9 @@
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Apply for Seat</p>
 
-                <form action="/apply" method="post">
+                <form action="/apply" method="post" enctype="multipart/form-data">
                     @csrf
-                    
+                        <input type="hidden" name="hostel" value="{{$hostel}}">
 
                     <div class="input-group mb-3">
                         <input required type="text" class="form-control" name="name" placeholder="Full name">
@@ -110,6 +110,13 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
+                        <label for="">
+                            Photo&nbsp;&nbsp;
+                        </label>
+                        <input required type="file" class="form-control" name="image" placeholder="Photo">
+                        
+                    </div>
+                    <div class="input-group mb-3">
                             <input required type="text" class="form-control" name="father" placeholder="Father's Name">
                             <div class="input-group-append">
                                 <div class="input-group-text">
@@ -148,9 +155,9 @@
             </div>
             <div class="row">
                 <div class="col-6">
-    <button class="btn btn-success btn-block" onclick="window.history.back()">
+    <a class="btn btn-success btn-block" href="/">
         Go Back
-    </button>
+</a>
                 </div>
                 <div class="col-2"></div>
                 <!-- /.col -->

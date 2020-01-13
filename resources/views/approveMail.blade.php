@@ -19,10 +19,12 @@
 
     </p>
     <p>
-        <img src="{{ $message->embed('images/supervisor.jpg') }}"style="width:150px"  alt="">
+        <!--
+<img src="{{ $message->embed('images/supervisor.jpg') }}"style="width:150px"  alt="">
         <h4>Supervisor</h4>
         <img src="{{ $message->embed('images/registrar.jpg') }}"style="width:150px"  alt="">
         <h4>Registrar</h4>
+    -->
 
 
 </p>

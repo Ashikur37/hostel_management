@@ -1,4 +1,4 @@
-@extends('layouts.superadmin')
+@extends('layouts.admin')
 
 @section('content')
 <div class="card card-primary">
@@ -18,15 +18,7 @@
                         <label for="exampleInputEmail1">Total Seat</label>
                         <input required name="total" type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter Room No">
                       </div>
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Hostel</label>
-                        <select name="hostel" id="" class="form-control" required>
-                          <option value="">Select Hostel</option>
-                          <option value="boys1">Boys1</option>
-                          <option value="boys2">Boys2</option>
-                          <option value="girls">Girls</option>
-                        </select>
-                      </div>
+                      
                     
                   
                   

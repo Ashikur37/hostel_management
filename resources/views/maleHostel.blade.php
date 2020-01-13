@@ -27,7 +27,7 @@
                               <a class="nav-link" href="#">Available({{$boys1[0]->total_available}})</a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link" href="/apply?hostel=boys1">Apply</a>
+                              <a class="nav-link" href="/apply?hostel=5">Apply</a>
                             </li>
                           </ul>
                           <!-- Links -->
@@ -67,7 +67,7 @@
                               <a class="nav-link" href="#">Available({{$boys2[0]->total_available}})</a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link" href="/apply?hostel=boys2">Apply</a>
+                              <a class="nav-link" href="/apply?hostel=6">Apply</a>
                             </li>
                           </ul>
                           <!-- Links -->

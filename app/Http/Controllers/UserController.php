@@ -69,13 +69,14 @@ class userController extends Controller
         return redirect('/login?msg=Your account is under approval');
     }
     else if($user->type==1){
-        $request->session()->put('student', $user);
+        $request->session()->put('admin', $user);
         return redirect('/student');
     }
     else if($user->type==2){
         return redirect('/accountant');
     }
-    else if($user->type==3){
+    else if($user->type==5||$user->type==6||$user->type==7){
+        $request->session()->put('admin', $user);
         return redirect('/admin');
     }
     else if($user->type==4){

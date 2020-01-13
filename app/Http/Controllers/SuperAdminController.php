@@ -6,6 +6,7 @@ use App\superAdmin;
 use App\User;
 use App\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SuperAdminController extends Controller
 {
@@ -24,7 +25,7 @@ class SuperAdminController extends Controller
     }
     public function adminList()
     {
-        $admins=User::where('type', '=', '3')->get();
+        $admins=DB::select('select * from users where type=5 or type=6 or type=7');
         
         return view('superadmin.admin.list',['admins'=>$admins]);
     }
@@ -39,30 +40,13 @@ class SuperAdminController extends Controller
         $user->email=$request->email;
         $user->password=$request->password;
         $user->phone=$request->phone;
-        $user->type=3;
+        $user->type=$request->hostel;
         $user->save();
         return redirect('/admin-list');
     }
-    public function insertHostel(Request $request){
-        
-        $room=new Room;
-        $room->room_no=$request->room;
-        $room->hostel=$request->hostel;
-        $room->total=$request->total;
-        $room->available=$request->total;
-        $room->save();
-        return redirect('/room-list');
-    }
-    public function hostelList()
-    {
-        $rooms=Room::all();
-        
-        return view('superadmin.hostel.list',['rooms'=>$rooms]);
-    }
-    public function addHostel()
-    {
-        return view('superadmin.hostel.add');
-    }
+   
+   
+ 
 
     /**
      * Show the form for creating a new resource.

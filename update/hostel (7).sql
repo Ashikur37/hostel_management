@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2020 at 09:48 AM
+-- Generation Time: Jan 13, 2020 at 07:58 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -45,6 +45,8 @@ CREATE TABLE `applications` (
   `room_id` int(10) UNSIGNED NOT NULL,
   `seat_no` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ' ',
   `leaved_at` timestamp NULL DEFAULT NULL,
+  `hostel` int(11) NOT NULL DEFAULT '5',
+  `image` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -53,8 +55,9 @@ CREATE TABLE `applications` (
 -- Dumping data for table `applications`
 --
 
-INSERT INTO `applications` (`id`, `name`, `student_id`, `department`, `batch`, `semester`, `phone`, `email`, `father`, `mother`, `address`, `guardian`, `status`, `room_id`, `seat_no`, `leaved_at`, `created_at`, `updated_at`) VALUES
-(3, 'Ashikur', '123', 'CSE', '3rd', '6th', '01742349541', 'piash3700@gmail.com', 'shahed', 'kohinur', 'dhaka', 'Shahed', 1, 2, 'a123', NULL, '2020-01-09 08:03:53', '2020-01-12 10:27:57');
+INSERT INTO `applications` (`id`, `name`, `student_id`, `department`, `batch`, `semester`, `phone`, `email`, `father`, `mother`, `address`, `guardian`, `status`, `room_id`, `seat_no`, `leaved_at`, `hostel`, `image`, `created_at`, `updated_at`) VALUES
+(4, 'test', '12345', 'EEE', '2nd', '3rd', '01748541234', 'piash3700@gmail.com', 'test father', 'mother', 'dhaka', 'guard', 0, 2, ' ', NULL, 7, '', '2020-01-13 08:34:23', '2020-01-13 08:34:23'),
+(5, 'Jabed Hossain', '12546', 'CSE', '8th', '7th', '01745215542', 'piash3700@gmail.com', 'Abdullah', 'Unk', 'Komolapur', 'Abdullah', 1, 2, 'a58', NULL, 5, '1578932852.png', '2020-01-13 10:27:32', '2020-01-13 10:36:04');
 
 -- --------------------------------------------------------
 
@@ -77,7 +80,7 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `user_id`, `room_id`, `start_date`, `end_date`, `created_at`, `updated_at`) VALUES
-(4, 9, 2, '2020-01-12 16:27:57', NULL, '2020-01-12 10:27:57', '2020-01-12 10:27:57');
+(5, 12, 2, '2020-01-13 16:36:04', NULL, '2020-01-13 10:36:04', '2020-01-13 10:36:04');
 
 -- --------------------------------------------------------
 
@@ -126,16 +129,6 @@ CREATE TABLE `messages` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `messages`
---
-
-INSERT INTO `messages` (`id`, `sender_id`, `receiver_id`, `message`, `seen`, `created_at`, `updated_at`) VALUES
-(1, 9, 3, 'hello', 1, '2020-01-13 01:47:09', '2020-01-13 01:47:09'),
-(2, 9, 3, 'koi', 1, '2020-01-13 01:51:57', '2020-01-13 01:51:57'),
-(3, 3, 9, 'no', 0, '2020-01-13 02:27:57', '2020-01-13 02:27:57'),
-(4, 3, 9, 'got it', 0, '2020-01-13 02:47:12', '2020-01-13 02:47:12');
-
 -- --------------------------------------------------------
 
 --
@@ -164,7 +157,29 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (9, '2020_01_08_175832_create_fines_table', 1),
 (11, '2020_01_12_165045_create_sessions_table', 2),
 (12, '2020_01_12_175541_create_messages_table', 3),
-(13, '22020_01_08_175831_create_payments_table', 4);
+(13, '22020_01_08_175831_create_payments_table', 4),
+(14, '2020_01_13_175441_create_notices_table', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notices`
+--
+
+CREATE TABLE `notices` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `body` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `notices`
+--
+
+INSERT INTO `notices` (`id`, `title`, `body`, `created_at`, `updated_at`) VALUES
+(1, 'test', 'test body', '2020-01-13 12:06:25', '2020-01-13 12:06:25');
 
 -- --------------------------------------------------------
 
@@ -210,13 +225,6 @@ CREATE TABLE `payments` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `payments`
---
-
-INSERT INTO `payments` (`id`, `user_id`, `receipt`, `month`, `year`, `status`, `created_at`, `updated_at`) VALUES
-(1, 9, '1578853611.jpg', 'June', 2019, 1, '2020-01-12 12:26:51', '2020-01-12 12:53:52');
-
 -- --------------------------------------------------------
 
 --
@@ -238,7 +246,9 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `room_no`, `hostel`, `total`, `available`, `created_at`, `updated_at`) VALUES
-(2, 'a01', 'male1', 10, 6, '2020-01-09 08:02:55', '2020-01-12 10:27:57');
+(2, 'a01', 'boys1', 50, 39, '2020-01-09 08:02:55', '2020-01-13 10:36:04'),
+(4, 'ab01', 'boys2', 50, 50, NULL, NULL),
+(5, 'xcf1', 'boys1', 60, 60, '2020-01-13 10:10:57', '2020-01-13 10:10:57');
 
 -- --------------------------------------------------------
 
@@ -274,7 +284,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `user_id`, `application_id`, `created_at`, `updated_at`) VALUES
-(2, 9, 3, '2020-01-12 10:27:57', '2020-01-12 10:27:57');
+(3, 12, 5, '2020-01-13 10:36:04', '2020-01-13 10:36:04');
 
 -- --------------------------------------------------------
 
@@ -302,7 +312,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `phone`, `type`, `remember_token`, `created_at`, `updated_at`) VALUES
 (2, 'super admin', 'super@gmail.com', NULL, '123456', '01723584123', 4, NULL, NULL, NULL),
 (3, 'Admin', 'admin@gmail.com', NULL, '123456', '01542558', 3, NULL, '2020-01-09 08:00:20', '2020-01-09 08:00:20'),
-(9, 'Ashikur', 'piash3700@gmail.com', NULL, '12345', '01742349541', 1, NULL, '2020-01-12 10:27:57', '2020-01-12 10:27:57');
+(10, 'admin1', 'admin@yahoo.com', NULL, '123456', '017452263641', 7, NULL, '2020-01-13 08:20:39', '2020-01-13 08:20:39'),
+(11, 'admin2', 'boys1@gmail.com', NULL, '123456', '01745895221', 5, NULL, '2020-01-13 08:39:50', '2020-01-13 08:39:50'),
+(12, 'Jabed Hossain', 'piash3700@gmail.com', NULL, '123456', '01745215542', 1, NULL, '2020-01-13 10:36:04', '2020-01-13 10:36:04');
 
 --
 -- Indexes for dumped tables
@@ -348,6 +360,12 @@ ALTER TABLE `messages`
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `notices`
+--
+ALTER TABLE `notices`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -405,13 +423,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -435,7 +453,13 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `notices`
+--
+ALTER TABLE `notices`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -453,19 +477,19 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

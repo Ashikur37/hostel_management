@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\hostel;
 use App\Room;
+use App\Notice;
 use App\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -34,13 +35,14 @@ class HostelController extends Controller
     public function apply(Request $request)
     {
        $hostel=$request->hostel;
-       $rooms=Room::where('hostel', '=', $hostel)->get();
+       
      
-       return view('application',['rooms'=>$rooms]);
+       return view('application',['hostel'=>$hostel]);
 
     }
     public function insertApplication(Request $request){
         $application=new Application;
+        $application->hostel=$request->hostel;
         $application->name=$request->name;
         $application->student_id=$request->student_id;
         $application->department=$request->department;
@@ -54,6 +56,14 @@ class HostelController extends Controller
         $application->guardian=$request->guardian;
         $application->room_id=2;
 
+        request()->validate([
+
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+        ]);
+        $imageName = time().'.'.request()->image->getClientOriginalExtension();
+        request()->image->move(public_path('images'), $imageName);
+        $application->image=$imageName;    
         $application->status=0;
         $application->save();
         return redirect('/apply?msg=Your application has been submitted successfully');
@@ -66,6 +76,10 @@ class HostelController extends Controller
     public function create()
     {
         //
+    }
+    public function notice(){
+        $notices=Notice::all();
+        return view('notice',['notices'=>$notices]);
     }
 
     /**

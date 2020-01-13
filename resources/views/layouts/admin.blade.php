@@ -117,12 +117,7 @@
                   <p>Approved Application</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="/signatures" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Signatures</p>
-                </a>
-              </li>
+              
             </ul>
           </li>
 
@@ -135,8 +130,14 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/add-room" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Room</p>
+                </a>
+              </li>
                 <li class="nav-item">
-                  <a href="/rooms" class="nav-link ">
+                  <a href="/room-list" class="nav-link ">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Room List</p>
                   </a>
@@ -245,10 +246,10 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2019-2020 <a href="#">HUB</a>.</strong>
-    All rights reserved.
+    <strong>change &copy; 2019-2020 <a href="#">HUB</a>.</strong>
+
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 1.0.0
+      
     </div>
   </footer>
 

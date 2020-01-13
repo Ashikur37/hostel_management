@@ -20,9 +20,7 @@ Route::get('/hostel-facility', function () {
 Route::get('/rules&regulation', function () {
     return view('rules');
 });
-Route::get('/notice', function () {
-    return view('notice');
-});
+Route::get('/notice', 'hostelController@notice');
 Route::get('/canteen', function () {
     return view('canteen');
 });
@@ -45,6 +43,7 @@ Route::post('/signup', 'UserController@signup');
 
 //student routes
 Route::get('/student', 'studentController@home');
+Route::get('/profile', 'studentController@profile');
 Route::get('/upload-receipt', 'studentController@uploadReceipt');
 Route::get('/student-payment', 'studentController@paymentHistory');
 Route::post('/upload-receipt', 'studentController@insertReceipt');
@@ -61,6 +60,12 @@ Route::post('/apply', 'hostelController@insertApplication');
 
 //admin routes
 Route::get('/admin', 'adminController@home');
+Route::get('/add-notice', 'adminController@addNotice');
+Route::post('/add-notice', 'adminController@insertNotice');
+Route::get('/notice-list', 'adminController@noticeList');
+Route::post('/add-room', 'adminController@insertHostel');
+Route::get('/add-room', 'adminController@addHostel');
+Route::get('/room-list', 'adminController@hostelList');
 Route::get('/admin-message', 'adminController@message');
 Route::post('/admin-message', 'adminController@insertMessage');
 Route::get('/admin-inbox', 'adminController@inbox');
@@ -87,6 +92,4 @@ Route::get('/superadmin', 'superAdminController@home');
 Route::get('/admin-list', 'superAdminController@adminList');
 Route::get('/add-admin', 'superAdminController@addAdmin');
 Route::post('/add-admin', 'superAdminController@insertAdmin');
-Route::post('/add-room', 'superAdminController@insertHostel');
-Route::get('/room-list', 'superAdminController@hostelList');
-Route::get('/add-room', 'superAdminController@addHostel');
+

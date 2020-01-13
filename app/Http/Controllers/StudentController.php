@@ -8,34 +8,33 @@ use App\Message;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Session;
 class StudentController extends Controller
 {
-    public function __construct()
-    {
-        
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-    public function message(){
-        if(!session('student')){
+   
+    public function profile(){
+        if(!session('admin')){
             return redirect('/');
         }
-        $student = session('student');
+        $student = session('admin');
+        $sql="select * from users u,rooms r,applications a,students s where s.user_id=u.id and r.id=a.room_id and s.application_id=a.id and u.id=".$student->id;
+        $users=DB::select($sql);
+        
+        return view('student.profile',['student'=>$student,'users'=>$users]);
+    }
+    public function message(){
+        if(!session('admin')){
+            return redirect('/');
+        }
+        $student = session('admin');
         $messages= DB::select('select * from messages where sender_id=? or receiver_id=?', [$student->id,$student->id]);
         return view('student.message',['student'=>$student,'messages'=>$messages]);
     } 
     public function insertMessage(Request $request){
-        if(!session('student')){
+        if(!session('admin')){
             return redirect('/');
         }
-        $student = session('student');
+        $student = session('admin');
         DB::statement( 'update messages set seen=1 where sender_id='.$student->id );
         $message=new message;
         $message->sender_id=$student->id;
@@ -47,28 +46,28 @@ class StudentController extends Controller
         return redirect('/student-message');
     } 
     public function uploadReceipt(){
-        if(!session('student')){
+        if(!session('admin')){
             return redirect('/');
         }
-        $student = session('student');
+        $student = session('admin');
         
         return view('student.payments.upload',['student'=>$student]);
     }
 
     public function paymentHistory(){
-        if(!session('student')){
+        if(!session('admin')){
             return redirect('/');
         }
-        $student = session('student');
+        $student = session('admin');
         $payments = DB::select('select p.updated_at,p.month,p.year,p.status,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and  u.id = ?', [$student->id]);        
         
         return view('student.payments.history',['student'=>$student,"payments"=>$payments]);
     }
     public function insertReceipt(Request $request){
-        if(!session('student')){
+        if(!session('admin')){
             return redirect('/');
         }
-        $student = session('student');
+        $student = session('admin');
 
         $request->validate([
 
@@ -90,10 +89,9 @@ class StudentController extends Controller
     }
     public function home() 
     {
-        if(!session('student')){
-            return redirect('/');
-        }
-        $student = session('student');
+        
+        $student = session('admin');
+ 
         return view('student.home',['student'=>$student]);
     }
 

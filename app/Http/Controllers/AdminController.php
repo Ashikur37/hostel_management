@@ -10,6 +10,7 @@ use App\message;
 use App\Application;
 use App\Student;
 use App\Room;
+use App\Notice;
 use App\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,11 +26,69 @@ class AdminController extends Controller
     {
         //
     }
+    public function insertHostel(Request $request){
+        $admin = session('admin');
+        $type=$admin->type;
+        if($type==5){
+            $hostel='boys1';
+        }
+        else if($type==6){
+            $hostel='boys2';
+            
+        }
+        else{
+            $hostel='girls';
+        }
+        $room=new Room;
+        $room->room_no=$request->room;
+        $room->hostel=$hostel;
+        $room->total=$request->total;
+        $room->available=$request->total;
+        $room->save();
+        return redirect('/room-list');
+    }
+    public function addHostel()
+    {
+        return view('superadmin.hostel.add');
+    }
 
     public function home()
     {
+       
         return view('admin.home');
         
+    }
+    public function addNotice(){
+        return view('admin.notice.add');
+    }
+    public function insertNotice(Request $request){
+        $notice=new Notice;
+        $notice->title=$request->title;
+        $notice->body=$request->body;
+        $notice->save();
+        return redirect('/notice-list');
+    }
+    public function noticeList(){
+        $notices=Notice::all();
+        return view('admin.notice.list',['notices'=>$notices]);
+    }
+    public function hostelList()
+    {
+        $admin = session('admin');
+        $type=$admin->type;
+        if($type==5){
+            $hostel='boys1';
+        }
+        else if($type==6){
+            $hostel='boys2';
+            
+        }
+        else{
+            $hostel='girls';
+        }
+        $rooms=Room::where('hostel','=',$hostel)->get();
+        
+        return view('superadmin.hostel.list',['rooms'=>$rooms]);
     }
     public function insertMessage(Request $request){
      
@@ -176,24 +235,27 @@ class AdminController extends Controller
 
     }
     public function unapprovedUser(){
-        $applications = DB::select('select a.id,room_no,name,student_id,email,phone,department,batch,father,mother,address,guardian from applications a,rooms r where a.room_id=r.id and status = ?', [0]);        
-        $rooms=Room::all();
+        $admin = session('admin');
+        $type=$admin->type;
+        if($type==5){
+            $hostel='boys1';
+        }
+        else if($type==6){
+            $hostel='boys2';
+            
+        }
+        else{
+            $hostel='girls';
+        }
+        $applications = DB::select('select a.image,a.id,room_no,name,student_id,email,phone,department,batch,father,mother,address,guardian from applications a,rooms r where a.room_id=r.id and status = ? and a.hostel=?', [0,$admin->type]);        
+        $rooms=Room::where('hostel','=',$hostel)->get();
         return view('admin.unapproved_user.list',['applications'=>$applications,'rooms'=>$rooms]);
     }
     public function approvedUser(){
         $applications = DB::select('select a.id,room_no,name,student_id,email,phone,department,batch,father,mother,address,guardian from applications a,rooms r where a.room_id=r.id and status = ?', [1]);        
         return view('admin.approved_user.list',['applications'=>$applications]);
     }
-    public function approveUser(Request $request){
-       $name="piash";
-       $email="piash3700@gmail.com";
-       $data=array("name"=>"test","body"=>"test email");
-       Mail::send('mail',$data,function($message) use ($name,$email){
-           $message->to($email)
-            ->subject('lara');
-       });
-        return redirect('/unapproved-user');
-    }
+ 
  
     /**
      * Show the form for creating a new resource.
