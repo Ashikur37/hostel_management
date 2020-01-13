@@ -64,12 +64,9 @@
           </div>
           <div class="row">
             <div class="col-8">
-              <div class="icheck-primary">
-                <input type="checkbox" id="remember">
-                <label for="remember">
-                  Remember Me
-                </label>
-              </div>
+              <a href="/" class="btn btn-info">
+                Go Back
+              </a>
             </div>
             <!-- /.col -->
             <div class="col-4">

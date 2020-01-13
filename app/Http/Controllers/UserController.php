@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\student;
+
 use Illuminate\Http\Request;
 
 class userController extends Controller
@@ -68,16 +69,17 @@ class userController extends Controller
     else if($user->type==0){
         return redirect('/login?msg=Your account is under approval');
     }
-    else if($user->type==1){
-        $request->session()->put('admin', $user);
-        return redirect('/student');
-    }
+    
     else if($user->type==2){
         return redirect('/accountant');
     }
     else if($user->type==5||$user->type==6||$user->type==7){
         $request->session()->put('admin', $user);
         return redirect('/admin');
+    }
+    else if($user->type==1){
+        Session::put('student', $user);
+        return redirect('/student');
     }
     else if($user->type==4){
         return redirect('/superadmin');
@@ -129,3 +131,7 @@ class userController extends Controller
         //
     }
 }
+
+/*
+bujtasina amar pc te kaj kortesilo . give me 20 min time i'll comeback with solution
+*/
