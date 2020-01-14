@@ -54,7 +54,7 @@ class AdminController extends Controller
 
     public function home()
     {
-       
+
         return view('admin.home');
         
     }
@@ -93,7 +93,7 @@ class AdminController extends Controller
     public function insertMessage(Request $request){
      
         $message=new message;
-        $admin=User::where('type', 3)->first();
+        $admin=User::where('type', 5)->first();
         $message->receiver_id=$request->student;
         $message->sender_id=$admin->id;
         $message->message=$request->message;

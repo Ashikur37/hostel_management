@@ -6,6 +6,7 @@ use App\student;
 use App\Payment;
 use App\Message;
 use App\User;
+use App\currentUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Session;
@@ -13,31 +14,25 @@ class StudentController extends Controller
 {
    
     public function profile(){
-        if(!session('student')){
-            return redirect('/');
-        }
-        $student = session('student');
+        $cu=currentUser::all()->first();
+         $student = User::where('id', $cu->current_student)->first();
         $sql="select * from users u,rooms r,applications a,students s where s.user_id=u.id and r.id=a.room_id and s.application_id=a.id and u.id=".$student->id;
         $users=DB::select($sql);
         return view('student.profile',['student'=>$student,'users'=>$users]);
     }
     public function message(){
-        if(!session('student')){
-            return redirect('/');
-        }
-        $student = session('student');
+        $cu=currentUser::all()->first();
+         $student = User::where('id', $cu->current_student)->first();
         $messages= DB::select('select * from messages where sender_id=? or receiver_id=?', [$student->id,$student->id]);
         return view('student.message',['student'=>$student,'messages'=>$messages]);
     } 
     public function insertMessage(Request $request){
-        if(!session('student')){
-            return redirect('/');
-        }
-        $student = session('student');
+        $cu=currentUser::all()->first();
+         $student = User::where('id', $cu->current_student)->first();
         DB::statement( 'update messages set seen=1 where sender_id='.$student->id );
         $message=new message;
         $message->sender_id=$student->id;
-        $admin=User::where('type', 3)->first();
+        $admin=User::where('type', 5)->first();
         $message->receiver_id=$admin->id;
         $message->message=$request->message;
         $message->seen=0;
@@ -45,45 +40,35 @@ class StudentController extends Controller
         return redirect('/student-message');
     } 
     public function uploadReceipt(){
-        if(!session('student')){
-            return redirect('/');
-        }
-        $student = session('student');
+        $cu=currentUser::all()->first();
+         $student = User::where('id', $cu->current_student)->first();
         
         return view('student.payments.upload',['student'=>$student]);
     }
     public function uploadCanteenReceipt(){
-        if(!session('student')){
-            return redirect('/');
-        }
-        $student = session('student');
+        $cu=currentUser::all()->first();
+         $student = User::where('id', $cu->current_student)->first();
         
         return view('student.payments.canteenUpload',['student'=>$student]);
     }
 
     public function paymentHistory(){
-        if(!session('student')){
-            return redirect('/');
-        }
-        $student = session('student');
+        $cu=currentUser::all()->first();
+         $student = User::where('id', $cu->current_student)->first();
         $payments = DB::select('select p.updated_at,p.month,p.year,p.status,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id  and  u.id = ? and p.type=0', [$student->id]);        
         
         return view('student.payments.history',['student'=>$student,"payments"=>$payments]);
     }
     public function canteenPaymentHistory(){
-        if(!session('student')){
-            return redirect('/');
-        }
-        $student = session('student');
+        $cu=currentUser::all()->first();
+         $student = User::where('id', $cu->current_student)->first();
         $payments = DB::select('select p.updated_at,p.month,p.year,p.status,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and  u.id = ? and p.type=1', [$student->id]);        
         
         return view('student.payments.canteenHistory',['student'=>$student,"payments"=>$payments]);
     }
     public function insertReceipt(Request $request){
-        if(!session('student')){
-            return redirect('/');
-        }
-        $student = session('student');
+        $cu=currentUser::all()->first();
+         $student = User::where('id', $cu->current_student)->first();
 
         $request->validate([
 
@@ -105,10 +90,8 @@ class StudentController extends Controller
         return redirect('/student-payment');
     }
     public function insertCanteenReceipt(Request $request){
-        if(!session('student')){
-            return redirect('/');
-        }
-        $student = session('student');
+        $cu=currentUser::all()->first();
+         $student = User::where('id', $cu->current_student)->first();
 
         $request->validate([
 
@@ -131,8 +114,8 @@ class StudentController extends Controller
     }
     public function home(Request $request) 
     {
-        
-         $student = session('student');
+        $cu=currentUser::all()->first();
+         $student = User::where('id', $cu->current_student)->first();
         return view('student.home',['student'=>$student]);
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\student;
+use App\currentUser;
 use Session;
 use Illuminate\Http\Request;
 
@@ -60,16 +61,25 @@ class userController extends Controller
 
 
     }
+    public function logout(Request $request){
+    $request->session()->flush();
+    return redirect('/');
+    }
  public function signin(Request $request){
+
     $user=User::where('email', '=', $request->email)->where('password', '=', $request->password)->first();
-    
+    $cu=currentUser::all()->first();
     if(!$user){
         return redirect('/login?msg=Invalid email or password');
     }
     else if($user->type==0){
         return redirect('/login?msg=Your account is under approval');
     }
-    
+    else if($user->type===1){
+        $cu->current_student=$user->id;
+        $cu->save();
+        return redirect('/student');
+    }
     else if($user->type==2){
         return redirect('/accountant');
     }
@@ -80,11 +90,7 @@ class userController extends Controller
         session(['admin' => $user]);
         return redirect('/admin');
     }
-    else if($user->type===1){
-        $request->session()->forget('admin');
-        $request->session()->put('student', $user);
-        return redirect('/student');
-    }
+    
     else if($user->type==4){
         return redirect('/superadmin');
     }

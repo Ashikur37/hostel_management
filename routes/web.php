@@ -39,6 +39,7 @@ Route::get('/signup', function () {
 Route::get('/mail', 'adminController@approveUser');
 
 Route::post('/signin', 'UserController@signin');
+Route::get('/logout', 'UserController@logout');
 Route::post('/signup', 'UserController@signup');
 
 //student routes
