@@ -252,7 +252,19 @@ class AdminController extends Controller
         return view('admin.unapproved_user.list',['applications'=>$applications,'rooms'=>$rooms]);
     }
     public function approvedUser(){
-        $applications = DB::select('select a.id,room_no,name,student_id,email,phone,department,batch,father,mother,address,guardian from applications a,rooms r where a.room_id=r.id and status = ?', [1]);        
+        $admin = session('admin');
+        $type=$admin->type;
+        if($type==5){
+            $hostel='boys1';
+        }
+        else if($type==6){
+            $hostel='boys2';
+            
+        }
+        else{
+            $hostel='girls';
+        }
+        $applications = DB::select('select a.id,room_no,name,student_id,email,phone,department,batch,father,mother,address,guardian from applications a,rooms r where a.room_id=r.id and status = ? and a.hostel=?', [1,$admin->type]);        
         return view('admin.approved_user.list',['applications'=>$applications]);
     }
  
