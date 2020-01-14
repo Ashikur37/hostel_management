@@ -6,10 +6,12 @@ use App\student;
 use App\Payment;
 use App\Message;
 use App\User;
+use App\Application;
 use App\currentUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Session;
+use App\Notice;
 class StudentController extends Controller
 {
    
@@ -20,6 +22,15 @@ class StudentController extends Controller
         $users=DB::select($sql);
         return view('student.profile',['student'=>$student,'users'=>$users]);
     }
+    public function notice(){
+        $cu=currentUser::all()->first();
+        $student = User::where('id', $cu->current_student)->first();
+        $s=Student::where('user_id', $student->id)->first();
+        $a=Application::where('id', $s->application_id)->first();
+     
+        $notices=Notice::where('hostel', $a->hostel)->get();
+        return view('student.notice',['student'=>$student,'notices'=>$notices]);
+    }
     public function message(){
         $cu=currentUser::all()->first();
          $student = User::where('id', $cu->current_student)->first();
@@ -29,10 +40,13 @@ class StudentController extends Controller
     public function insertMessage(Request $request){
         $cu=currentUser::all()->first();
          $student = User::where('id', $cu->current_student)->first();
+        $s=Student::where('user_id', $student->id)->first();
+        $a=Application::where('id', $s->application_id)->first();
+     
         DB::statement( 'update messages set seen=1 where sender_id='.$student->id );
         $message=new message;
         $message->sender_id=$student->id;
-        $admin=User::where('type', 5)->first();
+        $admin=User::where('type', $a->hostel)->first();
         $message->receiver_id=$admin->id;
         $message->message=$request->message;
         $message->seen=0;

@@ -3,6 +3,8 @@
 @section('content')
 
 
+
+
 <div class="modal" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -149,4 +151,14 @@ reject=(id)=>{
   $("#myModal2").modal();
 }
 </script>
+<script>
+    if(location.href.includes("msg")){
+      alert("Seat is already used")
+      
+      document.getElementById("aid").value=location.href.split("msg=")[1];
+      setTimeout(function(){
+        $("#myModal").modal();
+      },1000)
+    }
+  </script>
 @endsection

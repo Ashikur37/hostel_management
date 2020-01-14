@@ -190,6 +190,12 @@
               <p>Message</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="/student-notice" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Notice</p>
+            </a>
+          </li>
          
 
          

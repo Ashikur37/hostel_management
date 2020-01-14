@@ -269,11 +269,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>change &copy; 2019-2020 <a href="#">HUB</a>.</strong>
-
-    <div class="float-right d-none d-sm-inline-block">
-      
-    </div>
+    
   </footer>
 
   <!-- Control Sidebar -->

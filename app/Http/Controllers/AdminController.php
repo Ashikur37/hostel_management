@@ -62,14 +62,19 @@ class AdminController extends Controller
         return view('admin.notice.add');
     }
     public function insertNotice(Request $request){
+        $admin = session('admin');
+        $type=$admin->type;
         $notice=new Notice;
+        $notice->hostel=$type;
         $notice->title=$request->title;
         $notice->body=$request->body;
         $notice->save();
         return redirect('/notice-list');
     }
     public function noticeList(){
-        $notices=Notice::all();
+        $admin = session('admin');
+        $type=$admin->type;
+        $notices=Notice::where('hostel','=',$type)->get();
         return view('admin.notice.list',['notices'=>$notices]);
     }
     public function hostelList()
@@ -102,12 +107,18 @@ class AdminController extends Controller
         return redirect('/admin-message?student='.$request->student);
     } 
     public function message(Request $request){
+        $admin = session('admin');
+        $type=$admin->type;
+        $a=User::where('type', $type)->first();
         $student=$request->student;
-        $messages= DB::select('select s.name as sender,r.name as receiver,m.created_at,message from messages m,users s,users r where m.sender_id=s.id and m.receiver_id=r.id and (sender_id=? or receiver_id=?)', [$student,$student]);
-        return view('admin.message.chat',['student'=>$student,'messages'=>$messages]);
+        $messages= DB::select('select s.id as sid,s.name as sender,r.name as receiver,m.created_at,message from messages m,users s,users r where m.sender_id=s.id and m.receiver_id=r.id and (sender_id=? or receiver_id=?)', [$student,$student]);
+        return view('admin.message.chat',['student'=>$student,'messages'=>$messages,'a'=>$a->id]);
     }
     public function inbox(){
-        $sql="SELECT m.created_at,message,s.name,s.id,s.email from messages m, users s,users r where m.sender_id=s.id and m.receiver_id=r.id and s.type!=3 and m.seen=0";
+        $admin = session('admin');
+        $type=$admin->type;
+        $a=User::where('type', $type)->first();
+        $sql="SELECT m.created_at,message,s.name,s.id,s.email from messages m, users s where m.sender_id=s.id and m.seen=0 and receiver_id=".$a->id;
         $messages = DB::select($sql);
         
         return view('admin.message.inbox',["messages"=>$messages]);
@@ -207,6 +218,12 @@ class AdminController extends Controller
 
     }
     public function confirmApprove(Request $request){
+        $app=DB::select('select * from applications where room_id="'.$request->room.'" and seat_no="'.$request->seat.'" and status=1');
+        if(count($app)==1){
+            return redirect('/unapproved-application?msg='.$request->id);
+        }
+
+
         $password=$request->password;
         $room_id=$request->room;
         $seat=$request->seat;

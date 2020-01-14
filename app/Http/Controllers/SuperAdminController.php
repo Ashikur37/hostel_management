@@ -23,11 +23,30 @@ class SuperAdminController extends Controller
     {
         return view('superadmin.home');
     }
+    public function deleteAdmin(Request $request){
+       $admin= User::find($request->id);
+        $admin->delete();
+        return redirect('/admin-list');
+    }
     public function adminList()
     {
         $admins=DB::select('select * from users where type=5 or type=6 or type=7');
         
         return view('superadmin.admin.list',['admins'=>$admins]);
+    }
+    public function editAdmin(Request $request)
+    {
+        $admin= User::find($request->id);
+        return view('superadmin.admin.edit',['admin'=>$admin]);
+    }
+    public function updateAdmin(Request $request)
+    {
+        $user= User::find($request->admin);
+        $user->name=$request->name;
+        $user->phone=$request->phone;
+        $user->type=$request->hostel;
+        $user->save();
+        return redirect('admin-list');
     }
     public function addAdmin()
     {
@@ -37,10 +56,10 @@ class SuperAdminController extends Controller
         
         $user=new User;
         $user->name=$request->name;
-        $user->email=$request->email;
-        $user->password=$request->password;
         $user->phone=$request->phone;
         $user->type=$request->hostel;
+        $user->email=$request->email;
+        $user->password=$request->password;
         $user->save();
         return redirect('/admin-list');
     }

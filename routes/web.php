@@ -53,6 +53,7 @@ Route::post('/upload-receipt', 'studentController@insertReceipt');
 Route::post('/upload-canteen-receipt', 'studentController@insertCanteenReceipt');
 
 Route::get('/student-message', 'studentController@message');
+Route::get('/student-notice', 'studentController@notice');
 Route::post('/student-message', 'studentController@insertMessage');
 
 Route::get('/boys-hostel', 'hostelController@maleHostel');
@@ -98,6 +99,12 @@ Route::get('/signatures', function(){
 //super admin routes
 Route::get('/superadmin', 'superAdminController@home');
 Route::get('/admin-list', 'superAdminController@adminList');
+Route::get('/delete-admin', 'superAdminController@deleteAdmin');
 Route::get('/add-admin', 'superAdminController@addAdmin');
+Route::get('/edit-admin', 'superAdminController@editAdmin');
+Route::post('/edit-admin', 'superAdminController@updateAdmin');
+Route::get('/edit-admin', 'superAdminController@editAdmin');
+
 Route::post('/add-admin', 'superAdminController@insertAdmin');
+
 

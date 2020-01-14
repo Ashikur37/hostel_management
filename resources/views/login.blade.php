@@ -23,7 +23,7 @@
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <a href="/"><b>Hostel</b>Management System</a>
+      <a href="/"><b>Hostel</b> Management System</a>
     </div>
     <center>
       <div style="color: brown; font-weight:bold ;" id="msg">

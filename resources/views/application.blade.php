@@ -23,12 +23,21 @@
 <body class="hold-transition register-page">
     <div class="register-box" style="width: 460px;">
         <div class="register-logo">
-            <a href="/"><b>Hostel</b>Management System</a>
+            <a href="/"><b>Hostel</b> Management System</a>
         </div>
         <center>
                 <div style="color: green; font-weight:bold ;" id="msg">
           
                 </div>
+                @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
               </center>
         <div class="card">
             <div class="card-body register-card-body">

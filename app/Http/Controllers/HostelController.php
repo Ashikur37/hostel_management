@@ -43,6 +43,13 @@ class HostelController extends Controller
 
     }
     public function insertApplication(Request $request){
+        //unique email
+        $request->validate([
+            'email' => 'required|unique:applications|max:255',
+            'student_id'=> 'required|unique:applications|max:255',
+        ]);
+        //unique student_id
+        //unique seat_id
         $application=new Application;
         $application->hostel=$request->hostel;
         $admin=User::where('type', $request->hostel)->first();

@@ -17,7 +17,7 @@
                 <!-- Conversations are loaded here -->
                 <div class="direct-chat-messages">
                         @foreach ($messages as $message)
-                        @if ($message->receiver !='Admin' )
+                        @if ($message->sid !=$a )
                         <div class="direct-chat-msg">
                                 <div class="direct-chat-infos clearfix">
                                   <span class="direct-chat-name float-left">{{$message->sender}}</span>
