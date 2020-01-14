@@ -3,18 +3,18 @@
 @section('content')
 <div class="card">
             <div class="card-header">
-              <h3 class="card-title"> Payment History</h3>
+              <h3 class="card-title">Pending Canteen Payments</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
               <table id="dt" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                <th>Month</th>
+                  <th>Month</th>
                   <th>Year</th>
                   <th>Student Name</th>
                   <th>Student ID</th>
-           
+                
                   <th>Seat No</th>
                   <th>Room No</th>
                   <th>Uploaded at</th>
@@ -29,7 +29,7 @@
                   <td>{{$payment->year}}</td>
                     <td>{{$payment->name}}</td>
                     <td>{{$payment->student_id}}</td>
-                  
+                 
                     <td>{{$payment->seat_no}}</td>
                     <td>{{$payment->room_no}}</td>
                     <td>{{$payment->created_at}}</td>
@@ -40,7 +40,7 @@
                     </td>
                     
                     <td>
-                      <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                      <a href="/approve-payment-canteen?id={{$payment->id}}" class="btn btn-sm btn-success">Approve</a>
                       
                     </td>
                   </tr>

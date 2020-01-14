@@ -152,6 +152,38 @@
               
             </ul>
           </li>
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Canteen
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/add-meal" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Extra Meal</p>
+                </a>
+              </li>
+            <li class="nav-item">
+                <a href="/upload-canteen-receipt" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Upload Bank Receipt</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/student-canteen-payment" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Canteen Payment History</p>
+                </a>
+              </li>
+            
+             
+              
+            </ul>
+          </li>
           <li class="nav-item">
             <a href="/student-message" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>

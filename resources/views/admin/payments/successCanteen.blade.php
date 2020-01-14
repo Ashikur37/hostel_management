@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
             <div class="card-header">
-              <h3 class="card-title"> Payment History</h3>
+              <h3 class="card-title">Canteen Payment History</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">

@@ -119,13 +119,29 @@ class AdminController extends Controller
         return redirect('/pending-payment');
     }
     public function pendingPayment(){
-        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and  p.status = ?', [0]);        
+        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=0 and  p.status = ?', [0]);        
         return view('admin.payments.pending',['payments'=>$payments]);
     }
     public function paymentHistory(){
-        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and  p.status = ?', [1]);        
+        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=0 and  p.status = ?', [1]);        
         return view('admin.payments.success',['payments'=>$payments]);
     }
+
+    public function approvePaymentCanteen(Request $request){
+        $payment=Payment::where('id', $request->id)->first();
+        $payment->status=1;
+        $payment->save();
+        return redirect('/pending-payment-canteen');
+    }
+    public function pendingPaymentCanteen(){
+        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=1 and  p.status = ?', [0]);        
+        return view('admin.payments.pendingCanteen',['payments'=>$payments]);
+    }
+    public function paymentHistoryCanteen(){
+        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=1 and  p.status = ?', [1]);        
+        return view('admin.payments.successCanteen',['payments'=>$payments]);
+    }
+
     public function supervisor(Request $request){
         request()->validate([
 

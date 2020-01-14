@@ -45,8 +45,12 @@ Route::post('/signup', 'UserController@signup');
 Route::get('/student', 'studentController@home');
 Route::get('/profile', 'studentController@profile');
 Route::get('/upload-receipt', 'studentController@uploadReceipt');
+Route::get('/upload-canteen-receipt', 'studentController@uploadCanteenReceipt');
 Route::get('/student-payment', 'studentController@paymentHistory');
+Route::get('/student-canteen-payment', 'studentController@canteenPaymentHistory');
 Route::post('/upload-receipt', 'studentController@insertReceipt');
+Route::post('/upload-canteen-receipt', 'studentController@insertCanteenReceipt');
+
 Route::get('/student-message', 'studentController@message');
 Route::post('/student-message', 'studentController@insertMessage');
 
@@ -71,7 +75,10 @@ Route::post('/admin-message', 'adminController@insertMessage');
 Route::get('/admin-inbox', 'adminController@inbox');
 Route::get('/pending-payment', 'adminController@pendingPayment');
 Route::get('/payment-history', 'adminController@paymentHistory');
+Route::get('/pending-payment-canteen', 'adminController@pendingPaymentCanteen');
+Route::get('/payment-history-canteen', 'adminController@paymentHistoryCanteen');
 Route::get('/approve-payment', 'adminController@approvePayment');
+Route::get('/approve-payment-canteen', 'adminController@approvePaymentCanteen');
 Route::get('/approved-user', 'adminController@approvedUser');
 Route::get('/approve-application', 'adminController@approveUser');
 Route::post('/approve-application', 'adminController@confirmApprove');

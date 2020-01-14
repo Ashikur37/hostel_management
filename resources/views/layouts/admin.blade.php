@@ -167,6 +167,29 @@
                     </li>
                 </ul>
               </li>
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link ">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    Canteen
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="/pending-payment-canteen" class="nav-link ">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Pending Canteen Payments</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="/payment-history-canteen" class="nav-link ">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Canteen Payment History</p>
+                      </a>
+                    </li>
+                </ul>
+              </li>
             <li class="nav-item has-treeview">
                 <a href="#" class="nav-link ">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
