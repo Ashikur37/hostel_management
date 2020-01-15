@@ -72,6 +72,7 @@
             }
             .navbar-dark .navbar-nav .nav-link {
     color: rgba(255, 255, 255, 1);
+    font-size:18px;
 }
             .fa-android {
               background: #a4c639;
