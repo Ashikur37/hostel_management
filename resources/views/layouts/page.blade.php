@@ -70,7 +70,9 @@
               background: #00aff0;
               color: white;
             }
-            
+            .navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 1);
+}
             .fa-android {
               background: #a4c639;
               color: white;
@@ -137,7 +139,7 @@
     <div class="row" style="margin: 10px;">
     <div class="col-md-2">
     <span  class="fa fa-phone"></span>
-      <strong>01712548521</strong>
+      <strong>01643871166</strong>
     </div>
         <div class="col-md-8">
           
