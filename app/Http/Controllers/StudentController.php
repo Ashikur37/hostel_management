@@ -12,13 +12,36 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Session;
 use App\Notice;
+use App\LeaveApplication;
+
 class StudentController extends Controller
 {
-   
+   public function changePassword(){
+    $cu=currentUser::all()->first();
+    $student = User::where('id', $cu->current_student)->first();
+    return view('student.changePassword',['student'=>$student]);
+   }
+   public function leaveApp(Request $request){
+    $leave=new LeaveApplication;
+    $leave->application_id=$request->aid;
+    $leave->leave_at=$request->start;
+    $leave->status=0;
+    $leave->save();
+    return redirect('/profile?msg=leave');
+
+   }
+   public function updatePassword(Request $request){
+    $cu=currentUser::all()->first();
+    $student = User::where('id', $cu->current_student)->first();
+    $student->password=$request->password;
+    $student->save();
+    return redirect('/change-password?msg=success');
+    }
+
     public function profile(){
         $cu=currentUser::all()->first();
          $student = User::where('id', $cu->current_student)->first();
-        $sql="select * from users u,rooms r,applications a,students s where s.user_id=u.id and r.id=a.room_id and s.application_id=a.id and u.id=".$student->id;
+        $sql="select a.id,a.name,image,student_id,department,batch,semester,a.email,a.phone,a.hostel,room_no,seat_no,a.updated_at,a.leaved_at from users u,rooms r,applications a,students s where s.user_id=u.id and r.id=a.room_id and s.application_id=a.id and u.id=".$student->id;
         $users=DB::select($sql);
         return view('student.profile',['student'=>$student,'users'=>$users]);
     }

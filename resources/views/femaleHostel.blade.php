@@ -50,8 +50,8 @@
 
   function myMap() {
     var mapProp = {
-      center: new google.maps.LatLng(23.5980367, 90.6173902),
-      zoom: 12,
+      center: new google.maps.LatLng(23.5974696,90.6177369),
+      zoom: 17,
     };
     var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
   }

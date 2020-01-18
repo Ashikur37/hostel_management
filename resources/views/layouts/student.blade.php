@@ -111,7 +111,7 @@
                       </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/chamge-password" class="nav-link ">
+                        <a href="/change-password" class="nav-link ">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Change Password</p>
                         </a>

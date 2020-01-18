@@ -15,6 +15,7 @@ use App\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use File;
+use App\LeaveApplication;
 class AdminController extends Controller
 {
     /**
@@ -76,6 +77,21 @@ class AdminController extends Controller
         $type=$admin->type;
         $notices=Notice::where('hostel','=',$type)->get();
         return view('admin.notice.list',['notices'=>$notices]);
+    }
+    public function approveLeave(   Request $request){
+        $leaveApplication=LeaveApplication::where('id', $request->id)->first();
+        $leaveApplication->status=1;
+        $leaveApplication->save();
+        $application = Application::where('id', $leaveApplication->application_id)->first();
+        $application->status=2;
+        $application->save();
+        return redirect('/leave-list');
+    }
+    public function leaveList(){
+        $admin = session('admin');
+        $type=$admin->type;
+        $applications=DB::select('select a.email,l.id,l.leave_at,l.status,a.name,a.seat_no,a.student_id,a.phone,r.room_no from rooms r,applications a,leave_applications l where r.id=a.room_id and a.id=l.application_id and a.hostel', [$type]);
+        return view('admin.leave.list',['applications'=>$applications]);
     }
     public function hostelList()
     {

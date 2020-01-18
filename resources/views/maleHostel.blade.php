@@ -89,15 +89,23 @@
     },500)
     function myMap() {
         var mapProp = {
-            center: new google.maps.LatLng(23.5980367, 90.6173902),
-            zoom: 12,
+            center: new google.maps.LatLng(23.6019102,90.6229862),
+            zoom: 17,
+        };
+        var mapProp2 = {
+            center: new google.maps.LatLng(23.6351263,90.594034),
+            zoom: 17,
         };
         var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-        var map2 = new google.maps.Map(document.getElementById("googleMap2"), mapProp);
+        var map2 = new google.maps.Map(document.getElementById("googleMap2"), mapProp2);
     }
     
 </script>
-
+<script>
+window.setTimeout(function(){
+        document.getElementById("footer").style.position="relative";
+    },100)
+</script>
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi82DDWkY-_hwoBcUp84sIcnP8pUx8lLc&callback=myMap"></script>
   

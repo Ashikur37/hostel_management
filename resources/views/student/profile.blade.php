@@ -76,8 +76,17 @@
                         </li>
                         <li class="nav-item">
                           <a href="#" class="nav-link">
-                            Admitted At <span class="float-right badge bg-success">{{$user->updated_at}}</span>
+                            Allotment At <span class="float-right badge bg-success">{{$user->updated_at}}</span>
                           </a>
+                          @if($user->leaved_at)
+                          <a href="#" class="nav-link">
+                            Leaved At <span class="float-right badge bg-success">{{$user->leaved_at}}</span>
+                          </a>
+                          @else
+                          <button  class="nav-link btn-block btn btn-danger" data-toggle="modal" data-target="#myModal">
+                            Apply For Leave
+                          </button>
+                          @endif
                         </li>
                         
                       </ul>
@@ -85,5 +94,58 @@
                   </div>
     </div>
 </div>
+
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Approve Application</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+          <form role="form" method="post" action="/leave-application">
+            @csrf
+            <input type="hidden" name="aid" value="{{$user->id}}">
+            <span class="text text-danger" id="er"></span>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Leave Month </label>
+                <input type="month" id="start" name="start"
+       min="2018-03" value="2018-05" onblur="change()">
+            </div>
+              <button id="btn" disabled class="btn btn-success">
+                Apply
+              </button>
+            </form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button  type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<script>
+  if(window.location.href.includes("msg")){
+    alert("Leave application submitted successfully")
+  }
+change=()=>{
+  let date=document.getElementById("start").value;
+  if((new Date(date).getTime()-new Date().getTime())/ (1000*60*60*24)>30){
+    document.getElementById("er").innerHTML="";
+    document.getElementById("btn").disabled=false;
+  }
+  else{
+    document.getElementById("er").innerHTML="You must apply before 30 day or more";
+    document.getElementById("btn").disabled=true;
+
+  }
+}
+</script>
 @endforeach
 @endsection
