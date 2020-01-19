@@ -71,6 +71,7 @@ Route::post('/apply', 'hostelController@insertApplication');
 Route::get('/admin', 'adminController@home');
 Route::get('/leave-list', 'adminController@leaveList');
 Route::get('/approve-leave', 'adminController@approveLeave');
+Route::post('/unapprove-leave', 'adminController@unapproveLeave');
 Route::get('/add-notice', 'adminController@addNotice');
 Route::post('/add-notice', 'adminController@insertNotice');
 Route::get('/notice-list', 'adminController@noticeList');

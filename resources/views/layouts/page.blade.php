@@ -209,7 +209,7 @@
         <div id="footer" class="navbar navbar-expand-sm bg-dark navbar-dark" style="position: absolute;
         bottom: 0;width: 100%;">
             <div class="col-md-6">
-                    <strong style="color: antiquewhite;">Copyright © 2019-2020 <a href="/">Hamdard University Bangladesh</a></strong>
+                    
             </div>
             <div class="col-md-6">
                 <a href="/contact">Contat Us</a>

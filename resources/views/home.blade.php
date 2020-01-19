@@ -16,10 +16,8 @@
   
   <!-- The slideshow -->
   <div class="carousel-inner">
+    
     <div class="carousel-item active">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/2017-01-10-HUB-Campus.jpg" alt="Los Angeles" width="1100" height="500">
-    </div>
-    <div class="carousel-item ">
       <img src="images/1.jpg" alt="Los Angeles" width="1100" height="500">
     </div>
     <div class="carousel-item ">

@@ -87,6 +87,20 @@ class AdminController extends Controller
         $application->save();
         return redirect('/leave-list');
     }
+    public function unapproveLeave(   Request $request){
+        $leaveApplication=LeaveApplication::where('id', $request->id)->first();
+        $leaveApplication->status=2;
+        $leaveApplication->save();
+        $application = Application::where('id', $leaveApplication->application_id)->first();
+        $name=$application->name;;
+        $email=$application->email;
+        $data=array("name"=>$name,"body"=>"Your leave application has been recjected. ".$request->body);
+        Mail::send('mail',$data,function($message) use ($name,$email){
+            $message->to($email)
+             ->subject('Leave application Rejected');
+        });
+        return redirect('/leave-list');
+    }
     public function leaveList(){
         $admin = session('admin');
         $type=$admin->type;
