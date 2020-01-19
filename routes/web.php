@@ -44,6 +44,9 @@ Route::post('/signup', 'UserController@signup');
 
 //student routes
 Route::get('/student', 'studentController@home');
+
+Route::get('/update-student-message', 'studentController@updateMessage');
+Route::get('/delete-student-message', 'studentController@deleteMessage');
 Route::post('/leave-application', 'studentController@leaveApp');
 Route::get('/change-password', 'studentController@changePassword');
 Route::post('/change-password', 'studentController@updatePassword');
@@ -69,6 +72,8 @@ Route::post('/apply', 'hostelController@insertApplication');
 
 //admin routes
 Route::get('/admin', 'adminController@home');
+Route::get('/update-admin-message', 'adminController@updateMessage');
+Route::get('/delete-admin-message', 'adminController@deleteMessage');
 Route::get('/leave-list', 'adminController@leaveList');
 Route::get('/approve-leave', 'adminController@approveLeave');
 Route::post('/unapprove-leave', 'adminController@unapproveLeave');

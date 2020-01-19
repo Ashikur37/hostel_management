@@ -60,6 +60,17 @@ class StudentController extends Controller
         $messages= DB::select('select * from messages where sender_id=? or receiver_id=?', [$student->id,$student->id]);
         return view('student.message',['student'=>$student,'messages'=>$messages]);
     } 
+    public function deleteMessage(Request $request){
+        $message = Message::where('id', $request->id)->first();
+        $message->delete();
+       return redirect('/student-message');
+    }
+    public function updateMessage(Request $request){
+        $message = Message::where('id', $request->id)->first();
+        $message->message=$request->msg;
+        $message->save();
+       return redirect('/student-message');
+    }
     public function insertMessage(Request $request){
         $cu=currentUser::all()->first();
          $student = User::where('id', $cu->current_student)->first();

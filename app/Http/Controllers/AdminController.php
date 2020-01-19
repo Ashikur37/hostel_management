@@ -85,6 +85,9 @@ class AdminController extends Controller
         $application = Application::where('id', $leaveApplication->application_id)->first();
         $application->status=2;
         $application->save();
+        $room=Room::where('id', $application->room_id)->first();
+        $room->available=$room->available+1;
+        $room->save();
         return redirect('/leave-list');
     }
     public function unapproveLeave(   Request $request){
@@ -128,9 +131,11 @@ class AdminController extends Controller
     public function insertMessage(Request $request){
      
         $message=new message;
-        $admin=User::where('type', 5)->first();
+        $admin = session('admin');
+        $type=$admin->type;
+        $a=User::where('type', $type)->first();
         $message->receiver_id=$request->student;
-        $message->sender_id=$admin->id;
+        $message->sender_id=$a->id;
         $message->message=$request->message;
         $message->seen=0;
         $message->save();
@@ -141,8 +146,19 @@ class AdminController extends Controller
         $type=$admin->type;
         $a=User::where('type', $type)->first();
         $student=$request->student;
-        $messages= DB::select('select s.id as sid,s.name as sender,r.name as receiver,m.created_at,message from messages m,users s,users r where m.sender_id=s.id and m.receiver_id=r.id and (sender_id=? or receiver_id=?)', [$student,$student]);
-        return view('admin.message.chat',['student'=>$student,'messages'=>$messages,'a'=>$a->id]);
+        $messages= DB::select('select m.id,s.id as sid,s.name as sender,r.name as receiver,m.created_at,message from messages m,users s,users r where m.sender_id=s.id and m.receiver_id=r.id and (sender_id=? or receiver_id=?)', [$student,$student]);
+        return view('admin.message.chat',['student'=>$student,'messages'=>$messages,'a'=>$a->id,'student'=>$student]);
+    }
+    public function deleteMessage(Request $request){
+        $message = Message::where('id', $request->id)->first();
+        $message->delete();
+       return redirect('/admin-message?student='.$request->sid);
+    }
+    public function updateMessage(Request $request){
+        $message = Message::where('id', $request->id)->first();
+        $message->message=$request->msg;
+        $message->save();
+       return redirect('/admin-message?student='.$request->sid);
     }
     public function inbox(){
         $admin = session('admin');

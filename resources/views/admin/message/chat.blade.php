@@ -38,9 +38,21 @@
                         </div>
                         <!-- /.direct-chat-infos -->
                         <!-- /.direct-chat-img -->
-                        <div class="direct-chat-text">
+                        <div class="direct-chat-text" style="width:80%;display: inline-block;">
                                 {{$message->message}}
                         </div>
+                        <div style="width:10%;display: inline-block;">
+          <a href="/delete-admin-message?id={{$message->id}}&sid={{$student}}" class="btn btn-danger btn-sm" style="float:right">
+            <span class="fa fa-trash">
+
+            </span>
+          </a>
+          <a onclick="edit({{$message->id}},'{{$message->message}}')" href="#" class="btn btn-info btn-sm" style="float:right">
+            <span class="fa fa-pen">
+
+            </span>
+          </a>
+        </div>
                         <!-- /.direct-chat-text -->
                       </div>
                 @endif
@@ -74,4 +86,12 @@
               </div>
               <!-- /.card-footer-->
             </div>
+            <script>
+edit=(id,msg)=>{
+  upd=window.prompt('Enter Update Message',msg)
+  if(upd){
+    window.location.href="/update-admin-message?id="+id+"&sid={{$student}}&msg="+upd;
+  }
+}
+</script>
 @endsection

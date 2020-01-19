@@ -182,7 +182,6 @@
                     Hostel Facilities
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/canteen">Canteen</a>
                     <a class="dropdown-item" href="/entertainment">Entertainment</a>
                     <a class="dropdown-item" href="/others">Others</a>
 
