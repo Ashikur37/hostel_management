@@ -23,9 +23,7 @@
     <div class="carousel-item ">
       <img src="images/2.jpg" alt="Los Angeles" width="1100" height="500">
     </div>
-    <div class="carousel-item ">
-      <img src="images/3.jpg" alt="Los Angeles" width="1100" height="500">
-    </div>
+    
     <div class="carousel-item ">
       <img src="images/4.jpg" alt="Los Angeles" width="1100" height="500">
     </div>
