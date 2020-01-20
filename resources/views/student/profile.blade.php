@@ -55,7 +55,7 @@
                       <h5 class="">
                           @if ($user->hostel==5)
                           Boys Hostel 1
-                            @elseif ($user->hostel==5)
+                            @elseif ($user->hostel==6)
                             Boys Hostel 2
                             @else
                             Girls Hostel
