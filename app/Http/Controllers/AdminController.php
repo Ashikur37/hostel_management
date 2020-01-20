@@ -102,12 +102,22 @@ class AdminController extends Controller
             $message->to($email)
              ->subject('Leave application Rejected');
         });
+        $message=new message;
+        $admin = session('admin');
+        $type=$admin->type;
+        $a=User::where('type', $type)->first();
+        $message->sender_id=$a->id;
+        $s=User::where('email', $email)->first();
+        $message->receiver_id=$s->id;
+        $message->message=$request->body;
+        $message->seen=0;
+        $message->save();
         return redirect('/leave-list');
     }
     public function leaveList(){
         $admin = session('admin');
         $type=$admin->type;
-        $applications=DB::select('select a.email,l.id,l.leave_at,l.status,a.name,a.seat_no,a.student_id,a.phone,r.room_no from rooms r,applications a,leave_applications l where r.id=a.room_id and a.id=l.application_id and a.hostel', [$type]);
+        $applications=DB::select('select a.email,l.id,l.leave_at,l.status,a.name,a.seat_no,a.student_id,a.phone,r.room_no from rooms r,applications a,leave_applications l where r.id=a.room_id and a.id=l.application_id and a.hostel=?', [$type]);
         return view('admin.leave.list',['applications'=>$applications]);
     }
     public function hostelList()
@@ -134,8 +144,8 @@ class AdminController extends Controller
         $admin = session('admin');
         $type=$admin->type;
         $a=User::where('type', $type)->first();
-        $message->receiver_id=$request->student;
         $message->sender_id=$a->id;
+        $message->receiver_id=$request->student;
         $message->message=$request->message;
         $message->seen=0;
         $message->save();
