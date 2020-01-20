@@ -22,7 +22,7 @@
       <!-- Links -->
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Total Seat({{$girls[0]->total_seat}}) <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="#">Total Seat(110) <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Available({{$girls[0]->total_available}})</a>

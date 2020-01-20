@@ -30,6 +30,22 @@ class StudentController extends Controller
     return redirect('/profile?msg=leave');
 
    }
+   public function updateImage(Request $request){
+    $cu=currentUser::all()->first();
+    $student = Student::where('user_id', $cu->current_student)->first();
+
+    $application=Application::where('id',$student->application_id)->first();
+    request()->validate([
+
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+    ]);
+    $imageName = time().'.'.request()->image->getClientOriginalExtension();
+    request()->image->move(public_path('images'), $imageName);
+    $application->image=$imageName;    
+    $application->save();
+    return redirect('/profile');
+   }
    public function updatePassword(Request $request){
     $cu=currentUser::all()->first();
     $student = User::where('id', $cu->current_student)->first();

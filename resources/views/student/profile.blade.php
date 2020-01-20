@@ -10,6 +10,14 @@
                       <div class="widget-user-image">
                         <img class="img-circle elevation-2" src="/images/{{$user->image}}" alt="User Avatar">
                       </div>
+                      <form action="/update-image" method="post" enctype="multipart/form-data">
+                     @csrf
+                        <input type="file" name="image" id="">
+                      <br>
+                      <button class="btn btn-info btn-sm">
+                        Update
+                      </button>
+                      </form>
                       <!-- /.widget-user-image -->
                       <h3 class="widget-user-username">{{$user->name}}</h3>
                       <h5 class="widget-user-desc">{{$user->student_id}}</h5>

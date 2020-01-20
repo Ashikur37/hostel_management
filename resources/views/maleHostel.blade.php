@@ -21,7 +21,7 @@
                           <!-- Links -->
                           <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
-                              <a class="nav-link" href="#">Total Seat({{$boys1[0]->total_seat}}) <span class="sr-only">(current)</span></a>
+                              <a class="nav-link" href="#">Total Seat(60) <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
                               <a class="nav-link" href="#">Available({{$boys1[0]->total_available}})</a>
@@ -61,7 +61,7 @@
                           <!-- Links -->
                           <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
-                              <a class="nav-link" href="#">Total Seat({{$boys2[0]->total_seat}}) <span class="sr-only">(current)</span></a>
+                              <a class="nav-link" href="#">Total Seat(60) <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
                               <a class="nav-link" href="#">Available({{$boys2[0]->total_available}})</a>

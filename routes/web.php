@@ -44,7 +44,7 @@ Route::post('/signup', 'UserController@signup');
 
 //student routes
 Route::get('/student', 'studentController@home');
-
+Route::post('/update-image', 'studentController@updateImage');
 Route::get('/update-student-message', 'studentController@updateMessage');
 Route::get('/delete-student-message', 'studentController@deleteMessage');
 Route::post('/leave-application', 'studentController@leaveApp');
