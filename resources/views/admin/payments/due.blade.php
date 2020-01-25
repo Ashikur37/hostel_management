@@ -17,9 +17,8 @@
                 
                   <th>Seat No</th>
                   <th>Room No</th>
-                  <th>Uploaded at</th>
-                  <th>Bank Receipt</th>
-                  <th>Approve</th>
+                  <th>Rent</th>
+                  <th>Due</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -32,26 +31,10 @@
                  
                     <td>{{$payment->seat_no}}</td>
                     <td>{{$payment->room_no}}</td>
-                    <td>{{$payment->created_at}}</td>
-                    <td>
-                        <a href="/images/{{$payment->receipt}}" target="_blank">
-                        <img style="width:200px;max-height:200px" src="/images/{{$payment->receipt}}"/></a>
-                        
-                    </td>
+                    <td>{{$rent}}</td>
+                    <td>{{$rent-$payment->amount}}</td>
                     
-                    <td>
-                    
-                      <button onclick="approve({{$payment->id}})" class="btn btn-sm btn-success">Approve</button>
-                      <script>
-                      approve=(id)=>{
-                        amount=window.prompt("Please Enter the amount");
-                        if(amount&&!isNaN(amount)){
-                          window.location.href=`approve-payment?id=${id}&amount=${amount}`;
-                        }
-                        ///
-                      }
-                      </script>
-                    </td>
+                   
                   </tr>
               @endforeach
                 </tbody>

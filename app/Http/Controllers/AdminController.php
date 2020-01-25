@@ -1,7 +1,7 @@
 <?php
 
+//ALTER TABLE `payments` ADD `amount` INT NOT NULL AFTER `user_id`;
 namespace App\Http\Controllers;
-
 use App\admin;
 use App\Payment;
 use Mail;
@@ -182,16 +182,37 @@ class AdminController extends Controller
     public function approvePayment(Request $request){
         $payment=Payment::where('id', $request->id)->first();
         $payment->status=1;
+        $payment->amount=$request->amount;
         $payment->save();
         return redirect('/pending-payment');
     }
     public function pendingPayment(){
-        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=0 and  p.status = ?', [0]);        
+        $admin = session('admin');
+        $type=$admin->type;
+        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=0 and  p.status = ? and a.hostel=?', [0,$type]);        
         return view('admin.payments.pending',['payments'=>$payments]);
     }
     public function paymentHistory(){
-        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=0 and  p.status = ?', [1]);        
+        $admin = session('admin');
+        $type=$admin->type;
+        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=0 and  p.status = ? and a.hostel=?', [1,$type]);        
         return view('admin.payments.success',['payments'=>$payments]);
+    }
+    public function duePayment(){
+        $admin = session('admin');
+        $type=$admin->type;
+        if($type==5){
+            $rent=1650;
+        }
+        else if($type==6){
+            $rent=1400;
+        }
+        else{
+            $rent=2000;
+        }
+        
+        $payments = DB::select('select p.amount as amount,p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=0 and  p.status = ? and a.hostel=? and amount<? and last=1', [1,$type,$rent]);        
+        return view('admin.payments.due',['payments'=>$payments,'rent'=>$rent]);
     }
 
     public function approvePaymentCanteen(Request $request){
@@ -201,11 +222,15 @@ class AdminController extends Controller
         return redirect('/pending-payment-canteen');
     }
     public function pendingPaymentCanteen(){
-        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=1 and  p.status = ?', [0]);        
+        $admin = session('admin');
+        $type=$admin->type;
+        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=1 and  p.status = ? and a.hostel=?', [0,$type]);        
         return view('admin.payments.pendingCanteen',['payments'=>$payments]);
     }
     public function paymentHistoryCanteen(){
-        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=1 and  p.status = ?', [1]);        
+        $admin = session('admin');
+        $type=$admin->type;
+        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=1 and  p.status = ? and a.hostel=?', [1,$type]);        
         return view('admin.payments.successCanteen',['payments'=>$payments]);
     }
 

@@ -72,6 +72,8 @@ Route::post('/apply', 'hostelController@insertApplication');
 
 //admin routes
 Route::get('/admin', 'adminController@home');
+Route::get('/due-payment', 'adminController@duePayment');
+
 Route::get('/update-admin-message', 'adminController@updateMessage');
 Route::get('/delete-admin-message', 'adminController@deleteMessage');
 Route::get('/leave-list', 'adminController@leaveList');

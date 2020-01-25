@@ -157,6 +157,12 @@
                         <p>Payment History</p>
                       </a>
                     </li>
+                    <li class="nav-item">
+                      <a href="/due-payment" class="nav-link ">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Due Payment</p>
+                      </a>
+                    </li>
                 </ul>
               </li>
               <li class="nav-item has-treeview">
