@@ -17,6 +17,9 @@
                   <th>Approved At</th>
                   <th>Bank Receipt</th>
                   <th>Status</th>
+                  <th>Rent</th>
+                  <th>Due</th>
+                  <th>Fine</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,6 +47,9 @@
         </span>
 @endif
                     </td>
+                    <td>{{$rent}}</td>
+                    <td>{{$rent-$payment->amount}}</td>
+                    <td>{{$payment->fine}}</td>
                   </tr>
               @endforeach
                 </tbody>

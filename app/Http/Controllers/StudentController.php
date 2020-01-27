@@ -129,10 +129,22 @@ class StudentController extends Controller
     public function paymentHistory(){
         $cu=currentUser::all()->first();
          $student = User::where('id', $cu->current_student)->first();
-        $payments = DB::select('select p.updated_at,p.month,p.year,p.status,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id  and  u.id = ? and p.type=0', [$student->id]);        
+         $st=Student::where('user_id', $cu->current_student)->first();;
+         $a=Application::find($st->application_id);
+         $type=$a->hostel;
+         if($type==5){
+            $rent=1650;
+        }
+        else if($type==6){
+            $rent=1400;
+        }
+        else{
+            $rent=2000;
+        }
+        $payments = DB::select('select p.fine,p.amount,p.updated_at,p.month,p.year,p.status,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id  and  u.id = ? and p.type=0', [$student->id]);        
     $unseen=count(DB::select("select * from messages where seen=0 and  receiver_id=".$student->id));
         
-        return view('student.payments.history',['student'=>$student,"payments"=>$payments,'unseen'=>$unseen]);
+        return view('student.payments.history',['student'=>$student,"payments"=>$payments,'unseen'=>$unseen,'rent'=>$rent]);
     }
     public function canteenPaymentHistory(){
         $cu=currentUser::all()->first();

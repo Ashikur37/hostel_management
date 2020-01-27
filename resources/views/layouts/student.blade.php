@@ -142,12 +142,7 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-            <li class="nav-item">
-                <a href="/add-meal" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Extra Meal</p>
-                </a>
-              </li>
+            
             <li class="nav-item">
                 <a href="/upload-canteen-receipt" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
