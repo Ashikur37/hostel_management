@@ -86,6 +86,7 @@ Route::post('/add-room', 'adminController@insertHostel');
 Route::get('/add-room', 'adminController@addHostel');
 Route::get('/room-list', 'adminController@hostelList');
 Route::get('/admin-message', 'adminController@message');
+Route::get('/update-fine', 'adminController@updateFine');
 Route::post('/admin-message', 'adminController@insertMessage');
 Route::get('/admin-inbox', 'adminController@inbox');
 Route::get('/pending-payment', 'adminController@pendingPayment');

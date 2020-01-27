@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-5">
                 <nav class="navbar navbar-dark navbar-2 bg-success mb-4">
-                        <a class="navbar-brand" href="#">Boys Hostel 1</a>
+                        <a style="font-size:22px" class="navbar-brand" href="#">Boys Hostel 1</a>
                         <!-- Navbar brand -->
                         <!-- Collapse button -->
                         <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
@@ -48,7 +48,7 @@
     <div class="row">
         <div class="col-md-5">
                 <nav class="navbar navbar-dark navbar-2 bg-success mb-4">
-                        <a class="navbar-brand" href="#">Boys Hostel 2</a>
+                        <a style="font-size:22px" class="navbar-brand" href="#">Boys Hostel 2</a>
                         <!-- Navbar brand -->
                         <!-- Collapse button -->
                         <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2"

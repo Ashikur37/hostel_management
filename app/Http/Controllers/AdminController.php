@@ -1,7 +1,6 @@
 <?php
 
-//ALTER TABLE `payments` ADD `amount` INT NOT NULL AFTER `user_id`;
-//ALTER TABLE `payments` ADD `last` INT NOT NULL AFTER `user_id`;
+//ALTER TABLE `payments` ADD `fine` INT NOT NULL DEFAULT '0' AFTER `last`;
 namespace App\Http\Controllers;
 use App\admin;
 use App\Payment;
@@ -180,6 +179,33 @@ class AdminController extends Controller
         
         return view('admin.message.inbox',["messages"=>$messages]);
     }
+    public function updateFine(Request $request){
+        $payment=Payment::where('id', $request->id)->first();
+        $payment->fine=$request->fine;
+        $payment->save();
+        $user=User::find($payment->user_id);
+        $name=$user->name;;
+        $email=$user->email;
+
+        $message=new message;
+        $admin = session('admin');
+        $type=$admin->type;
+        $a=User::where('type', $type)->first();
+        $message->sender_id=$a->id;
+        $s=User::where('email', $email)->first();
+        $message->receiver_id=$s->id;
+        $message->message="You have been fined  ".$request->fine." for the payment of ".$payment->month." ".$payment->year;
+        $message->seen=0;
+        $message->save();
+
+        $data=array("name"=>$name,"body"=>"You have been fined  ".$request->fine." for the payment of ".$payment->month." ".$payment->year);
+        Mail::send('mail',$data,function($message) use ($name,$email){
+            $message->to($email)
+             ->subject('Fine added for');
+        });
+        
+        return redirect('/due-payment');
+    }
     public function approvePayment(Request $request){
        
         $payment=Payment::where('id', $request->id)->first();
@@ -204,7 +230,7 @@ class AdminController extends Controller
         $data=array("name"=>$name,"body"=>"Your payment has been approved with amount ".$request->amount);
         Mail::send('mail',$data,function($message) use ($name,$email){
             $message->to($email)
-             ->subject('Hostel Booking Rejected');
+             ->subject('Hostel payment approved');
         });
         
         return redirect('/pending-payment');
@@ -234,7 +260,7 @@ class AdminController extends Controller
             $rent=2000;
         }
         
-        $payments = DB::select('select p.amount as amount,p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=0 and  p.status = ? and a.hostel=? and amount<? and last=1', [1,$type,$rent]);        
+        $payments = DB::select('select p.id,p.fine,p.amount as amount,p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=0 and  p.status = ? and a.hostel=? and amount<? and last=1', [1,$type,$rent]);        
         return view('admin.payments.due',['payments'=>$payments,'rent'=>$rent]);
     }
 

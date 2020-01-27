@@ -186,6 +186,8 @@ class StudentController extends Controller
         $request->receipt->move(public_path('images'), $imageName);
         $payment->receipt=  $imageName;
         $payment->status=0;
+        $payment->last=1;        
+        $payment->amount=0;
         $payment->save(); 
 
 
