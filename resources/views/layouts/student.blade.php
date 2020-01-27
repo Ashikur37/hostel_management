@@ -42,7 +42,13 @@
       <!-- Messages Dropdown Menu -->
     
       <!-- Notifications Dropdown Menu -->
-     
+      <li class="nav-item dropdown">
+        <a class="nav-link"  href="/student-message">
+          <i class="far fa-comments"></i>
+          <span class="badge badge-danger navbar-badge">{{$unseen}}</span>
+        </a>
+        
+      </li>
       <li class="nav-item">
             <a class="nav-link" href="/logout">
                 Logout

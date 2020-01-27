@@ -19,7 +19,8 @@ class StudentController extends Controller
    public function changePassword(){
     $cu=currentUser::all()->first();
     $student = User::where('id', $cu->current_student)->first();
-    return view('student.changePassword',['student'=>$student]);
+    $unseen=count(DB::select("select * from messages where seen=0 and  receiver_id=".$student->id));
+    return view('student.changePassword',['student'=>$student,'unseen'=>$unseen]);
    }
    public function leaveApp(Request $request){
     $leave=new LeaveApplication;
@@ -56,10 +57,13 @@ class StudentController extends Controller
 
     public function profile(){
         $cu=currentUser::all()->first();
-         $student = User::where('id', $cu->current_student)->first();
+        $student = User::where('id', $cu->current_student)->first();
+        $unseen=count(DB::select("select * from messages where seen=0 and  receiver_id=".$student->id));
+       
         $sql="select a.id,a.name,image,student_id,department,batch,semester,a.email,a.phone,a.hostel,room_no,seat_no,a.updated_at,a.leaved_at from users u,rooms r,applications a,students s where s.user_id=u.id and r.id=a.room_id and s.application_id=a.id and u.id=".$student->id;
         $users=DB::select($sql);
-        return view('student.profile',['student'=>$student,'users'=>$users]);
+
+        return view('student.profile',['student'=>$student,'users'=>$users,'unseen'=>$unseen]);
     }
     public function notice(){
         $cu=currentUser::all()->first();
@@ -68,13 +72,17 @@ class StudentController extends Controller
         $a=Application::where('id', $s->application_id)->first();
      
         $notices=Notice::where('hostel', $a->hostel)->get();
-        return view('student.notice',['student'=>$student,'notices'=>$notices]);
+    $unseen=count(DB::select("select * from messages where seen=0 and  receiver_id=".$student->id));
+        return view('student.notice',['student'=>$student,'notices'=>$notices,'unseen'=>$unseen]);
     }
     public function message(){
         $cu=currentUser::all()->first();
          $student = User::where('id', $cu->current_student)->first();
+         DB::statement("update messages set seen=1 where receiver_id=".$student->id);
         $messages= DB::select('select * from messages where sender_id=? or receiver_id=?', [$student->id,$student->id]);
-        return view('student.message',['student'=>$student,'messages'=>$messages]);
+    $unseen=count(DB::select("select * from messages where seen=0 and  receiver_id=".$student->id));
+       
+        return view('student.message',['student'=>$student,'messages'=>$messages,'unseen'=>$unseen]);
     } 
     public function deleteMessage(Request $request){
         $message = Message::where('id', $request->id)->first();
@@ -106,29 +114,33 @@ class StudentController extends Controller
     public function uploadReceipt(){
         $cu=currentUser::all()->first();
          $student = User::where('id', $cu->current_student)->first();
+    $unseen=count(DB::select("select * from messages where seen=0 and  receiver_id=".$student->id));
         
-        return view('student.payments.upload',['student'=>$student]);
+        return view('student.payments.upload',['student'=>$student,'unseen'=>$unseen]);
     }
     public function uploadCanteenReceipt(){
         $cu=currentUser::all()->first();
          $student = User::where('id', $cu->current_student)->first();
+    $unseen=count(DB::select("select * from messages where seen=0 and  receiver_id=".$student->id));
         
-        return view('student.payments.canteenUpload',['student'=>$student]);
+        return view('student.payments.canteenUpload',['student'=>$student,'unseen'=>$unseen]);
     }
 
     public function paymentHistory(){
         $cu=currentUser::all()->first();
          $student = User::where('id', $cu->current_student)->first();
         $payments = DB::select('select p.updated_at,p.month,p.year,p.status,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id  and  u.id = ? and p.type=0', [$student->id]);        
+    $unseen=count(DB::select("select * from messages where seen=0 and  receiver_id=".$student->id));
         
-        return view('student.payments.history',['student'=>$student,"payments"=>$payments]);
+        return view('student.payments.history',['student'=>$student,"payments"=>$payments,'unseen'=>$unseen]);
     }
     public function canteenPaymentHistory(){
         $cu=currentUser::all()->first();
          $student = User::where('id', $cu->current_student)->first();
         $payments = DB::select('select p.updated_at,p.month,p.year,p.status,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and  u.id = ? and p.type=1', [$student->id]);        
+    $unseen=count(DB::select("select * from messages where seen=0 and  receiver_id=".$student->id));
         
-        return view('student.payments.canteenHistory',['student'=>$student,"payments"=>$payments]);
+        return view('student.payments.canteenHistory',['student'=>$student,"payments"=>$payments,'unseen'=>$unseen]);
     }
     public function insertReceipt(Request $request){
         $cu=currentUser::all()->first();
@@ -183,7 +195,9 @@ class StudentController extends Controller
     {
         $cu=currentUser::all()->first();
          $student = User::where('id', $cu->current_student)->first();
-        return view('student.home',['student'=>$student]);
+    $unseen=count(DB::select("select * from messages where seen=0 and  receiver_id=".$student->id));
+
+        return view('student.home',['student'=>$student,'unseen'=>$unseen]);
     }
 
     /**

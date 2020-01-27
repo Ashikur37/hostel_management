@@ -1,6 +1,7 @@
 <?php
 
 //ALTER TABLE `payments` ADD `amount` INT NOT NULL AFTER `user_id`;
+//ALTER TABLE `payments` ADD `last` INT NOT NULL AFTER `user_id`;
 namespace App\Http\Controllers;
 use App\admin;
 use App\Payment;
@@ -180,10 +181,32 @@ class AdminController extends Controller
         return view('admin.message.inbox',["messages"=>$messages]);
     }
     public function approvePayment(Request $request){
+       
         $payment=Payment::where('id', $request->id)->first();
         $payment->status=1;
         $payment->amount=$request->amount;
         $payment->save();
+        $user=User::find($payment->user_id);
+        $name=$user->name;;
+        $email=$user->email;
+
+        $message=new message;
+        $admin = session('admin');
+        $type=$admin->type;
+        $a=User::where('type', $type)->first();
+        $message->sender_id=$a->id;
+        $s=User::where('email', $email)->first();
+        $message->receiver_id=$s->id;
+        $message->message="Your payment has been approved with amount ".$request->amount;
+        $message->seen=0;
+        $message->save();
+
+        $data=array("name"=>$name,"body"=>"Your payment has been approved with amount ".$request->amount);
+        Mail::send('mail',$data,function($message) use ($name,$email){
+            $message->to($email)
+             ->subject('Hostel Booking Rejected');
+        });
+        
         return redirect('/pending-payment');
     }
     public function pendingPayment(){
