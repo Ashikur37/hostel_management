@@ -151,7 +151,7 @@
       </center>
     </div>
     <div class="col-md-2">
-      <a style="font-size:19px;" href="/login" class="btn btn-outline-success btn-outline ">
+      <a style="font-size:19px;font-weight:bold;" href="/login" class="btn btn-outline-success btn-outline ">
         Login
       </a>
     </div>

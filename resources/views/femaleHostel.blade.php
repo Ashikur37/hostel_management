@@ -9,7 +9,7 @@
     <div class="col-md-5">
       <!--Navbar-->
 <nav class="navbar navbar-dark navbar-2 bg-success mb-4">
-    <a style="font-size:22px" class="navbar-brand" href="#">Girls Hostel</a>
+    <a style="font-size:22px;font-weight:bold;" class="navbar-brand" href="#">Girls Hostel</a>
     <!-- Navbar brand -->
     <!-- Collapse button -->
     <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
