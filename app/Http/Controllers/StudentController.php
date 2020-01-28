@@ -8,6 +8,7 @@ use App\Message;
 use App\User;
 use App\Application;
 use App\currentUser;
+use App\notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Session;
@@ -105,6 +106,11 @@ class StudentController extends Controller
         $message=new message;
         $message->sender_id=$student->id;
         $admin=User::where('type', $a->hostel)->first();
+        $n=new notification;
+        $n->user_id=$admin->id;
+        $n->seen=0;
+        $n->message="New message ".$student->name;
+        $n->save();
         $message->receiver_id=$admin->id;
         $message->message=$request->message;
         $message->seen=0;
@@ -114,6 +120,8 @@ class StudentController extends Controller
     public function uploadReceipt(){
         $cu=currentUser::all()->first();
          $student = User::where('id', $cu->current_student)->first();
+     
+
     $unseen=count(DB::select("select * from messages where seen=0 and  receiver_id=".$student->id));
         
         return view('student.payments.upload',['student'=>$student,'unseen'=>$unseen]);
@@ -121,6 +129,8 @@ class StudentController extends Controller
     public function uploadCanteenReceipt(){
         $cu=currentUser::all()->first();
          $student = User::where('id', $cu->current_student)->first();
+     
+
     $unseen=count(DB::select("select * from messages where seen=0 and  receiver_id=".$student->id));
         
         return view('student.payments.canteenUpload',['student'=>$student,'unseen'=>$unseen]);
@@ -157,7 +167,14 @@ class StudentController extends Controller
     public function insertReceipt(Request $request){
         $cu=currentUser::all()->first();
          $student = User::where('id', $cu->current_student)->first();
-
+         $s=Student::where('user_id', $student->id)->first();
+         $a=Application::where('id', $s->application_id)->first();
+         $admin=User::where('type', $a->hostel)->first();
+         $n=new notification;
+         $n->user_id=$admin->id;
+         $n->seen=0;
+         $n->message="Bank receipt uploaded by ".$student->name;
+         $n->save();
         $request->validate([
 
             'receipt' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',

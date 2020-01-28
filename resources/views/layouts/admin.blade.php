@@ -43,9 +43,29 @@
       <!-- Messages Dropdown Menu -->
     
       <!-- Notifications Dropdown Menu -->
-      
+      <li class="nav-item dropdown show">
+        <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="true">
+          <i class="far fa-bell"></i>
+          <span class="badge badge-warning navbar-badge">{{count($notifications)}}</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right " style="overflow:auto">
+          <span class="dropdown-item dropdown-header">{{count($notifications)}} Notifications</span>
+          <div class="dropdown-divider"></div>
+          @foreach ($notifications as $notification)
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> {{$notification->message}}
+            <span class="float-right text-muted text-sm">{{$notification->created_at}}</span>
+            
+          </a>
+          <div class="dropdown-divider"></div>
+          @endforeach
+          
+          
+         
+        </div>
+      </li>
       <li class="nav-item">
-            <a class="nav-link" href="/logout">
+            <a style="font-size:19px;font-weight:bold;color:blue" class="nav-link" href="/logout">
                 Logout
             </a>
       </li>

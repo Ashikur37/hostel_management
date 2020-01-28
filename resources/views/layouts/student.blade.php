@@ -50,7 +50,7 @@
         
       </li>
       <li class="nav-item">
-            <a class="nav-link" href="/logout">
+      <a style="font-size:19px;font-weight:bold;color:blue" class="nav-link" href="/logout">
                 Logout
             </a>
       </li>

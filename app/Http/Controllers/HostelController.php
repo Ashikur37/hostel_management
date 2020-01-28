@@ -10,6 +10,7 @@ use App\Notice;
 use App\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\notification;
 class HostelController extends Controller
 {
     /**
@@ -79,6 +80,11 @@ class HostelController extends Controller
 
         $name=$admin->name;
         $email=$admin->email;
+        $n=new notification;
+        $n->user_id=$admin->id;
+        $n->seen=0;
+        $n->message="New Application from ".$request->name;
+        $n->save();
         $data=array("name"=>$name,"body"=>"New Application from ".$request->name);
         Mail::send('mail',$data,function($message) use ($name,$email){
             $message->to($email)

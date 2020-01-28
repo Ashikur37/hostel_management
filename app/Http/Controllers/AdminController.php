@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 use App\admin;
 use App\Payment;
+use App\notification;
 use Mail;
 use App\user;
 use App\message;
@@ -50,17 +51,29 @@ class AdminController extends Controller
     }
     public function addHostel()
     {
-        return view('superadmin.hostel.add');
+        $admin = session('admin');
+        $type=$admin->type;
+        $a=User::where('type', $type)->first();
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('superadmin.hostel.add',['notifications'=>$notifications]);
     }
 
     public function home()
     {
-
-        return view('admin.home');
+        $admin = session('admin');
+        $type=$admin->type;
+        $a=User::where('type', $type)->first();
+        $notifications=notification::where('user_id',$a->id)->get();
+        
+        return view('admin.home',['notifications'=>$notifications]);
         
     }
     public function addNotice(){
-        return view('admin.notice.add');
+        $admin = session('admin');
+        $type=$admin->type;
+        $a=User::where('type', $type)->first();
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('admin.notice.add',['notifications'=>$notifications]);
     }
     public function insertNotice(Request $request){
         $admin = session('admin');
@@ -76,7 +89,9 @@ class AdminController extends Controller
         $admin = session('admin');
         $type=$admin->type;
         $notices=Notice::where('hostel','=',$type)->get();
-        return view('admin.notice.list',['notices'=>$notices]);
+        $a=User::where('type', $type)->first();
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('admin.notice.list',['notices'=>$notices,'notifications'=>$notifications]);
     }
     public function approveLeave(   Request $request){
         $leaveApplication=LeaveApplication::where('id', $request->id)->first();
@@ -118,7 +133,9 @@ class AdminController extends Controller
         $admin = session('admin');
         $type=$admin->type;
         $applications=DB::select('select a.email,l.id,l.leave_at,l.status,a.name,a.seat_no,a.student_id,a.phone,r.room_no from rooms r,applications a,leave_applications l where r.id=a.room_id and a.id=l.application_id and a.hostel=?', [$type]);
-        return view('admin.leave.list',['applications'=>$applications]);
+        $a=User::where('type', $type)->first();
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('admin.leave.list',['applications'=>$applications,'notifications'=>$notifications]);
     }
     public function hostelList()
     {
@@ -135,8 +152,9 @@ class AdminController extends Controller
             $hostel='girls';
         }
         $rooms=Room::where('hostel','=',$hostel)->get();
-        
-        return view('superadmin.hostel.list',['rooms'=>$rooms]);
+        $a=User::where('type', $type)->first();
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('superadmin.hostel.list',['rooms'=>$rooms,'notifications'=>$notifications]);
     }
     public function insertMessage(Request $request){
      
@@ -157,7 +175,9 @@ class AdminController extends Controller
         $a=User::where('type', $type)->first();
         $student=$request->student;
         $messages= DB::select('select m.id,s.id as sid,s.name as sender,r.name as receiver,m.created_at,message from messages m,users s,users r where m.sender_id=s.id and m.receiver_id=r.id and (sender_id=? or receiver_id=?)', [$student,$student]);
-        return view('admin.message.chat',['student'=>$student,'messages'=>$messages,'a'=>$a->id,'student'=>$student]);
+        $a=User::where('type', $type)->first();
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('admin.message.chat',['notifications'=>$notifications,'student'=>$student,'messages'=>$messages,'a'=>$a->id,'student'=>$student]);
     }
     public function deleteMessage(Request $request){
         $message = Message::where('id', $request->id)->first();
@@ -176,8 +196,8 @@ class AdminController extends Controller
         $a=User::where('type', $type)->first();
         $sql="SELECT m.created_at,message,s.name,s.id,s.email from messages m, users s where m.sender_id=s.id and m.seen=0 and receiver_id=".$a->id;
         $messages = DB::select($sql);
-        
-        return view('admin.message.inbox',["messages"=>$messages]);
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('admin.message.inbox',["messages"=>$messages,'notifications'=>$notifications]);
     }
     public function updateFine(Request $request){
         $payment=Payment::where('id', $request->id)->first();
@@ -239,13 +259,17 @@ class AdminController extends Controller
         $admin = session('admin');
         $type=$admin->type;
         $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=0 and  p.status = ? and a.hostel=?', [0,$type]);        
-        return view('admin.payments.pending',['payments'=>$payments]);
+        $a=User::where('type', $type)->first();
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('admin.payments.pending',['payments'=>$payments,'notifications'=>$notifications]);
     }
     public function paymentHistory(){
         $admin = session('admin');
         $type=$admin->type;
         $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=0 and  p.status = ? and a.hostel=?', [1,$type]);        
-        return view('admin.payments.success',['payments'=>$payments]);
+        $a=User::where('type', $type)->first();
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('admin.payments.success',['payments'=>$payments,'notifications'=>$notifications]);
     }
     public function duePayment(){
         $admin = session('admin');
@@ -261,7 +285,9 @@ class AdminController extends Controller
         }
         
         $payments = DB::select('select p.id,p.fine,p.amount as amount,p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=0 and  p.status = ? and a.hostel=? and amount<? and last=1', [1,$type,$rent]);        
-        return view('admin.payments.due',['payments'=>$payments,'rent'=>$rent]);
+        $a=User::where('type', $type)->first();
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('admin.payments.due',['payments'=>$payments,'rent'=>$rent,'notifications'=>$notifications]);
     }
 
     public function approvePaymentCanteen(Request $request){
@@ -274,13 +300,17 @@ class AdminController extends Controller
         $admin = session('admin');
         $type=$admin->type;
         $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=1 and  p.status = ? and a.hostel=?', [0,$type]);        
-        return view('admin.payments.pendingCanteen',['payments'=>$payments]);
+        $a=User::where('type', $type)->first();
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('admin.payments.pendingCanteen',['payments'=>$payments,'notifications'=>$notifications]);
     }
     public function paymentHistoryCanteen(){
         $admin = session('admin');
         $type=$admin->type;
         $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=1 and  p.status = ? and a.hostel=?', [1,$type]);        
-        return view('admin.payments.successCanteen',['payments'=>$payments]);
+        $a=User::where('type', $type)->first();
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('admin.payments.successCanteen',['payments'=>$payments,'notifications'=>$notifications]);
     }
 
     public function supervisor(Request $request){
@@ -319,18 +349,24 @@ class AdminController extends Controller
     }
     public function viewRoom(Request $request)
     {
+        $admin = session('admin');
+        $type=$admin->type;
         $applications=Application::where([
             ['room_id', '=', $request->id],
             ['status', '=', '1']
         ])->get();
-        
-        return view('admin.room.students',['students'=>$applications,'room'=>$request->id]);
+        $a=User::where('type', $type)->first();
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('admin.room.students',['notifications'=>$notifications,'students'=>$applications,'room'=>$request->id]);
     }
     public function roomList()
     {
+        $admin = session('admin');
+        $type=$admin->type;
         $rooms=Room::all();
-        
-        return view('admin.room.list',['rooms'=>$rooms]);
+        $a=User::where('type', $type)->first();
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('admin.room.list',['rooms'=>$rooms,'notifications'=>$notifications]);
     }
     public function reject(Request $request){
         $body=$request->body;
@@ -412,7 +448,9 @@ class AdminController extends Controller
         }
         $applications = DB::select('select a.image,a.id,room_no,name,student_id,email,phone,department,batch,father,mother,address,guardian from applications a,rooms r where a.room_id=r.id and status = ? and a.hostel=?', [0,$admin->type]);        
         $rooms=Room::where('hostel','=',$hostel)->get();
-        return view('admin.unapproved_user.list',['applications'=>$applications,'rooms'=>$rooms]);
+        $a=User::where('type', $type)->first();
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('admin.unapproved_user.list',['applications'=>$applications,'rooms'=>$rooms,'notifications'=>$notifications]);
     }
     public function approvedUser(){
         $admin = session('admin');
@@ -428,7 +466,9 @@ class AdminController extends Controller
             $hostel='girls';
         }
         $applications = DB::select('select a.id,room_no,name,student_id,email,phone,department,batch,father,mother,address,guardian from applications a,rooms r where a.room_id=r.id and status = ? and a.hostel=?', [1,$admin->type]);        
-        return view('admin.approved_user.list',['applications'=>$applications]);
+        $a=User::where('type', $type)->first();
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('admin.approved_user.list',['applications'=>$applications,'notifications'=>$notifications]);
     }
  
  
