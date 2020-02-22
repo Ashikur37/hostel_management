@@ -65,6 +65,7 @@ Route::post('/student-message', 'studentController@insertMessage');
 Route::get('/boys-hostel', 'hostelController@maleHostel');
 Route::get('/girls-hostel', 'hostelController@femaleHostel');
 Route::get('/apply', 'hostelController@apply');
+Route::get('/check-number', 'UserController@checkNumber');
 
 Route::post('/apply', 'hostelController@insertApplication');
 
@@ -73,6 +74,11 @@ Route::post('/apply', 'hostelController@insertApplication');
 //admin routes
 Route::get('/admin', 'adminController@home');
 Route::get('/due-payment', 'adminController@duePayment');
+Route::get('/add-student-data', 'adminController@addStudentData');
+Route::get('/student-data-list', 'adminController@studentData');
+Route::get('/delete-student-data', 'adminController@deleteStudentData');
+Route::post('/add-student-data', 'adminController@insertStudentData');
+
 
 Route::get('/update-admin-message', 'adminController@updateMessage');
 Route::get('/delete-admin-message', 'adminController@deleteMessage');

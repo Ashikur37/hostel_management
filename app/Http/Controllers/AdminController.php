@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use File;
 use App\LeaveApplication;
+use App\StudentData;
+
 class AdminController extends Controller
 {
     /**
@@ -27,6 +29,33 @@ class AdminController extends Controller
     public function index()
     {
         //
+    }
+    public function addStudentData(){
+        $admin = session('admin');
+        $type=$admin->type;
+        $a=User::where('type', $type)->first();
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('admin.student_data.add',['notifications'=>$notifications]);
+    }
+    public function insertStudentData(Request $request){
+        StudentData::create([
+            "student_id"=>$request->student_id,
+            "phone"=>$request->phone
+        ]);
+        return redirect('/student-data-list');
+    }
+    public function studentData(){
+        $datas=StudentData::all();
+        $admin = session('admin');
+        $type=$admin->type;
+        $a=User::where('type', $type)->first();
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('admin.student_data.list',['notifications'=>$notifications,"datas"=>$datas]);
+    }
+    public function deleteStudentData(){
+        $data=StudentData::find(request()->id);
+        $data->delete();
+        return redirect('/student-data-list');
     }
     public function insertHostel(Request $request){
         $admin = session('admin');

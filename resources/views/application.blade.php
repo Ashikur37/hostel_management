@@ -115,7 +115,62 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input required type="text" class="form-control" name="phone" placeholder="Phone">
+                        <input required type="text" class="form-control" name="phone" placeholder="Phone" onblur="checkNumber(this.value)">
+                        <input value="-1" type="hidden" id="key">
+                        <script>
+                            sent=false;
+                            
+                            checkNumber=(number)=>{
+                                if(sent)
+                                {
+                                    alert("Code sent on your phone");
+                                    return;
+                                }
+                                document.getElementById("code").value="";
+                                document.getElementById("key").value=-1
+                                var xhttp = new XMLHttpRequest();
+                                xhttp.onreadystatechange = function() {
+                                    if (this.readyState == 4 && this.status == 200) {
+                                        if(this.responseText=="not"){
+                                            alert("This number is not found in admission database");
+                                            document.getElementById("btn").disabled=true;
+                                        }
+                                        else{
+                                            document.getElementById("key").value=this.responseText;
+                                            alert("Enter the verification code sent on your number");
+                                            sent=true;
+                                        }
+                                    }
+                                };
+                                xhttp.open("GET", "http://localhost/checknumber.php?number="+number, true);
+                                xhttp.send();
+                            }
+                        </script>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input id="code" onblur="checkCode(this.value)" required type="text" class="form-control" placeholder="Verification Code">
+                        <script>
+                            checkCode=(code)=>{
+                                if(!code)
+                                return;
+                                if(document.getElementById("key").value==-1){
+                                    alert("This number is not found in admission database");
+                                }
+                                else if(document.getElementById("key").value!=code){
+                                    alert("verification code is not valid"); 
+                                }
+                                else{
+                                    alert("Phone verification is success");
+                                    document.getElementById("btn").disabled=false;
+
+                                }
+                            }
+                        </script>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-"></span>
@@ -175,7 +230,7 @@
                 <div class="col-2"></div>
                 <!-- /.col -->
                 <div class="col-4">
-                    <button type="submit" class="btn btn-primary btn-block">Apply</button>
+                    <button id="btn" disabled type="submit" class="btn btn-primary btn-block">Apply</button>
                 </div>
                 <!-- /.col -->
             </div>

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\User;
 use App\student;
 use App\currentUser;
+use App\StudentData;
 use Session;
 use Illuminate\Http\Request;
+use SoapClient;
 
 class userController extends Controller
 {
@@ -65,10 +67,39 @@ class userController extends Controller
     $request->session()->flush();
     return redirect('/');
     }
+public function checkNumber(){
+       $data= StudentData::where('phone','=',request()->number)->first();
+       if($data){
+           $r=rand(1000,9999);
+
+           try{
+            $soapClient = new SoapClient("https://api2.onnorokomSMS.com/sendSMS.asmx?wsdl");
+            $paramArray = array(
+            'userName' => "01825314306",
+            'userPassword' => "2978d85534",
+            'mobileNumber' => "01736937161",
+            'smsText' => "This is a SMS",
+            'type' => "TEXT",
+            'maskName' => '',
+            'campaignName' => '',
+            );
+            $value = $soapClient->__call("OneToOne", array($paramArray));
+            echo $value->OneToOneResult;
+           } catch (Exception $e) {
+            echo $e->getMessage();
+           }
+           
+           return $r;
+       }
+       else{
+           return "not";
+       }
+    }
  public function signin(Request $request){
 
     $user=User::where('email', '=', $request->email)->where('password', '=', $request->password)->first();
     $cu=currentUser::all()->first();
+
     if(!$user){
         return redirect('/login?msg=Invalid email or password');
     }
@@ -91,7 +122,7 @@ class userController extends Controller
         return redirect('/admin');
     }
     
-    else if($user->type==4){
+    else if($user->type==3){
         return redirect('/superadmin');
     }
 
