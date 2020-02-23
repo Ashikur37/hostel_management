@@ -40,7 +40,12 @@ class AdminController extends Controller
     public function insertStudentData(Request $request){
         StudentData::create([
             "student_id"=>$request->student_id,
-            "phone"=>$request->phone
+            "phone"=>$request->phone,
+            "name"=>$request->name,
+            "semester"=>$request->semester,
+            "batch"=>$request->batch,
+            "department"=>$request->department
+
         ]);
         return redirect('/student-data-list');
     }
