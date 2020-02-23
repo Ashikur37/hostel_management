@@ -81,7 +81,7 @@
 
 
         <p class="mb-0">
-          <a href="/forgot-password" class="text-center">Forgot Password?</a>
+          {{-- <a href="/forgot-password" class="text-center">Forgot Password?</a> --}}
         </p>
       </div>
       <!-- /.login-card-body -->

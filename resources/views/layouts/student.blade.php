@@ -129,12 +129,12 @@ p{
                   <p>Payment History</p>
                 </a>
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="/student/hostel-list" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View Fines</p>
                 </a>
-              </li>
+              </li> --}}
              
               
             </ul>
