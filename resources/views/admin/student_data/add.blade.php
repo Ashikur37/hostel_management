@@ -19,6 +19,16 @@
                         <input required name="student_id" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Student ID">
                       </div>
                       <div class="form-group">
+                        <label for="exampleInputEmail1">Department</label>
+  <select required class="form-control" name="department" id="">
+                                <option>Choose The Department</option>
+                                <option value="CSE">CSE</option>
+                                <option value="EEE">EEE</option>
+                                <option value="BBA">BBA</option>
+                                <option value="English">English</option>
+                            </select>
+                      </div>
+                      <div class="form-group">
                         <label for="exampleInputEmail1">Batch</label>
        <select required class="form-control" name="batch" id="">
                                 <option>Choose The Batch</option>
@@ -53,16 +63,7 @@
     
                                 </select>
                       </div>
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Department</label>
-  <select required class="form-control" name="department" id="">
-                                <option>Choose The Department</option>
-                                <option value="CSE">CSE</option>
-                                <option value="EEE">EEE</option>
-                                <option value="BBA">BBA</option>
-                                <option value="English">English</option>
-                            </select>
-                      </div>
+                      
                       <div class="form-group">
                         <label for="exampleInputEmail1">Phone</label>
                         <input required name="phone" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Phone NO">
