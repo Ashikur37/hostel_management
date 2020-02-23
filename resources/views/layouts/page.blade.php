@@ -147,7 +147,7 @@
     <div class="col-md-8">
 
       <center>
-        <h3>Online Hostel Management System for HUB</h3>
+        <h3>Online Hostel Management System for Hamdard University Bangladesh</h3>
       </center>
     </div>
     <div class="col-md-2">
@@ -208,7 +208,7 @@
 
   </div>
   <div id="footer" class="navbar navbar-expand-sm bg-dark navbar-dark" style="position: absolute;
-        bottom: 0;width: 100%;">
+        width: 100%;">
     <div class="col-md-6">
 
     </div>
