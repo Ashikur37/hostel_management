@@ -56,7 +56,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input required type="text" class="form-control" name="student_id" placeholder="Student ID">
+                        <input id="student_id" required type="text" class="form-control" name="student_id" placeholder="Student ID">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -132,7 +132,7 @@
                                 xhttp.onreadystatechange = function() {
                                     if (this.readyState == 4 && this.status == 200) {
                                         if(this.responseText=="not"){
-                                            alert("This number is not found in admission database");
+                                            alert("This number is not found with your student id");
                                             document.getElementById("btn").disabled=true;
                                         }
                                         else{
@@ -142,7 +142,7 @@
                                         }
                                     }
                                 };
-                                xhttp.open("GET", "http://localhost/checknumber.php?number="+number, true);
+                                xhttp.open("GET", "http://localhost/checknumber.php?number="+number+"&id="+document.getElementById("student_id").value, true);
                                 xhttp.send();
                             }
                         </script>

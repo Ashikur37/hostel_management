@@ -8,12 +8,12 @@ $db = 'hostel';
 
 $mysqli = new mysqli($server, $user, $pass, $db);
 $number=$_GET["number"];
-
+$id=$_GET["id"];
 
 // show errors 
 mysqli_report(MYSQLI_REPORT_ERROR);	
 
-$sql="Select * from student_data where phone='$number'";
+$sql="Select * from student_data where phone='$number' and student_id='$id'";
 $result=$mysqli->query($sql);
 
 if(mysqli_num_rows($result)==1){
