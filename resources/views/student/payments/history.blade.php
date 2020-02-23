@@ -19,6 +19,7 @@
                   <th>Status</th>
                   <th>Rent</th>
                   <th>Due</th>
+                  <th>Paid</th>
                   <th>Fine</th>
                 </tr>
                 </thead>
@@ -49,6 +50,9 @@
                     </td>
                     <td>{{$rent}}</td>
                     <td>{{$rent-$payment->amount}}</td>
+                    <td>
+                    {{$rent-$rent-$payment->amount}}
+                    </td>
                     <td>{{$payment->fine}}</td>
                   </tr>
               @endforeach
