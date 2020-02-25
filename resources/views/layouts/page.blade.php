@@ -269,10 +269,10 @@
   </div>
   <div id="footer" class="navbar navbar-expand-sm bg-dark navbar-dark" style="position: absolute;
         width: 100%;">
-    <div class="col-md-6">
+    <div class="col-sm-5">
 
     </div>
-    <div class="col-md-6">
+    <div class="col-sm-7">
       <a href="/contact">Contat Us</a>
       <a href="#" class="fa fa-facebook"></a>
       <a href="#" class="fa fa-twitter"></a>
