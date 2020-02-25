@@ -1,1 +1,1 @@
-ALTER TABLE `student_data` ADD `name` VARCHAR(40) NOT NULL AFTER `phone`, ADD `department` VARCHAR(40) NOT NULL AFTER `name`, ADD `batch` VARCHAR(40) NOT NULL AFTER `department`, ADD `semester` VARCHAR(40) NOT NULL AFTER `batch`;
+ALTER TABLE `student_data` ADD `gender` VARCHAR(50) NOT NULL AFTER `semester`;

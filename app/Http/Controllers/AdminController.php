@@ -44,6 +44,7 @@ class AdminController extends Controller
             "name"=>$request->name,
             "semester"=>$request->semester,
             "batch"=>$request->batch,
+            "gender"=>$request->gender,
             "department"=>$request->department
 
         ]);

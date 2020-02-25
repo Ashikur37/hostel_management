@@ -11,12 +11,19 @@
               @csrf
                 <div class="card-body">
                 <div class="form-group">
+                        <label for="exampleInputEmail1">Student ID</label>
+                        <input required name="student_id" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Student ID">
+                      </div>
+                <div class="form-group">
                         <label for="exampleInputEmail1">Name</label>
                         <input required name="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Name">
                       </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Student ID</label>
-                        <input required name="student_id" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Student ID">
+                        <label for="exampleInputEmail1">Gender</label>
+                        <input name="gender" type="radio" value="male" checked>
+                        Male
+                        <input name="gender" type="radio" value="female" >
+                        Female
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">Department</label>

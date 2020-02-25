@@ -10,11 +10,12 @@
     <table id="dt" class="table table-bordered table-striped">
       <thead>
         <tr>
-        <th>Name</th>
           <th>Student ID</th>
-          <th>Semester</th>
-          <th>Batch</th>
+        <th>Name</th>
+        <th>Gender</th>
           <th>Department</th>
+          <th>Batch</th>
+          <th>Semester</th>
           <th>Phone</th>
 
           <th>Action</th>
@@ -23,11 +24,12 @@
       <tbody>
         @foreach ($datas as $data)
         <tr>
-            <td>{{$data->name}}</td>
           <td>{{$data->student_id}}</td>
-          <td>{{$data->semester}}</td>
-          <td>{{$data->batch}}</td>
+            <td>{{$data->name}}</td>
+            <td>{{$data->gender}}</td>
           <td>{{$data->department}}</td>
+          <td>{{$data->batch}}</td>
+          <td>{{$data->semester}}</td>
           <td>{{$data->phone}}</td>
 
           
