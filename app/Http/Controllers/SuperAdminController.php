@@ -30,7 +30,7 @@ class SuperAdminController extends Controller
     }
     public function adminList()
     {
-        $admins=DB::select('select * from users where type=5 or type=6 or type=7');
+        $admins=DB::select('select * from users where type=5 or type=6 or type=7 or type=8');
         
         return view('superadmin.admin.list',['admins'=>$admins]);
     }

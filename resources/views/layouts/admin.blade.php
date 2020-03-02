@@ -97,71 +97,73 @@ p{
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Application
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/unapproved-application" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Unapproved Application</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/approved-application" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Approved Application</p>
-                </a>
-              </li>
-              
-            </ul>
-          </li>
-          <li class="nav-item has-treeview">
+            @if(auth()->user()->type!=8)
+            <li class="nav-item has-treeview">
               <a href="#" class="nav-link ">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
-                  Leave Application
+                  Application
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="/leave-list" class="nav-link ">
+                  <a href="/unapproved-application" class="nav-link ">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Application List</p>
+                    <p>Unapproved Application</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/approved-application" class="nav-link ">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Approved Application</p>
                   </a>
                 </li>
                 
               </ul>
             </li>
-          <li class="nav-item has-treeview">
-              <a href="#" class="nav-link ">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Room
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/add-room" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Room</p>
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link ">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    Leave Application
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="/leave-list" class="nav-link ">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Application List</p>
+                    </a>
+                  </li>
+                  
+                </ul>
               </li>
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link ">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    Room
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="/room-list" class="nav-link ">
+                  <a href="/add-room" class="nav-link ">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Room List</p>
+                    <p>Add Room</p>
                   </a>
                 </li>
-              </ul>
-            </li>
+                  <li class="nav-item">
+                    <a href="/room-list" class="nav-link ">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Room List</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            @endif
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link ">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -171,12 +173,14 @@ p{
                 </p>
               </a>
               <ul class="nav nav-treeview">
+                  @if(auth()->user()->type==8)
               <li class="nav-item">
                 <a href="/add-student-data" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Student Data</p>
                 </a>
               </li>
+              @endif
                 <li class="nav-item">
                   <a href="/student-data-list" class="nav-link ">
                     <i class="far fa-circle nav-icon"></i>
@@ -185,6 +189,7 @@ p{
                 </li>
               </ul>
             </li>
+            @if(auth()->user()->type!=8)
             <li class="nav-item has-treeview">
                 <a href="#" class="nav-link ">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -278,7 +283,7 @@ p{
                     
                   </ul>
                 </li>
-         
+         @endif
 
          
         </ul>

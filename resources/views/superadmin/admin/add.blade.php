@@ -27,8 +27,9 @@
                       <input required name="phone" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Phone No">
                     </div>
                     <div class="form-group">
-                      <label for="">For Hostel</label>
+                      <label for="">For Hostel/Admission Office</label>
                       <select name="hostel" id="" class="form-control">
+                        <option value="8">Admission Office</option>
                         <option value="5">Boys1</option>
                         <option value="6">Boys2</option>
                         <option value="7">Girls</option>

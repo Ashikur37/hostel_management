@@ -24,6 +24,11 @@
                       <label for="">For Hostel</label>
                       <select name="hostel" id="" class="form-control">
                         <option
+                        @if ($admin->type==8)
+                          selected="true"
+                        @endif
+                        value="5">Admission Office</option>
+                        <option
                         @if ($admin->type==5)
                           selected="true"
                         @endif

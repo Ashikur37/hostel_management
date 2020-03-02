@@ -28,8 +28,10 @@
             Boys1
             @elseif($admin->type==6)
             Boys2
-            @else
+            @elseif($admin->type==7)
             Girls
+            @else
+            Admission Office
             @endif
           </td>
           <td>

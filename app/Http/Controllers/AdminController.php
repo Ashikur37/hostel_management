@@ -31,7 +31,7 @@ class AdminController extends Controller
         //
     }
     public function addStudentData(){
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         $a=User::where('type', $type)->first();
         $notifications=notification::where('user_id',$a->id)->get();
@@ -52,7 +52,7 @@ class AdminController extends Controller
     }
     public function studentData(){
         $datas=StudentData::all();
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         $a=User::where('type', $type)->first();
         $notifications=notification::where('user_id',$a->id)->get();
@@ -64,7 +64,7 @@ class AdminController extends Controller
         return redirect('/student-data-list');
     }
     public function insertHostel(Request $request){
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         if($type==5){
             $hostel='boys1';
@@ -86,7 +86,7 @@ class AdminController extends Controller
     }
     public function addHostel()
     {
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         $a=User::where('type', $type)->first();
         $notifications=notification::where('user_id',$a->id)->get();
@@ -95,7 +95,7 @@ class AdminController extends Controller
 
     public function home()
     {
-        $admin = session('admin');
+        $admin= auth()->user();
         $type=$admin->type;
         $a=User::where('type', $type)->first();
         $notifications=notification::where('user_id',$a->id)->get();
@@ -104,14 +104,14 @@ class AdminController extends Controller
         
     }
     public function addNotice(){
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         $a=User::where('type', $type)->first();
         $notifications=notification::where('user_id',$a->id)->get();
         return view('admin.notice.add',['notifications'=>$notifications]);
     }
     public function insertNotice(Request $request){
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         $notice=new Notice;
         $notice->hostel=$type;
@@ -121,7 +121,7 @@ class AdminController extends Controller
         return redirect('/notice-list');
     }
     public function noticeList(){
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         $notices=Notice::where('hostel','=',$type)->get();
         $a=User::where('type', $type)->first();
@@ -153,7 +153,7 @@ class AdminController extends Controller
              ->subject('Leave application Rejected');
         });
         $message=new message;
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         $a=User::where('type', $type)->first();
         $message->sender_id=$a->id;
@@ -165,7 +165,7 @@ class AdminController extends Controller
         return redirect('/leave-list');
     }
     public function leaveList(){
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         $applications=DB::select('select a.email,l.id,l.leave_at,l.status,a.name,a.seat_no,a.student_id,a.phone,r.room_no from rooms r,applications a,leave_applications l where r.id=a.room_id and a.id=l.application_id and a.hostel=?', [$type]);
         $a=User::where('type', $type)->first();
@@ -174,7 +174,7 @@ class AdminController extends Controller
     }
     public function hostelList()
     {
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         if($type==5){
             $hostel='boys1';
@@ -194,7 +194,7 @@ class AdminController extends Controller
     public function insertMessage(Request $request){
      
         $message=new message;
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         $a=User::where('type', $type)->first();
         $message->sender_id=$a->id;
@@ -205,7 +205,7 @@ class AdminController extends Controller
         return redirect('/admin-message?student='.$request->student);
     } 
     public function message(Request $request){
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         $a=User::where('type', $type)->first();
         $student=$request->student;
@@ -226,7 +226,7 @@ class AdminController extends Controller
        return redirect('/admin-message?student='.$request->sid);
     }
     public function inbox(){
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         $a=User::where('type', $type)->first();
         $sql="SELECT m.created_at,message,s.name,s.id,s.email from messages m, users s where m.sender_id=s.id and m.seen=0 and receiver_id=".$a->id;
@@ -243,7 +243,7 @@ class AdminController extends Controller
         $email=$user->email;
 
         $message=new message;
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         $a=User::where('type', $type)->first();
         $message->sender_id=$a->id;
@@ -272,7 +272,7 @@ class AdminController extends Controller
         $email=$user->email;
 
         $message=new message;
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         $a=User::where('type', $type)->first();
         $message->sender_id=$a->id;
@@ -291,7 +291,7 @@ class AdminController extends Controller
         return redirect('/pending-payment');
     }
     public function pendingPayment(){
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=0 and  p.status = ? and a.hostel=?', [0,$type]);        
         $a=User::where('type', $type)->first();
@@ -299,7 +299,7 @@ class AdminController extends Controller
         return view('admin.payments.pending',['payments'=>$payments,'notifications'=>$notifications]);
     }
     public function paymentHistory(){
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=0 and  p.status = ? and a.hostel=?', [1,$type]);        
         $a=User::where('type', $type)->first();
@@ -307,7 +307,7 @@ class AdminController extends Controller
         return view('admin.payments.success',['payments'=>$payments,'notifications'=>$notifications]);
     }
     public function duePayment(){
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         if($type==5){
             $rent=1650;
@@ -332,7 +332,7 @@ class AdminController extends Controller
         return redirect('/pending-payment-canteen');
     }
     public function pendingPaymentCanteen(){
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=1 and  p.status = ? and a.hostel=?', [0,$type]);        
         $a=User::where('type', $type)->first();
@@ -340,7 +340,7 @@ class AdminController extends Controller
         return view('admin.payments.pendingCanteen',['payments'=>$payments,'notifications'=>$notifications]);
     }
     public function paymentHistoryCanteen(){
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=1 and  p.status = ? and a.hostel=?', [1,$type]);        
         $a=User::where('type', $type)->first();
@@ -384,7 +384,7 @@ class AdminController extends Controller
     }
     public function viewRoom(Request $request)
     {
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         $applications=Application::where([
             ['room_id', '=', $request->id],
@@ -396,7 +396,7 @@ class AdminController extends Controller
     }
     public function roomList()
     {
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         $rooms=Room::all();
         $a=User::where('type', $type)->first();
@@ -469,7 +469,7 @@ class AdminController extends Controller
 
     }
     public function unapprovedUser(){
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         if($type==5){
             $hostel='boys1';
@@ -488,7 +488,7 @@ class AdminController extends Controller
         return view('admin.unapproved_user.list',['applications'=>$applications,'rooms'=>$rooms,'notifications'=>$notifications]);
     }
     public function approvedUser(){
-        $admin = session('admin');
+        $admin = auth()->user();
         $type=$admin->type;
         if($type==5){
             $hostel='boys1';

@@ -8,6 +8,7 @@ use App\currentUser;
 use App\StudentData;
 use Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use SoapClient;
 
 class userController extends Controller
@@ -103,7 +104,8 @@ public function checkNumber(){
     if(!$user){
         return redirect('/login?msg=Invalid email or password');
     }
-    else if($user->type==0){
+    Auth::loginUsingId($user->id);
+  if($user->type==0){
         return redirect('/login?msg=Your account is under approval');
     }
     else if($user->type===1){
@@ -114,15 +116,14 @@ public function checkNumber(){
     else if($user->type==2){
         return redirect('/accountant');
     }
-    else if($user->type===5||$user->type==6||$user->type==7){
-        $request->session()->forget('student');
-
-        $request->session()->put('admin', $user);
-        session(['admin' => $user]);
+    else if($user->type===5||$user->type==6||$user->type==7||$user->type==8){
+        
+        Auth::loginUsingId($user->id);
+   
         return redirect('/admin');
     }
     
-    else if($user->type==3){
+    else if($user->type==4){
         return redirect('/superadmin');
     }
 
