@@ -12,10 +12,10 @@
         <tr>
           <th>Student ID</th>
         <th>Name</th>
+          <th>Email</th>
         <th>Gender</th>
           <th>Department</th>
-          <th>Batch</th>
-          <th>Semester</th>
+       
           <th>Phone</th>
 
           <th>Action</th>
@@ -26,10 +26,10 @@
         <tr>
           <td>{{$data->student_id}}</td>
             <td>{{$data->name}}</td>
+          <td>{{$data->batch}}</td>
             <td>{{$data->gender}}</td>
           <td>{{$data->department}}</td>
-          <td>{{$data->batch}}</td>
-          <td>{{$data->semester}}</td>
+       
           <td>{{$data->phone}}</td>
 
           
