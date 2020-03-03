@@ -56,6 +56,12 @@ class AdminController extends Controller
         $type=$admin->type;
         $a=User::where('type', $type)->first();
         $notifications=notification::where('user_id',$a->id)->get();
+        if($admin->type==5||$admin->type==6){
+            $datas=StudentData::where('gender','=','male')->get();
+        }
+        else if($admin->type==7){
+            $datas=StudentData::where('gender','=','female')->get();
+        }
         return view('admin.student_data.list',['notifications'=>$notifications,"datas"=>$datas]);
     }
     public function deleteStudentData(){

@@ -43,6 +43,7 @@
               <option value="1">Student</option>
               <option value="3">Admin</option>
               <option value="4">Super Admin</option>
+              <option value="5">Admission Office</option>
             </select>
           </div>
           <div class="input-group mb-3">
