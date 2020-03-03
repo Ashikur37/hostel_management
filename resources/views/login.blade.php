@@ -41,9 +41,9 @@
             <select class="form-control" name="type" id="" required>
               <option value="">Select User Type</option>
               <option value="1">Student</option>
-              <option value="3">Admin</option>
-              <option value="4">Super Admin</option>
+              <option value="3">Warder</option>
               <option value="5">Admission Office</option>
+              <option value="4">Super Admin</option>
             </select>
           </div>
           <div class="input-group mb-3">
