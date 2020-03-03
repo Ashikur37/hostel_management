@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
   <div class="card-header">
-    <h3 class="card-title">Warden List</h3>
+    <h3 class="card-title">Admission Officer List</h3>
   </div>
   <!-- /.card-header -->
   <div class="card-body">
@@ -13,7 +13,6 @@
           <th>Full Name</th>
           <th>Email</th>
           <th>Phone</th>
-          <th>Hostel</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -23,20 +22,10 @@
           <td>{{$admin->name}}</td>
           <td>{{$admin->email}}</td>
           <td>{{$admin->phone}}</td>
+        
           <td>
-            @if ($admin->type==5)
-            Boys1
-            @elseif($admin->type==6)
-            Boys2
-            @elseif($admin->type==7)
-            Girls
-            @else
-            Admission Office
-            @endif
-          </td>
-          <td>
-            <a href="/edit-admin?id={{$admin->id}}" class="btn btn-sm btn-success">Edit</a>
-            <a href="/delete-admin?id={{$admin->id}}" class="btn btn-danger btn-sm">Delete</a>
+            <a href="/edit-admission?id={{$admin->id}}" class="btn btn-sm btn-success">Edit</a>
+            <a href="/delete-admission?id={{$admin->id}}" class="btn btn-danger btn-sm">Delete</a>
           </td>
         </tr>
         @endforeach

@@ -118,13 +118,21 @@ Route::get('/signatures', function(){
 
 //super admin routes
 Route::get('/superadmin', 'superAdminController@home');
+
 Route::get('/admin-list', 'superAdminController@adminList');
 Route::get('/delete-admin', 'superAdminController@deleteAdmin');
 Route::get('/add-admin', 'superAdminController@addAdmin');
 Route::get('/edit-admin', 'superAdminController@editAdmin');
 Route::post('/edit-admin', 'superAdminController@updateAdmin');
-Route::get('/edit-admin', 'superAdminController@editAdmin');
 
 Route::post('/add-admin', 'superAdminController@insertAdmin');
+
+Route::get('/admission-list', 'superAdminController@admissionList');
+Route::get('/delete-admission', 'superAdminController@deleteAdmissoin');
+Route::get('/add-admission', 'superAdminController@addAdmission');
+Route::get('/edit-admission', 'superAdminController@editAdmission');
+Route::post('/edit-admission', 'superAdminController@updateAdmission');
+
+Route::post('/add-admission', 'superAdminController@insertAdmission');
 
 

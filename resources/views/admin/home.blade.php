@@ -3,7 +3,7 @@
 @section('content')
 Welcome 
 @if(auth()->user()->type==8)
-  Admission Officer
+  Admission Panel
   @else
   Warden
   @endif

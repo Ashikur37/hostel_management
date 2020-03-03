@@ -80,7 +80,7 @@ p{
             <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Admin
+                Warden
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -88,13 +88,38 @@ p{
               <li class="nav-item">
                 <a href="/admin-list" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Admin List</p>
+                  <p>Warden List</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/add-admin" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Admin</p>
+                  <p>Add Warden</p>
+                </a>
+              </li>
+             
+              
+            </ul>
+          </li>
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Admission Office
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/admission-list" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Admission Office List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/add-admission" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Admission Office</p>
                 </a>
               </li>
              

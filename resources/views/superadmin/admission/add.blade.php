@@ -3,11 +3,11 @@
 @section('content')
 <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Add Warden</h3>
+                <h3 class="card-title">Add Admission Officer</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" method="post" action="/add-admin">
+              <form role="form" method="post" action="/add-admission">
               @csrf
                 <div class="card-body">
                     <div class="form-group">
@@ -26,15 +26,7 @@
                       <label for="exampleInputPassword1">Phone</label>
                       <input required name="phone" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Phone No">
                     </div>
-                    <div class="form-group">
-                      <label for="">For Hostel/Admission Office</label>
-                      <select name="hostel" id="" class="form-control">
-                        <option value="8">Admission Office</option>
-                        <option value="5">Boys1</option>
-                        <option value="6">Boys2</option>
-                        <option value="7">Girls</option>
-                      </select>
-                    </div>
+                    
                   
                   
                 </div>

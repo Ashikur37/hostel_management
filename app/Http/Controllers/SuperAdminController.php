@@ -30,7 +30,7 @@ class SuperAdminController extends Controller
     }
     public function adminList()
     {
-        $admins=DB::select('select * from users where type=5 or type=6 or type=7 or type=8');
+        $admins=DB::select('select * from users where type=5 or type=6 or type=7');
         
         return view('superadmin.admin.list',['admins'=>$admins]);
     }
@@ -66,6 +66,45 @@ class SuperAdminController extends Controller
    
    
  
+    public function deleteAdmission(Request $request){
+        $admin= User::find($request->id);
+         $admin->delete();
+         return redirect('/admin-list');
+     }
+     public function admissionList()
+     {
+         $admins=DB::select('select * from users where  type=8');
+         
+         return view('superadmin.admission.list',['admins'=>$admins]);
+     }
+     public function editAdmission(Request $request)
+     {
+         $admin= User::find($request->id);
+         return view('superadmin.admission.edit',['admin'=>$admin]);
+     }
+     public function updateAdmission(Request $request)
+     {
+         $user= User::find($request->admin);
+         $user->name=$request->name;
+         $user->phone=$request->phone;
+         $user->save();
+         return redirect('admission-list');
+     }
+     public function addAdmission()
+     {
+         return view('superadmin.admission.add');
+     }
+     public function insertAdmission(Request $request){
+         
+         $user=new User;
+         $user->name=$request->name;
+         $user->phone=$request->phone;
+         $user->type=8;
+         $user->email=$request->email;
+         $user->password=$request->password;
+         $user->save();
+         return redirect('/admission-list');
+     }
 
     /**
      * Show the form for creating a new resource.
