@@ -69,7 +69,7 @@ class SuperAdminController extends Controller
     public function deleteAdmission(Request $request){
         $admin= User::find($request->id);
          $admin->delete();
-         return redirect('/admin-list');
+         return redirect('/admission-list');
      }
      public function admissionList()
      {
@@ -104,6 +104,46 @@ class SuperAdminController extends Controller
          $user->password=$request->password;
          $user->save();
          return redirect('/admission-list');
+     }
+
+     public function deleteAccountant(Request $request){
+        $admin= User::find($request->id);
+         $admin->delete();
+         return redirect('/accountant-list');
+     }
+     public function accountantList()
+     {
+         $admins=DB::select('select * from users where  type=9');
+         
+         return view('superadmin.accountant.list',['admins'=>$admins]);
+     }
+     public function editAccountant(Request $request)
+     {
+         $admin= User::find($request->id);
+         return view('superadmin.accountant.edit',['admin'=>$admin]);
+     }
+     public function updateAccountant(Request $request)
+     {
+         $user= User::find($request->admin);
+         $user->name=$request->name;
+         $user->phone=$request->phone;
+         $user->save();
+         return redirect('accountant-list');
+     }
+     public function addAccountant()
+     {
+         return view('superadmin.accountant.add');
+     }
+     public function insertAccountant(Request $request){
+         
+         $user=new User;
+         $user->name=$request->name;
+         $user->phone=$request->phone;
+         $user->type=9;
+         $user->email=$request->email;
+         $user->password=$request->password;
+         $user->save();
+         return redirect('/accountant-list');
      }
 
     /**

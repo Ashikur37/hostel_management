@@ -10,6 +10,8 @@
               <table id="dt" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+                <th>Hostel</th>
+
                 <th>Month</th>
                   <th>Year</th>
                   <th>Student Name</th>
@@ -25,6 +27,9 @@
                 <tbody>
                 @foreach ($payments as $payment)
                   <tr>
+                   <td>
+                  {{["Boys1","Boys2","Girls"][$payment->hostel-5]}}
+                  </td>
                   <td>{{$payment->month}}</td>
                   <td>{{$payment->year}}</td>
                     <td>{{$payment->name}}</td>

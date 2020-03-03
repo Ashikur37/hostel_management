@@ -6,6 +6,8 @@
   <title>
   @if(auth()->user()->type==8)
   Admission
+  @elseif(auth()->user()->type==9)
+  Accountant
   @else
   Admin
   @endif
@@ -103,7 +105,7 @@ p{
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            @if(auth()->user()->type!=8)
+            @if(auth()->user()->type!=8&&auth()->user()->type!=9)
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link ">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -195,59 +197,63 @@ p{
                 </li>
               </ul>
             </li>
-            @if(auth()->user()->type!=8)
+            @if(auth()->user()->type==9)
             <li class="nav-item has-treeview">
-                <a href="#" class="nav-link ">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>
-                    Payments
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="/pending-payment" class="nav-link ">
+              <a href="#" class="nav-link ">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Payments
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="/pending-payment" class="nav-link ">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Pending Payments</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/payment-history" class="nav-link ">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Pending Payments</p>
+                      <p>Payment History</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                      <a href="/payment-history" class="nav-link ">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Payment History</p>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="/due-payment" class="nav-link ">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Due Payment</p>
-                      </a>
-                    </li>
-                </ul>
-              </li>
-              <li class="nav-item has-treeview">
-                <a href="#" class="nav-link ">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>
-                    Canteen
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="/pending-payment-canteen" class="nav-link ">
+                    <a href="/due-payment" class="nav-link ">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Pending Canteen Payments</p>
+                      <p>Due Payment</p>
                     </a>
                   </li>
-                  <li class="nav-item">
-                      <a href="/payment-history-canteen" class="nav-link ">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Canteen Payment History</p>
-                      </a>
-                    </li>
-                </ul>
-              </li>
+              </ul>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link ">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Canteen
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="/pending-payment-canteen" class="nav-link ">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Pending Canteen Payments</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/payment-history-canteen" class="nav-link ">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Canteen Payment History</p>
+                    </a>
+                  </li>
+              </ul>
+            </li>
+            @endif
+            @if(auth()->user()->type!=8&&auth()->user()->type!=9)
+            
+            
             <li class="nav-item has-treeview">
                 <a href="#" class="nav-link ">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -308,6 +314,8 @@ p{
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">  @if(auth()->user()->type==8)
   Admission
+  @elseif(auth()->user()->type==9)
+  Accountant
   @else
   Warden
   @endif Panel</h1>

@@ -116,7 +116,7 @@ public function checkNumber(){
     else if($user->type==2){
         return redirect('/accountant');
     }
-    else if($user->type===5||$user->type==6||$user->type==7||$user->type==8){
+    else if($user->type===5||$user->type==6||$user->type==7||$user->type==8||$user->type==9){
         
         Auth::loginUsingId($user->id);
    

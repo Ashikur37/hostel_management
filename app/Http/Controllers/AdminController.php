@@ -299,7 +299,7 @@ class AdminController extends Controller
     public function pendingPayment(){
         $admin = auth()->user();
         $type=$admin->type;
-        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=0 and  p.status = ? and a.hostel=?', [0,$type]);        
+        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,a.hostel,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=0 and  p.status = ? ', [0]);        
         $a=User::where('type', $type)->first();
         $notifications=notification::where('user_id',$a->id)->get();
         return view('admin.payments.pending',['payments'=>$payments,'notifications'=>$notifications]);
@@ -307,7 +307,7 @@ class AdminController extends Controller
     public function paymentHistory(){
         $admin = auth()->user();
         $type=$admin->type;
-        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=0 and  p.status = ? and a.hostel=?', [1,$type]);        
+        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,a.hostel,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=0 and  p.status = ? ', [1]);        
         $a=User::where('type', $type)->first();
         $notifications=notification::where('user_id',$a->id)->get();
         return view('admin.payments.success',['payments'=>$payments,'notifications'=>$notifications]);
@@ -325,7 +325,7 @@ class AdminController extends Controller
             $rent=2000;
         }
         
-        $payments = DB::select('select p.id,p.fine,p.amount as amount,p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=0 and  p.status = ? and a.hostel=? and amount<? and last=1', [1,$type,$rent]);        
+        $payments = DB::select('select p.id,p.fine,p.amount as amount,p.year,p.month,p.created_at,receipt,p.id,a.name,a.hostel,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=0 and  p.status = ?  and amount<? and last=1', [1,$rent]);        
         $a=User::where('type', $type)->first();
         $notifications=notification::where('user_id',$a->id)->get();
         return view('admin.payments.due',['payments'=>$payments,'rent'=>$rent,'notifications'=>$notifications]);
@@ -340,7 +340,7 @@ class AdminController extends Controller
     public function pendingPaymentCanteen(){
         $admin = auth()->user();
         $type=$admin->type;
-        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=1 and  p.status = ? and a.hostel=?', [0,$type]);        
+        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,a.hostel,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=1 and  p.status = ? ', [0]);        
         $a=User::where('type', $type)->first();
         $notifications=notification::where('user_id',$a->id)->get();
         return view('admin.payments.pendingCanteen',['payments'=>$payments,'notifications'=>$notifications]);
@@ -348,7 +348,7 @@ class AdminController extends Controller
     public function paymentHistoryCanteen(){
         $admin = auth()->user();
         $type=$admin->type;
-        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=1 and  p.status = ? and a.hostel=?', [1,$type]);        
+        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,a.hostel,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=1 and  p.status = ? ', [1]);        
         $a=User::where('type', $type)->first();
         $notifications=notification::where('user_id',$a->id)->get();
         return view('admin.payments.successCanteen',['payments'=>$payments,'notifications'=>$notifications]);

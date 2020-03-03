@@ -11,6 +11,7 @@
               <table id="dt" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+                  <th>Hostel</th>
                   <th>Month</th>
                   <th>Year</th>
                   <th>Student Name</th>
@@ -26,7 +27,11 @@
                 </thead>
                 <tbody>
                 @foreach ($payments as $payment)
+                  @if([1650,1400,2000][$payment->hostel-5]>$payment->amount)
                   <tr>
+                  <td>
+                  {{["Boys1","Boys2","Girls"][$payment->hostel-5]}}
+                  </td>
                   <td>{{$payment->month}}</td>
                   <td>{{$payment->year}}</td>
                     <td>{{$payment->name}}</td>
@@ -34,8 +39,8 @@
                  
                     <td>{{$payment->seat_no}}</td>
                     <td>{{$payment->room_no}}</td>
-                    <td>{{$rent}}</td>
-                    <td>{{$rent-$payment->amount}}</td>
+                    <td>{{[1650,1400,2000][$payment->hostel-5]}}</td>
+                    <td>{{[1650,1400,2000][$payment->hostel-5]-$payment->amount}}</td>
                     <td>{{$payment->fine}}</td>
                    <td>
                     <button class="btn btn-outline-success" onclick="update({{$payment->id}})">
@@ -43,6 +48,7 @@
                     </button>
                    </td>
                   </tr>
+                  @endif
               @endforeach
                 </tbody>
               

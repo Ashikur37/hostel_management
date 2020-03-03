@@ -44,6 +44,7 @@
               <option value="3">Warden</option>
               <option value="5">Admission Office</option>
               <option value="4">Super Admin</option>
+              <option value="9">Accountant</option>
             </select>
           </div>
           <div class="input-group mb-3">

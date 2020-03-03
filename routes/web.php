@@ -136,3 +136,13 @@ Route::post('/edit-admission', 'superAdminController@updateAdmission');
 Route::post('/add-admission', 'superAdminController@insertAdmission');
 
 
+
+Route::get('/accountant-list', 'superAdminController@accountantList');
+Route::get('/delete-accountant', 'superAdminController@deleteAccountant');
+Route::get('/add-accountant', 'superAdminController@addAccountant');
+Route::get('/edit-accountant', 'superAdminController@editAccountant');
+Route::post('/edit-accountant', 'superAdminController@updateAccountant');
+
+Route::post('/add-accountant', 'superAdminController@insertAccountant');
+
+
