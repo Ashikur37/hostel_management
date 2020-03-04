@@ -20,6 +20,7 @@
                   <th>Seat No</th>
                   <th>Room No</th>
                   <th>Rent</th>
+                  <th>Paid</th>
                   <th>Due</th>
                   <th>Fine</th>
                   <th>Action</th>
@@ -40,6 +41,7 @@
                     <td>{{$payment->seat_no}}</td>
                     <td>{{$payment->room_no}}</td>
                     <td>{{[1650,1400,2000][$payment->hostel-5]}}</td>
+                    <td>{{$payment->amount}}</td>
                     <td>{{[1650,1400,2000][$payment->hostel-5]-$payment->amount}}</td>
                     <td>{{$payment->fine}}</td>
                    <td>
