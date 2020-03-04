@@ -74,6 +74,8 @@ Route::post('/apply', 'hostelController@insertApplication');
 //admin routes
 Route::get('/admin', 'adminController@home');
 Route::get('/due-payment', 'adminController@duePayment');
+Route::get('/clear-payment', 'adminController@clearPayment');
+
 Route::get('/add-student-data', 'adminController@addStudentData');
 Route::get('/student-data-list', 'adminController@studentData');
 Route::get('/delete-student-data', 'adminController@deleteStudentData');

@@ -225,6 +225,12 @@ p{
                       <p>Due Payment</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="/clear-payment" class="nav-link ">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Clear Payment</p>
+                    </a>
+                  </li>
               </ul>
             </li>
             <li class="nav-item has-treeview">
