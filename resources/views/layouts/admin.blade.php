@@ -242,6 +242,12 @@ p{
                 </p>
               </a>
               <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                      <a href="/canteen-list" class="nav-link ">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Canteen List</p>
+                      </a>
+                    </li>
                 <li class="nav-item">
                   <a href="/pending-payment-canteen" class="nav-link ">
                     <i class="far fa-circle nav-icon"></i>
@@ -257,6 +263,31 @@ p{
               </ul>
             </li>
             @endif
+             @if(auth()->user()->type==7)
+             <li class="nav-item has-treeview">
+              <a href="#" class="nav-link ">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Canteen
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="/canteen-list" class="nav-link ">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Canteen List</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/add-canteen" class="nav-link ">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Add Canteen</p>
+                    </a>
+                  </li>
+              </ul>
+            </li>
+             @endif
             @if(auth()->user()->type!=8&&auth()->user()->type!=9)
             
             

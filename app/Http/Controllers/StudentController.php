@@ -224,6 +224,7 @@ class StudentController extends Controller
     }
     public function home(Request $request) 
     {
+      
         $cu=currentUser::all()->first();
          $student = User::where('id', $cu->current_student)->first();
     $unseen=count(DB::select("select * from messages where seen=0 and  receiver_id=".$student->id));

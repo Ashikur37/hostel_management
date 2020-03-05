@@ -111,6 +111,7 @@ public function checkNumber(){
     else if($user->type===1){
         $cu->current_student=$user->id;
         $cu->save();
+        Auth::loginUsingId($user->id);
         return redirect('/student');
     }
     else if($user->type==2){

@@ -13,6 +13,7 @@ use App\Student;
 use App\Room;
 use App\Notice;
 use App\Booking;
+use App\Canteen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use File;
@@ -69,6 +70,46 @@ class AdminController extends Controller
         $data->delete();
         return redirect('/student-data-list');
     }
+
+
+    public function insertCanteen(Request $request){
+       
+        Canteen::create([
+            "student_id"=>$request->student_id,
+            "name"=>$request->name,
+            "department"=>$request->department,
+            "phone"=>$request->phone,
+            "day"=>$request->day,
+
+        ]);
+        
+        return redirect('/canteen-list');
+    }
+    public function addCanteen()
+    {
+        $admin = auth()->user();
+        $type=$admin->type;
+        $a=User::where('type', $type)->first();
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('admin.canteen.add',['notifications'=>$notifications]);
+    }
+    public function deleteCanteen(){
+        $canteen=Canteen::find(request()->id);
+        $canteen->delete();
+        return redirect('/canteen-list');
+
+    }
+
+    public function canteenList(){
+        $admin = auth()->user();
+        $type=$admin->type;
+        $canteens=Canteen::all();
+        $a=User::where('type', $type)->first();
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('admin.canteen.list',['canteens'=>$canteens,'notifications'=>$notifications]);
+    }
+
+
     public function insertHostel(Request $request){
         $admin = auth()->user();
         $type=$admin->type;

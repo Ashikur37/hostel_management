@@ -69,7 +69,7 @@ p{
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
  
-      <span class="brand-text font-weight-light">{{$student->name}}</span>
+      <span class="brand-text font-weight-light">{{auth()->user()->name}}</span>
     </a>
 
     <!-- Sidebar -->
@@ -81,7 +81,8 @@ p{
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+               with font-awesome or any other 
+               icon font library -->
                <li class="nav-item has-treeview ">
                   <a href="#" class="nav-link ">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -139,6 +140,7 @@ p{
               
             </ul>
           </li>
+          @if(auth()->user()->student->application->hostel==7)
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -166,6 +168,7 @@ p{
               
             </ul>
           </li>
+          @endif
           <li class="nav-item">
             <a href="/student-message" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>

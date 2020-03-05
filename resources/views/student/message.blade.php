@@ -3,7 +3,7 @@
 @section('content')
 <div class="card card-prirary cardutline direct-chat direct-chat-primary">
   <div class="card-header">
-    <h3 class="card-title">Admin</h3>
+    <h3 class="card-title">Warden</h3>
 
     <div class="card-tools">
       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -20,7 +20,7 @@
       @if ($message->receiver_id === $student->id)
       <div class="direct-chat-msg">
         <div class="direct-chat-infos clearfix">
-          <span class="direct-chat-name float-left">Admin</span>
+          <span class="direct-chat-name float-left">Warden</span>
           <span class="direct-chat-timestamp float-right">{{$message->created_at}}</span>
         </div>
         <!-- /.direct-chat-infos -->

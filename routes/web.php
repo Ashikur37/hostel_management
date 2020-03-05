@@ -76,6 +76,7 @@ Route::get('/admin', 'adminController@home');
 Route::get('/due-payment', 'adminController@duePayment');
 Route::get('/clear-payment', 'adminController@clearPayment');
 
+
 Route::get('/add-student-data', 'adminController@addStudentData');
 Route::get('/student-data-list', 'adminController@studentData');
 Route::get('/delete-student-data', 'adminController@deleteStudentData');
@@ -93,6 +94,14 @@ Route::get('/notice-list', 'adminController@noticeList');
 Route::post('/add-room', 'adminController@insertHostel');
 Route::get('/add-room', 'adminController@addHostel');
 Route::get('/room-list', 'adminController@hostelList');
+
+
+Route::post('/add-canteen', 'adminController@insertCanteen');
+Route::get('/add-canteen', 'adminController@addCanteen');
+Route::get('/canteen-list', 'adminController@canteenList');
+Route::get('/delete-canteen', 'adminController@deleteCanteen');
+
+
 Route::get('/admin-message', 'adminController@message');
 Route::get('/update-fine', 'adminController@updateFine');
 Route::post('/admin-message', 'adminController@insertMessage');
