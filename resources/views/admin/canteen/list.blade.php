@@ -15,6 +15,9 @@
           <th>Department</th>
           <th>Phone</th>
           <th>Day</th>
+          <th>Month</th>
+          <th>Year</th>
+
           <th>Action</th>
         </tr>
       </thead>
@@ -26,6 +29,9 @@
           <td>{{$canteen->department}}</td>
           <td>{{$canteen->phone}}</td>
           <td>{{$canteen->day}}</td>
+          <td>{{$canteen->month}}</td>
+          <td>{{$canteen->year}}</td>
+
           <td>
             <a href="/delete-canteen?id={{$canteen->id}}" class="btn btn-danger btn-sm">Delete</a>
           </td>

@@ -80,6 +80,10 @@ class AdminController extends Controller
             "department"=>$request->department,
             "phone"=>$request->phone,
             "day"=>$request->day,
+            "month"=>$request->month,
+
+            "year"=>$request->year,
+
 
         ]);
         

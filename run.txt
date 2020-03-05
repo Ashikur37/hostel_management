@@ -1,1 +1,1 @@
-ALTER TABLE `student_data` ADD `gender` VARCHAR(50) NOT NULL AFTER `semester`;
+ALTER TABLE `canteens` ADD `month` VARCHAR(40) NOT NULL AFTER `day`, ADD `year` VARCHAR(40) NOT NULL AFTER `month`;

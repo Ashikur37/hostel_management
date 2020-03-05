@@ -36,6 +36,14 @@
                         <label for="exampleInputEmail1">Day</label>
                         <input required name="day" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Day">
                       </div>
+                       <div class="form-group">
+                        <label for="exampleInputEmail1">Month</label>
+                        <input required name="month" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Month">
+                      </div>
+                       <div class="form-group">
+                        <label for="exampleInputEmail1">Year</label>
+                        <input required name="year" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Year">
+                      </div>
                       
                       
 

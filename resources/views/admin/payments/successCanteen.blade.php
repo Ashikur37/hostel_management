@@ -10,15 +10,13 @@
               <table id="dt" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                <th>Hostel</th>
 
                 <th>Month</th>
                   <th>Year</th>
                   <th>Student Name</th>
                   <th>Student ID</th>
            
-                  <th>Seat No</th>
-                  <th>Room No</th>
+                  
                   <th>Uploaded at</th>
                   <th>Bank Receipt</th>
                   <th>Approve</th>
@@ -27,16 +25,13 @@
                 <tbody>
                 @foreach ($payments as $payment)
                   <tr>
-                   <td>
-                  {{["Boys1","Boys2","Girls"][$payment->hostel-5]}}
-                  </td>
+                  
                   <td>{{$payment->month}}</td>
                   <td>{{$payment->year}}</td>
                     <td>{{$payment->name}}</td>
                     <td>{{$payment->student_id}}</td>
                   
-                    <td>{{$payment->seat_no}}</td>
-                    <td>{{$payment->room_no}}</td>
+                    
                     <td>{{$payment->created_at}}</td>
                     <td>
                         <a href="/images/{{$payment->receipt}}" target="_blank">
