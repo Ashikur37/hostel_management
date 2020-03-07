@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
-@section('content')
-<div class="card card-prirary cardutline direct-chat direct-chat-primary">
+@section('content')        ect-chat-primary">
               <div class="card-header">
                 <h3 class="card-title">Warden</h3>
 

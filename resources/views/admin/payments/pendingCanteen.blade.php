@@ -10,11 +10,12 @@
               <table id="dt" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Month</th>
-                  <th>Year</th>
-                  <th>Student Name</th>
                   <th>Student ID</th>
-                
+                  <th>Student Name</th>
+                  <th>Department</th>
+                  <th>Month</th>
+                  <th>Day</th>
+                  <th>Year</th>
                   
                   <th>Uploaded at</th>
                   <th>Bank Receipt</th>
@@ -25,10 +26,14 @@
                 @foreach ($payments as $payment)
                   <tr>
                   
-                  <td>{{$payment->month}}</td>
-                  <td>{{$payment->year}}</td>
                     <td>{{$payment->name}}</td>
                     <td>{{$payment->student_id}}</td>
+                    <td>{{$payment->department}}</td>
+
+                  <td>{{$payment->month}}</td>
+                  <td>{{$payment->day}}</td>
+
+                  <td>{{$payment->year}}</td>
                  
                     
                     <td>{{$payment->created_at}}</td>

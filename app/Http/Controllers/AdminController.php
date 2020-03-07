@@ -404,7 +404,7 @@ class AdminController extends Controller
     public function pendingPaymentCanteen(){
         $admin = auth()->user();
         $type=$admin->type;
-        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,a.hostel,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=1 and  p.status = ? ', [0]);        
+        $payments = DB::select('select c.day,c.department,p.year,p.month,p.created_at,receipt,p.id,a.name,a.hostel,a.student_id,room_no,seat_no from canteens c, users u,rooms r,payments p,students s,applications a where c.student_id=a.student_id and u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=1 and  p.status = ? ', [0]);        
         $a=User::where('type', $type)->first();
         $notifications=notification::where('user_id',$a->id)->get();
         return view('admin.payments.pendingCanteen',['payments'=>$payments,'notifications'=>$notifications]);
@@ -412,7 +412,7 @@ class AdminController extends Controller
     public function paymentHistoryCanteen(){
         $admin = auth()->user();
         $type=$admin->type;
-        $payments = DB::select('select p.year,p.month,p.created_at,receipt,p.id,a.name,a.hostel,student_id,department,room_no,seat_no from users u,rooms r,payments p,students s,applications a where u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=1 and  p.status = ? ', [1]);        
+        $payments = DB::select('select c.day,c.department,p.year,p.month,p.created_at,receipt,p.id,a.name,a.hostel,a.student_id,room_no,seat_no from canteens c, users u,rooms r,payments p,students s,applications a where c.student_id=a.student_id and u.id=s.user_id and u.id=p.user_id and r.id=a.room_id and a.id=s.application_id and p.type=1 and  p.status = ? ', [1]);        
         $a=User::where('type', $type)->first();
         $notifications=notification::where('user_id',$a->id)->get();
         return view('admin.payments.successCanteen',['payments'=>$payments,'notifications'=>$notifications]);
