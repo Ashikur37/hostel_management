@@ -245,7 +245,7 @@ p{
                   <li class="nav-item">
                       <a href="/canteen-list" class="nav-link ">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Canteen List</p>
+                        <p>Canteen List For Girls</p>
                       </a>
                     </li>
                 <li class="nav-item">
