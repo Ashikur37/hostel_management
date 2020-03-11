@@ -115,6 +115,23 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
+                        <label>
+                                Gender
+                        </label>
+                        &nbsp;
+                    <input style="margin-top:5px" disabled type="radio" 
+                    @if(request()->hostel!=7)
+                        checked
+                    @endif
+                    >Male
+                    <input style="margin-top:5px"
+                    @if(request()->hostel==7)
+                    checked
+                @endif
+                    disabled type="radio" >Female
+                    
+                    </div>
+                    <div class="input-group mb-3">
                         <input required type="text" class="form-control" name="phone" placeholder="Phone" onblur="checkNumber(this.value)">
                         <input value="-1" type="hidden" id="key">
                         <script>
