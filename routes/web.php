@@ -118,6 +118,11 @@ Route::get('/approve-payment', 'adminController@approvePayment');
 Route::get('/approve-payment-canteen', 'adminController@approvePaymentCanteen');
 Route::get('/approved-user', 'adminController@approvedUser');
 Route::get('/approve-application', 'adminController@approveUser');
+Route::get('/edit-application', 'adminController@editApplication');
+Route::post('/edit-application', 'adminController@updateApplication');
+Route::get('/delete-application', 'adminController@deleteApplication');
+
+
 Route::post('/approve-application', 'adminController@confirmApprove');
 Route::post('/reject-application', 'adminController@reject');
 Route::get('/unapproved-application', 'adminController@unapprovedUser');

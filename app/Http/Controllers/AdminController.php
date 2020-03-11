@@ -580,6 +580,41 @@ class AdminController extends Controller
         $notifications=notification::where('user_id',$a->id)->get();
         return view('admin.unapproved_user.list',['applications'=>$applications,'rooms'=>$rooms,'notifications'=>$notifications]);
     }
+    public function editApplication(Request $request){
+       $application= Application::find($request->id);
+       $admin = auth()->user();
+       $type=$admin->type;
+
+       if($type==5){
+        $hostel='boys1';
+    }
+    else if($type==6){
+        $hostel='boys2';
+        
+    }
+    else{
+        $hostel='girls';
+    }
+       $a=User::where('type', $type)->first();
+       $notifications=notification::where('user_id',$a->id)->get();
+       $rooms=Room::where('hostel','=',$hostel)->get();
+       return view('admin.approved_user.edit',["a"=>$application,"rooms"=>$rooms,'notifications'=>$notifications]);
+    }
+    public function deleteApplication(Request $request){
+        $application=Application::find($request->id);
+        $application->delete();
+        return redirect("/approved-application");
+
+    }
+    public function updateApplication(Request $request){
+        $application=Application::find($request->id);
+        $application->update([
+            "room_id"=>$request->room,
+            "seat_no"=>$request->seat,
+
+        ]);
+        return redirect("/approved-application");
+    }
     public function approvedUser(){
         $admin = auth()->user();
         $type=$admin->type;

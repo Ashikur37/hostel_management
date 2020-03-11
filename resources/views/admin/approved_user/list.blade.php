@@ -44,7 +44,10 @@
             <td>{{$application->address}}</td>
             <td>{{$application->guardian}}</td>
             <td>
-              <button onclick="delete('{{$application->id}}')"  class="btn btn-danger btn-sm">Delete</button>
+              <a class="btn btn-primary" href="/edit-application?id={{$application->id}}">
+                Edit
+              </a>
+              <a href="/delete-application?id={{$application->id}}"  class="btn btn-danger btn-sm">Delete</a>
             </td>
           </tr>
           @endforeach
