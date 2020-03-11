@@ -82,6 +82,10 @@ Route::get('/student-data-list', 'adminController@studentData');
 Route::get('/delete-student-data', 'adminController@deleteStudentData');
 Route::post('/add-student-data', 'adminController@insertStudentData');
 
+Route::get('/edit-student-data', 'adminController@editStudentData');
+Route::post('/edit-student-data', 'adminController@updateStudentData');
+
+
 
 Route::get('/update-admin-message', 'adminController@updateMessage');
 Route::get('/delete-admin-message', 'adminController@deleteMessage');

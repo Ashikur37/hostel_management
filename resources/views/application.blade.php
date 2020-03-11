@@ -132,7 +132,7 @@
                                 xhttp.onreadystatechange = function() {
                                     if (this.readyState == 4 && this.status == 200) {
                                         if(this.responseText=="not"){
-                                            alert("This number is not found with your student id");
+                                            alert("This number is not found with your student info");
                                             document.getElementById("btn").disabled=true;
                                         }
                                         else{
@@ -142,7 +142,7 @@
                                         }
                                     }
                                 };
-                                xhttp.open("GET", "http://localhost/checknumber.php?number="+number+"&id="+document.getElementById("student_id").value, true);
+                                xhttp.open("GET", "http://localhost/checknumber.php?hostel={{request()->hostel}}&number="+number+"&id="+document.getElementById("student_id").value, true);
                                 xhttp.send();
                             }
                         </script>

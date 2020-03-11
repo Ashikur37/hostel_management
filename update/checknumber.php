@@ -9,13 +9,14 @@ $db = 'hostel';
 $mysqli = new mysqli($server, $user, $pass, $db);
 $number=$_GET["number"];
 $id=$_GET["id"];
+$hostel=$_GET["hostel"];
+
 
 // show errors 
 mysqli_report(MYSQLI_REPORT_ERROR);	
-
-$sql="Select * from student_data where phone='$number' and student_id='$id'";
+$gender=["male","male","female"][$hostel-5];
+$sql="Select * from student_data where phone='$number' and student_id='$id' and gender='$gender'";
 $result=$mysqli->query($sql);
-
 if(mysqli_num_rows($result)==1){
     $r=rand(1000,9999);
     try{

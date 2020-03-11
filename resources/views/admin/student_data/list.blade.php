@@ -34,6 +34,7 @@
 
           
           <td>
+            <a href="/edit-student-data?id={{$data->id}}" class="btn btn-primary btn-sm">Edit</a>            
             <a href="/delete-student-data?id={{$data->id}}" class="btn btn-danger btn-sm">Delete</a>
           </td>
         </tr>

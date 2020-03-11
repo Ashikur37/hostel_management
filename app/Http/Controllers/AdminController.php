@@ -38,6 +38,29 @@ class AdminController extends Controller
         $notifications=notification::where('user_id',$a->id)->get();
         return view('admin.student_data.add',['notifications'=>$notifications]);
     }
+
+    public function editStudentData(){
+        $admin = auth()->user();
+        $type=$admin->type;
+        $a=User::where('type', $type)->first();
+        $student=StudentData::find(request()->id);
+        $notifications=notification::where('user_id',$a->id)->get();
+        return view('admin.student_data.edit',['student'=>$student,'notifications'=>$notifications]);
+    }
+
+    public function updateStudentData(Request $request){
+      $student=StudentData::find(request()->id);
+      $student->update([
+        "student_id"=>$request->student_id,
+        "phone"=>$request->phone,
+        "name"=>$request->name,
+        "batch"=>$request->batch,
+        "gender"=>$request->gender,
+        "department"=>$request->department
+
+    ]);
+        return redirect('/student-data-list');
+    }
     public function insertStudentData(Request $request){
         StudentData::create([
             "student_id"=>$request->student_id,
